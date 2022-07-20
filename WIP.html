@@ -1,0 +1,226 @@
+
+<html>
+    <head>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+document.body.style.backgroundColor = 'black';
+
+var headGlass = document.createElement('div');
+headGlass.innerHTML = 'GLASSHEAD';
+headGlass.style.color = 'white';
+headGlass.style.fontSize = '10px';
+headGlass.style.position = 'absolute';
+headGlass.style.top = '0px';
+headGlass.style.left = '0px';
+document.body.appendChild(headGlass);
+
+var pressMe = document.createElement('button');
+pressMe.innerHTML = 'website under development';
+pressMe.style.position = 'absolute';
+pressMe.style.top = '50%';
+pressMe.style.left = '50%';
+pressMe.style.marginLeft = '-50px';
+pressMe.style.marginTop = '-25px';
+document.body.appendChild(pressMe);
+
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+
+document.addEventListener('contextmenu', function(e) {
+  var dontDoThat = document.createElement('div');
+  dontDoThat.innerHTML = 'Don\'t do that';
+  dontDoThat.style.position = 'absolute';
+  dontDoThat.style.top = e.clientY + 'px';
+  dontDoThat.style.left = e.clientX + 'px';
+  dontDoThat.style.color = 'white';
+  dontDoThat.style.fontSize = '10px';
+  document.body.appendChild(dontDoThat);
+  setTimeout(function() {
+    document.body.removeChild(dontDoThat);
+  }, 2000);
+});
+
+var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+var colorIndex = 0;
+pressMe.addEventListener('click', function() {
+  document.body.style.backgroundColor = colors[colorIndex];
+  colorIndex = (colorIndex + 1) % colors.length;
+});
+
+document.body.addEventListener('click', function() {
+  if (document.body.style.backgroundColor === 'yellow') {
+    headGlass.style.color = 'black';
+  } else {
+    headGlass.style.color = 'white';
+  }
+});
+
+document.addEventListener('contextmenu', function(e) {
+  var dontDoThat = document.createElement('div');
+  dontDoThat.innerHTML = 'Don\'t do that';
+  dontDoThat.style.position = 'absolute';
+  dontDoThat.style.top = e.clientY + 'px';
+  dontDoThat.style.left = e.clientX + 'px';
+  dontDoThat.style.fontSize = '10px';
+  if (document.body.style.backgroundColor === 'yellow') {
+    dontDoThat.style.color = 'black';
+  } else {
+    dontDoThat.style.color = 'white';
+  }
+  document.body.appendChild(dontDoThat);
+  setTimeout(function() {
+    document.body.removeChild(dontDoThat);
+  }, 2000);
+});
+
+document.body.style.overflow = 'hidden';
+
+document.body.style.userSelect = 'none';
+
+document.body.addEventListener('dragstart', function(e) {
+  e.preventDefault();
+});
+
+var minecraftServer = document.createElement('div');
+minecraftServer.innerHTML = 'Minecraft server : 135.148.29.252:25569';
+minecraftServer.style.position = 'absolute';
+minecraftServer.style.bottom = '0px';
+minecraftServer.style.left = '0px';
+minecraftServer.style.color = 'white';
+minecraftServer.style.fontSize = '10px';
+document.body.appendChild(minecraftServer);
+
+minecraftServer.addEventListener('click', function() {
+  var textArea = document.createElement('textarea');
+  textArea.value = '135.148.29.252:25569';
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textArea);
+});
+
+minecraftServer.addEventListener('click', function(e) {
+  var ipCopied = document.createElement('div');
+  ipCopied.innerHTML = 'IP Copied';
+  ipCopied.style.position = 'absolute';
+  ipCopied.style.top = e.clientY - 20 + 'px';
+  ipCopied.style.left = e.clientX + 'px';
+  ipCopied.style.color = 'white';
+  ipCopied.style.fontSize = '10px';
+  ipCopied.style.backgroundColor = 'darkgreen';
+  document.body.appendChild(ipCopied);
+  setTimeout(function() {
+    document.body.removeChild(ipCopied);
+  }, 1000);
+});
+
+document.body.addEventListener('click', function() {
+  if (document.body.style.backgroundColor === 'yellow') {
+    minecraftServer.style.color = 'black';
+  } else {
+    minecraftServer.style.color = 'white';
+  }
+});
+
+var clickToCopy = document.createElement('div');
+clickToCopy.innerHTML = 'click to copy';
+clickToCopy.style.position = 'absolute';
+clickToCopy.style.bottom = '10px';
+clickToCopy.style.left = '0px';
+clickToCopy.style.color = 'grey';
+clickToCopy.style.fontSize = '10px';
+document.body.appendChild(clickToCopy);
+
+pressMe.style.marginLeft = '-100px';
+pressMe.style.width = '200px';
+pressMe.style.textAlign = 'center';
+
+var pressMeCount = 0;
+pressMe.addEventListener('click', function() {
+  pressMeCount++;
+  if (pressMeCount === 20) {
+    var havingFun = document.createElement('div');
+    havingFun.innerHTML = 'having fun?';
+    havingFun.style.position = 'absolute';
+    havingFun.style.top = '50%';
+    havingFun.style.left = '45%';
+    havingFun.style.marginLeft = '-50px';
+    havingFun.style.marginTop = '-25px';
+    havingFun.style.color = 'red';
+    havingFun.style.fontSize = '50px';
+    havingFun.style.backgroundColor = 'black';
+    document.body.appendChild(havingFun);
+    setTimeout(function() {
+      document.body.removeChild(havingFun);
+    }, 2000);
+  }
+});
+
+pressMe.addEventListener('click', function() {
+  if (pressMeCount === 21) {
+    pressMeCount = 0;
+  }
+});
+
+var boom = new Audio('https://www.myinstants.com/media/sounds/vine_boom_sound_effect_longer_verison_for_real_read_description_pleaseyoutubetomp4.mp3');
+pressMe.addEventListener('click', function() {
+  if (pressMeCount === 20) {
+    boom.play();
+  }
+});
+
+var image = document.createElement('img');
+image.src = 'https://lastfm.freetls.fastly.net/i/u/770x0/5be7d6fbfa24b4518bae0257dda90ae6.jpg';
+image.style.position = 'absolute';
+image.style.top = '70%';
+image.style.left = '49%';
+image.style.marginLeft = '-50px';
+image.style.marginTop = '-25px';
+document.body.appendChild(image);
+document.body.addEventListener('click', function() {
+  if (document.body.style.backgroundColor === 'yellow') {
+    image.style.display = 'block';
+  } else {
+    image.style.display = 'none';
+  }
+});
+
+image.style.width = '10%';
+
+var angle = 0;
+setInterval(function() {
+  angle = (angle + 1) % 360;
+  image.style.transform = 'rotate(' + angle + 'deg)';
+}, 10);
+
+image.addEventListener('click', function() {
+  var yummy = new Audio('https://www.myinstants.com/media/sounds/roblox-yummy.mp3');
+  yummy.play();
+});
+
+image.style.display = 'none';
+
+var sheep = new Audio('https://www.myinstants.com/media/sounds/minecraft-sheep2.mp3');
+minecraftServer.addEventListener('click', function() {
+  sheep.play();
+});
+
+headGlass.style.left = '46.5%';
+headGlass.style.marginLeft = '-50px';
+
+headGlass.style.fontSize = '30px';
+
+headGlass.style.fontFamily = 'IBM Plex Sans Devanagari';
+headGlass.style.fontWeight = '700';
+});
+</script>
+</head>
+<body>
+<div>
+<div>
+            </div>
+        </div>
+    </body>
+</html>
