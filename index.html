@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <script>
@@ -9,13 +8,18 @@ document.body.style.backgroundColor = 'black';
 var headGlass = document.createElement('div');
 headGlass.innerHTML = 'GLASSHEAD';
 headGlass.style.color = 'white';
-headGlass.style.fontSize = '10px';
+headGlass.style.fontSize = '80px';
 headGlass.style.position = 'absolute';
-headGlass.style.top = '0px';
-headGlass.style.left = '0px';
+headGlass.style.top = '5%';
+headGlass.style.left = '50%';
+headGlass.style.marginLeft = '-247px';
+headGlass.style.marginTop = '-25px';
+headGlass.style.fontFamily = 'IBM Plex Sans Devanagari';
+headGlass.style.fontWeight = '700';
 document.body.appendChild(headGlass);
 
 var pressMe = document.createElement('button');
+
 pressMe.innerHTML = 'website under development';
 pressMe.style.position = 'absolute';
 pressMe.style.top = '50%';
@@ -175,9 +179,10 @@ var image = document.createElement('img');
 image.src = 'https://lastfm.freetls.fastly.net/i/u/770x0/5be7d6fbfa24b4518bae0257dda90ae6.jpg';
 image.style.position = 'absolute';
 image.style.top = '70%';
-image.style.left = '49%';
-image.style.marginLeft = '-50px';
+image.style.left = '45%';
 image.style.marginTop = '-25px';
+image.style.width = '10%';
+image.style.margin = "0 auto"
 document.body.appendChild(image);
 document.body.addEventListener('click', function() {
   if (document.body.style.backgroundColor === 'yellow') {
@@ -187,7 +192,6 @@ document.body.addEventListener('click', function() {
   }
 });
 
-image.style.width = '10%';
 
 var angle = 0;
 setInterval(function() {
@@ -207,13 +211,6 @@ minecraftServer.addEventListener('click', function() {
   sheep.play();
 });
 
-headGlass.style.left = '46.5%';
-headGlass.style.marginLeft = '-50px';
-
-headGlass.style.fontSize = '30px';
-
-headGlass.style.fontFamily = 'IBM Plex Sans Devanagari';
-headGlass.style.fontWeight = '700';
 });
 </script>
 </head>
