@@ -8,6 +8,56 @@ import {DragControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/control
 
 
 
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+document.addEventListener('contextmenu', function(e) {
+    var dontDoThat = document.createElement('div');
+    dontDoThat.innerHTML = 'right clicking is for loosers';
+    dontDoThat.style.position = 'absolute';
+    dontDoThat.style.top = e.clientY + 'px';
+    dontDoThat.style.left = e.clientX + 'px';
+    dontDoThat.style.fontSize = '10px';
+    if (document.body.style.backgroundColor === 'yellow') {
+      dontDoThat.style.color = 'black';
+    } else {
+      dontDoThat.style.color = 'white';
+    }
+    document.body.appendChild(dontDoThat);
+    setTimeout(function() {
+      document.body.removeChild(dontDoThat);
+    }, 2000);
+  });
+
+  var minecraftServer = document.createElement('div');
+minecraftServer.innerHTML = 'Minecraft server : 135.148.29.252:25569';
+minecraftServer.style.position = 'absolute';
+minecraftServer.style.bottom = '50px';
+minecraftServer.style.left = '50%';
+minecraftServer.style.transform = 'translateX(-50%)';
+minecraftServer.style.color = 'white';
+minecraftServer.style.fontSize = '10px';
+document.body.appendChild(minecraftServer);
+
+minecraftServer.addEventListener('click', function() {
+  var textArea = document.createElement('textarea');
+  textArea.value = '135.148.29.252:25569';
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textArea);
+  
+  
+
+});
+
+  
+  document.body.style.overflow = 'hidden';
+  
+  document.body.style.userSelect = 'none';
+  
+  document.body.addEventListener('dragstart', function(e) {
+    e.preventDefault();
+  });
 
 const fontLoader = new THREE.FontLoader()
 const canvas = document.querySelector('.webgl')
@@ -159,7 +209,7 @@ const textMat = new THREE.MeshBasicMaterial({color: colorchange, wireframe: true
 
 
 for(let i = 0; i< 3; i++){
-    const light3 = new THREE.DirectionalLight(0xffffff, .4)  
+    const light3 = new THREE.DirectionalLight(0xffffff, .40)  
     const lightHelper = new THREE.PointLightHelper(light3);
     light3.position.x = (Math.random() - 0.5 * 1)
     light3.position.z = 2.5
