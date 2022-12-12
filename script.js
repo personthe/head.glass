@@ -50,6 +50,10 @@ minecraftServer.addEventListener('click', function() {
 
 });
 
+var sheep = new Audio('https://www.myinstants.com/media/sounds/minecraft-sheep2.mp3');
+minecraftServer.addEventListener('click', function() {
+  sheep.play();
+});
   
   document.body.style.overflow = 'hidden';
   
@@ -58,6 +62,8 @@ minecraftServer.addEventListener('click', function() {
   document.body.addEventListener('dragstart', function(e) {
     e.preventDefault();
   });
+
+  
 
 const fontLoader = new THREE.FontLoader()
 const canvas = document.querySelector('.webgl')
