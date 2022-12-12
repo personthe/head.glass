@@ -31,7 +31,7 @@ document.addEventListener('contextmenu', function(e) {
   var minecraftServer = document.createElement('div');
 minecraftServer.innerHTML = 'Minecraft server : 135.148.29.252:25569';
 minecraftServer.style.position = 'absolute';
-minecraftServer.style.bottom = '50px';
+minecraftServer.style.bottom = '10px';
 minecraftServer.style.left = '50%';
 minecraftServer.style.transform = 'translateX(-50%)';
 minecraftServer.style.color = 'white';
@@ -84,11 +84,13 @@ glass.envMapIntensity = 25
 
 const m2 = new THREE.MeshBasicMaterial({color: 'red'});
 m2.visible = false
+const m4 = new THREE.MeshBasicMaterial();
+
 
 const m3 = new THREE.MeshStandardMaterial()
 m3.roughness = 0.7
 
-const textMat = new THREE.MeshBasicMaterial({color: colorchange, wireframe: true})
+const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
 
 //OBJECTS
 
@@ -101,9 +103,10 @@ const textMat = new THREE.MeshBasicMaterial({color: colorchange, wireframe: true
 
     const intersextion = new THREE.Vector3(box1mesh)
 
-    const box2 = new THREE.BoxGeometry(3,.2,3)
+    const box2 = new THREE.BoxGeometry(1,4,1)
     const box2mesh = new THREE.Mesh(box2,m3)
     box2mesh.receiveShadow = true
+    //scene.add(box2mesh)
    
 
     let text;
@@ -111,7 +114,7 @@ const textMat = new THREE.MeshBasicMaterial({color: colorchange, wireframe: true
         '/font/helvetiker_regular.typeface.json',
         (font) =>
         {
-           const textgeo = new THREE.TextBufferGeometry('UNDER CONSTRUCTION',{
+           const textgeo = new THREE.TextBufferGeometry('GLASSHEAD',{
             font: font,
             size: 0.5,
             height: 0.2,
@@ -143,11 +146,17 @@ const textMat = new THREE.MeshBasicMaterial({color: colorchange, wireframe: true
     let pillar;
     let Room;
     let sky;
+
+    
     gltfloader.load('./objects/roomofstuff.gltf', function(glb){
     room = glb.scene;
     groop1.add(room)
     Room = room.getObjectByName("Room");
     sky = room.getObjectByName("sky");
+
+ 
+    
+    
     
 
     room.castShadow = true
@@ -199,6 +208,14 @@ const textMat = new THREE.MeshBasicMaterial({color: colorchange, wireframe: true
     const groop1 = new THREE.Group()
     scene.add(groop1)
     
+    const mouse = new THREE.Vector2()
+window.addEventListener('mousemove', (event) =>{
+    mouse.x = event.clientX / sizes.width * 2 -1
+    mouse.y = - (event.clientX / sizes.width) * 2 + 1
+})
+
+    const raycaster = new THREE.Raycaster()
+
 
 
 
@@ -253,6 +270,12 @@ camera.position.set(0,2.45,4)
 camera.rotation.x = -.4
 scene.add(camera)
 
+const camera2 = new THREE.PerspectiveCamera (35, sizes.width/sizes.height, .01, 1000)
+camera2.position.set(0,1,4)
+camera2.rotation.x = 0
+
+scene.add(camera2)
+
 const renderer = new THREE.WebGL1Renderer({
     canvas: canvas})
 //const controls = new OrbitControls(camera, renderer.domElement)
@@ -273,11 +296,23 @@ function animate(){
 
     var timer = Date.now() * 0.0001;
     headspin()
+
+    //raycaster.setFromCamera(mouse, camera2)
+
+   // const intersects = raycaster.intersectObject(box2mesh)
+
+    /*const objectToTest = []
+
+
+    for(const object of objectToTest){
+       object.material.color.set('white')
+    }
+
+    for(const intersect of intersects){
+       intersect.object.material.color.set('red')
+    }*/
     
-    colorchange.r += 0.0; // full red
-    colorchange.g += 1.0; // half green
-    colorchange.b += 1.0; // no blue
-    textMat.color = colorchange;
+
 
     requestAnimationFrame(animate)
 
