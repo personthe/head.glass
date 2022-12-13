@@ -11,6 +11,13 @@ var windowopen = new Audio('./audio/windowopen.mp3');
 var windowclose = new Audio('./audio/windowclose.mp3');
 var dooropen = new Audio('./audio/dooropen.mp3');
 var doorclose = new Audio('./audio/doorclose.mp3');
+var glassTap = new Audio('./audio/glassTap.mp3');
+
+var music = new Audio('./audio/bgmusic.mp3');
+music.loop = true
+
+var tvon = new Audio('./audio/tvon.mp3');
+var tvoff = new Audio('./audio/tvoff.mp3');
 
 const fontLoader = new THREE.FontLoader()
 const canvas = document.querySelector('.webgl')
@@ -18,24 +25,60 @@ const scene = new THREE.Scene()
 const gltfloader = new GLTFLoader()
 const colorchange = new THREE.Color(0xff0000)
 
+var danb = new Audio('./audio/danb.mp3');
+var dyldisb = new Audio('./audio/dyldisb.mp3');
+var gingerb = new Audio('./audio/gingerb.mp3');
+var joeyb = new Audio('./audio/joeyb.mp3');
+var tylerb = new Audio('./audio/tylerb.mp3');
+var toneb = new Audio('./audio/tylerb.mp3');
+
+const GLASSHEADArray = [danb,dyldisb,gingerb,joeyb,tylerb,toneb];
+const GLASSHEADaudio = GLASSHEADArray[Math.floor(Math.random() * GLASSHEADArray.length)];
+
+
 
 
 //MATERICAL
-const glass = new THREE.MeshPhysicalMaterial({})
-glass.thickness = 3.0
-glass.roughness = 0.9
-glass.clearcoat = 0.1
-glass.clearcoatRoughness = 0
-glass.transmission = 0.99
-glass.ior = 1.25
-glass.envMapIntensity = 25
+
+
+const ENV = new THREE.TextureLoader().load( './imges/envmaper.png' );
+ENV.mapping = THREE.SphericalReflectionMapping;
+const glass = new THREE.MeshBasicMaterial({color:'green'})
+
+glass.roughness = 0
+
+glass.envMap = ENV
+glass.reflectivity = 1
+glass.reflective = true
+glass.transparent = true
+glass.opacity = .8
 
 
 
-const m4 = new THREE.MeshBasicMaterial();
+const m4 = new THREE.MeshBasicMaterial({color: "black"});
 
 const m3 = new THREE.MeshStandardMaterial()
 m3.roughness = 0.7
+
+var video = document.getElementById( 'video' );
+
+
+const videoTex = new THREE.TextureLoader().load( './imges/london.jpg' );
+const num = 4;
+
+videoTex.repeat.x = num
+videoTex.repeat.y = num
+videoTex.offset.x = -1.5
+videoTex.offset.y = .050
+videoTex.center.x = .5
+videoTex.center.y = .5
+videoTex.rotation = -1.57
+
+
+
+
+const videoMat = new THREE.MeshBasicMaterial({map: videoTex})
+
 
 const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
 
@@ -46,6 +89,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     const headBox = new THREE.Mesh(headBoxGeometry,invisibleRed)
     headBox.position.set(0,1.5,)
     scene.add(headBox)
+
 
     const tvBoxGeometry = new THREE.BoxGeometry(.65,.6,.16)
     const tvBox = new THREE.Mesh(tvBoxGeometry,invisibleRed)
@@ -63,12 +107,13 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     windowBox.rotation.set(0,-1.25,0)
     scene.add(windowBox)
 
-
+    const textArray = ["GLASSHEAD","head.glass","I love GLASSHEAD","HEY its Tone Baloney"];
+    const textString = textArray[Math.floor(Math.random() * textArray.length)];
 
    
 let text;
 fontLoader.load('/font/helvetiker_regular.typeface.json',(font) =>{
-    const textgeo = new THREE.TextBufferGeometry('GLASSHEAD',{
+    const textgeo = new THREE.TextGeometry(textString,{
         font: font,
         size: 0.5,
         height: 0.2,
@@ -81,7 +126,8 @@ fontLoader.load('/font/helvetiker_regular.typeface.json',(font) =>{
         scene.add(text)
         text.position.set(0,.2,.9)
         const size = .15
-        text.scale.set(size,size,size)            
+        text.scale.set(size,size,size)  
+              
         }
 )
     
@@ -95,11 +141,15 @@ let outside;
 gltfloader.load('./objects/roomofstuff.gltf', function(glb){
 
     room = glb.scene;
+    
+    
+    
     groop1.add(room)
     Room = room.getObjectByName("Room");
     outside = room.getObjectByName("Window");
     sky = room.getObjectByName("sky");
     pillar = room.getObjectByName("Pillar");
+    
     door = room.getObjectByName("Door");   
     
 
@@ -111,15 +161,18 @@ gltfloader.load('./objects/head.gltf', function(glb){
     head = glb.scene;
     head.castShadow = true
     head.position.set(0,1.2,0)
+    //head.traverse((o) => {if (o.isMesh) o.material = glass;});
     groop1.add(head)
     
 });
 
 let TV;
+let screen;
 
 gltfloader.load('./objects/TV.gltf', function(glb){
     TV = glb.scene;
     screen = TV.getObjectByName("TVSCREEN");
+    
     groop1.add(TV)
 
 });
@@ -137,11 +190,14 @@ scene.add(groop1)
 
 //LIGHTS
 for(let i = 0; i< 3; i++){
-    const light3 = new THREE.DirectionalLight(0xffffff, .70)  
+    const light3 = new THREE.DirectionalLight(0xffffff, .65)  
     const lightHelper = new THREE.PointLightHelper(light3);
+
     light3.position.x = (Math.random() - 0.5 * 1)
     light3.position.z = 2.5
+    light3.position.y = 2
     //scene.add(lightHelper)
+    light3.castShadow = true
     scene.add(light3)
 }
 
@@ -170,6 +226,8 @@ window.addEventListener('resize', () =>{
 
 const mouse = new THREE.Vector2()
 
+
+
     window.addEventListener('mousemove', (event) =>{
     mouse.x = event.clientX / sizes.width * 2 - 1
     mouse.y = - (event.clientY / sizes.height) * 2 + 1
@@ -178,16 +236,28 @@ const mouse = new THREE.Vector2()
 
     let doorRotation = 0;
     let windowPos = 0;
+    let tvON = 0;
 
     window.addEventListener('click', (event) =>{
         if(currentIntersect){
             console.log(currentIntersect)
 
             if(currentIntersect.object === headBox){
+                
                 console.log('head clicked')
-            }
-            else if(currentIntersect.object === windowBox){
+                glassTap.pause()
+                glassTap.currentTime = 0
+                glassTap.play()
+                GLASSHEADaudio.play()
+                if(head)head.position.set(0,1.3,0);
+
+                setTimeout(function() {
+                    if(head)head.position.set(0,1.2,0);
+                    }, 2000);
+                    
+            }else if(currentIntersect.object === windowBox){
                 console.log('window clicked')
+                
                 if(outside){
                     if (windowPos === 0) {
                         outside.position.set(-.502,.6,-1.088);
@@ -225,6 +295,24 @@ const mouse = new THREE.Vector2()
             }
             else if(currentIntersect.object === tvBox){
                 console.log('tv clicked')
+                if(screen){
+                    if (tvON === 0) {
+                        tvoff.pause()
+                        tvoff.currentTime = 0
+                        tvon.play()
+                        music.play()
+                        screen.traverse((o) => {if (o.isMesh) o.material = videoMat;});
+                        tvON = 3;
+                    } else {
+                        music.pause()
+                        music.currentTime = 0
+                        tvon.pause()
+                        tvon.currentTime = 0
+                        tvoff.play()
+                        screen.traverse((o) => {if (o.isMesh) o.material = m4;});
+                        tvON = 0;
+                    }
+                }
             }
 
         }
@@ -243,16 +331,26 @@ const renderer = new THREE.WebGL1Renderer({
 
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio (Math.min (window.devicePixelRatio, 2))
-renderer.gammaOuput - true
+renderer.gammaInput + true;
+renderer.gammaOutput + true;
 renderer.shadowMap.enabled = true
 
 let currentIntersect = null
+
+const target = new THREE.Vector3()
 
 function animate(){
 
     var timer = Date.now() * 0.0001;
     headspin()
 
+
+
+    target.x += ( mouse.x  - target.x ) * 1;
+    target.y += (  mouse.y + 2 - target.y ) * 1;
+    target.z = camera.position.z
+
+    if (text)text.lookAt( target );
 
 
     raycaster.setFromCamera(mouse,camera)
