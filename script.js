@@ -4,7 +4,6 @@ import {GLTFLoader} from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/G
 import {OrbitControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js'
 import {DragControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/DragControls.js'
 //----------------------------------------------------------------------------------------------------  
-
 var off = new Audio('./audio/off.mp3');
 var on = new Audio('./audio/on.mp3');
 var windowopen = new Audio('./audio/windowopen.mp3');
@@ -12,6 +11,7 @@ var windowclose = new Audio('./audio/windowclose.mp3');
 var dooropen = new Audio('./audio/dooropen.mp3');
 var doorclose = new Audio('./audio/doorclose.mp3');
 var glassTap = new Audio('./audio/glassTap.mp3');
+var glassLand = new Audio('./audio/glassLand.mp3');
 
 var music = new Audio('./audio/bgmusic.mp3');
 music.loop = true
@@ -77,7 +77,7 @@ videoTex.rotation = -1.57
 
 
 
-const videoMat = new THREE.MeshBasicMaterial({map: videoTex})
+const videoMat = new THREE.MeshBasicMaterial({map: videoTex,lightMapIntensity : 0})
 
 
 const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
@@ -124,9 +124,10 @@ fontLoader.load('/font/helvetiker_regular.typeface.json',(font) =>{
     text = new THREE.Mesh(textgeo,textMat)
         textgeo.center()
         scene.add(text)
-        text.position.set(0,.2,.9)
+        text.position.set(0,.1,.9)
         const size = .15
         text.scale.set(size,size,size)  
+
               
         }
 )
@@ -146,10 +147,12 @@ gltfloader.load('./objects/roomofstuff.gltf', function(glb){
     
     groop1.add(room)
     Room = room.getObjectByName("Room");
+    Room.traverse((o) => {if (o.isMesh) o.receiveShadow = true;});
     outside = room.getObjectByName("Window");
     sky = room.getObjectByName("sky");
     pillar = room.getObjectByName("Pillar");
     
+    pillar.traverse((o) => {if (o.isMesh) o.receiveShadow = true;});
     door = room.getObjectByName("Door");   
     
 
@@ -160,8 +163,9 @@ gltfloader.load('./objects/head.gltf', function(glb){
 
     head = glb.scene;
     head.castShadow = true
-    head.position.set(0,1.2,0)
-    //head.traverse((o) => {if (o.isMesh) o.material = glass;});
+    head.position.set(0,1.21,0)
+    //head.traverse((o) => {if (o.isMesh) o.material.o = glass;});
+    head.traverse((o) => {if (o.isMesh) o.castShadow = true;});
     groop1.add(head)
     
 });
@@ -190,15 +194,23 @@ scene.add(groop1)
 
 //LIGHTS
 for(let i = 0; i< 3; i++){
-    const light3 = new THREE.DirectionalLight(0xffffff, .65)  
+    const light3 = new THREE.DirectionalLight(0xffffff, .5)  
     const lightHelper = new THREE.PointLightHelper(light3);
-
+    
     light3.position.x = (Math.random() - 0.5 * 1)
-    light3.position.z = 2.5
+    light3.position.z = 3.5
     light3.position.y = 2
     //scene.add(lightHelper)
     light3.castShadow = true
     scene.add(light3)
+
+    const lightPoint = new THREE.DirectionalLight(0xffffff, .1)  
+    const pointHelper = new THREE.DirectionalLightHelper(lightPoint);
+    lightPoint.rotation.set(.2,0,0)
+    lightPoint.position.set(0,5,0)
+    lightPoint.castShadow = true
+    //scene.add(pointHelper)
+    scene.add(lightPoint)
 }
 
 
@@ -245,6 +257,7 @@ const mouse = new THREE.Vector2()
             if(currentIntersect.object === headBox){
                 
                 console.log('head clicked')
+                
                 glassTap.pause()
                 glassTap.currentTime = 0
                 glassTap.play()
@@ -252,7 +265,10 @@ const mouse = new THREE.Vector2()
                 if(head)head.position.set(0,1.3,0);
 
                 setTimeout(function() {
-                    if(head)head.position.set(0,1.2,0);
+                    if(head)head.position.set(0,1.21,0);
+
+
+                glassLand.play()
                     }, 2000);
                     
             }else if(currentIntersect.object === windowBox){
@@ -332,8 +348,10 @@ const renderer = new THREE.WebGL1Renderer({
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio (Math.min (window.devicePixelRatio, 2))
 renderer.gammaInput + true;
-renderer.gammaOutput + true;
+renderer.gammaOutput = true;
 renderer.shadowMap.enabled = true
+renderer.shadowMap.type = THREE.PCFSoftShadowMap
+
 
 let currentIntersect = null
 
