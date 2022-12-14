@@ -15,6 +15,7 @@ var glassTap = new Audio('./audio/glassTap.mp3');
 var glassLand = new Audio('./audio/glassLand.mp3');
 
 var justWind = new Audio('./audio/justWind.mp3');
+justWind.loop = true
 
 var music = new Audio('./audio/bgmusic.mp3');
 music.loop = true
@@ -35,7 +36,10 @@ var joeyb = new Audio('./audio/joeyb.mp3');
 var tylerb = new Audio('./audio/tylerb.mp3');
 var toneb = new Audio('./audio/tylerb.mp3');
 
-let GLASSHEADaudio ;
+
+
+let GLASSHEADaudio;
+
 
 
 
@@ -338,6 +342,7 @@ const mouse = new THREE.Vector2()
                         screen.traverse((o) => {if (o.isMesh) o.material = m4;});
                         camera.position.set(0,2.45,4)
                         camera.rotation.x = -.4
+
                         tvON = 0;
                     }
                 }
@@ -361,8 +366,8 @@ renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio (Math.min (window.devicePixelRatio, 1))
 // renderer.gammaInput + true;
 // renderer.gammaOutput = true;
-// renderer.gammaFactor = 80.2;
-renderer.outputEncoding = THREE.sRGBEncoding;
+ renderer.gammaFactor = 1.7;
+renderer.outputEncoding = THREE.GammaEncoding
 renderer.shadowMap.enabled = true
 //renderer.shadowMap.type = THREE.PCFSoftShadowMap
 //renderer.antialias = true
@@ -377,9 +382,13 @@ const target = new THREE.Vector3()
 function animate(){
 
     const GLASSHEADArray = [danb,dyldisb,gingerb,joeyb,tylerb,toneb];
+
     GLASSHEADaudio = GLASSHEADArray[Math.floor(Math.random() * GLASSHEADArray.length)];
+
     var timer = Date.now() * 0.0001;
     headspin()
+
+
 
 
 
