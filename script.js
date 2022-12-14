@@ -3,6 +3,7 @@ import * as THREE from 'https://unpkg.com/three@0.126.1/build/three.module.js'
 import {GLTFLoader} from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/GLTFLoader.js'
 import {OrbitControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js'
 import {DragControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/DragControls.js'
+
 //----------------------------------------------------------------------------------------------------  
 var off = new Audio('./audio/off.mp3');
 var on = new Audio('./audio/on.mp3');
@@ -147,6 +148,7 @@ gltfloader.load('./objects/roomofstuff.gltf', function(glb){
     
     groop1.add(room)
     Room = room.getObjectByName("Room");
+    room.matrixAutoUpdate = false
     Room.traverse((o) => {if (o.isMesh) o.receiveShadow = true;});
     outside = room.getObjectByName("Window");
     sky = room.getObjectByName("sky");
@@ -194,7 +196,7 @@ scene.add(groop1)
 
 //LIGHTS
 for(let i = 0; i< 3; i++){
-    const light3 = new THREE.DirectionalLight(0xffffff, .5)  
+    const light3 = new THREE.DirectionalLight(0xffffff, .30)  
     const lightHelper = new THREE.PointLightHelper(light3);
     
     light3.position.x = (Math.random() - 0.5 * 1)
@@ -204,7 +206,7 @@ for(let i = 0; i< 3; i++){
     light3.castShadow = true
     scene.add(light3)
 
-    const lightPoint = new THREE.DirectionalLight(0xffffff, .1)  
+    const lightPoint = new THREE.DirectionalLight(0xffffff, .30)  
     const pointHelper = new THREE.DirectionalLightHelper(lightPoint);
     lightPoint.rotation.set(.2,0,0)
     lightPoint.position.set(0,5,0)
@@ -318,6 +320,8 @@ const mouse = new THREE.Vector2()
                         tvon.play()
                         music.play()
                         screen.traverse((o) => {if (o.isMesh) o.material = videoMat;});
+                        camera.position.set(1.3,.6,-.5)
+                        camera.rotation.set(0,0,0)
                         tvON = 3;
                     } else {
                         music.pause()
@@ -326,6 +330,8 @@ const mouse = new THREE.Vector2()
                         tvon.currentTime = 0
                         tvoff.play()
                         screen.traverse((o) => {if (o.isMesh) o.material = m4;});
+                        camera.position.set(0,2.45,4)
+                        camera.rotation.x = -.4
                         tvON = 0;
                     }
                 }
@@ -349,6 +355,8 @@ renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio (Math.min (window.devicePixelRatio, 2))
 renderer.gammaInput + true;
 renderer.gammaOutput = true;
+renderer.gammaFactor = 2.2;
+renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.shadowMap.enabled = true
 renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
