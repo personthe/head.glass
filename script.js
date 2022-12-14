@@ -14,6 +14,8 @@ var doorclose = new Audio('./audio/doorclose.mp3');
 var glassTap = new Audio('./audio/glassTap.mp3');
 var glassLand = new Audio('./audio/glassLand.mp3');
 
+var justWind = new Audio('./audio/justWind.mp3');
+
 var music = new Audio('./audio/bgmusic.mp3');
 music.loop = true
 
@@ -33,8 +35,9 @@ var joeyb = new Audio('./audio/joeyb.mp3');
 var tylerb = new Audio('./audio/tylerb.mp3');
 var toneb = new Audio('./audio/tylerb.mp3');
 
-const GLASSHEADArray = [danb,dyldisb,gingerb,joeyb,tylerb,toneb];
-const GLASSHEADaudio = GLASSHEADArray[Math.floor(Math.random() * GLASSHEADArray.length)];
+let GLASSHEADaudio ;
+
+
 
 
 
@@ -282,6 +285,7 @@ const mouse = new THREE.Vector2()
                         windowclose.pause()
                         windowclose.currentTime = 0
                         windowopen.play()
+                        justWind.play()
                         windowPos = 3;
                     } else {
                         outside.position.set(-.502,.432,-1.088);
@@ -289,6 +293,8 @@ const mouse = new THREE.Vector2()
                         windowopen.pause()
                         windowopen.currentTime = 0
                         windowclose.play()
+                        justWind.pause()
+                        
                     }
                 }
                 
@@ -320,7 +326,7 @@ const mouse = new THREE.Vector2()
                         tvon.play()
                         music.play()
                         screen.traverse((o) => {if (o.isMesh) o.material = videoMat;});
-                        camera.position.set(1.3,.6,-.5)
+                        camera.position.set(1.26,.6,-.5)
                         camera.rotation.set(0,0,0)
                         tvON = 3;
                     } else {
@@ -352,14 +358,17 @@ const renderer = new THREE.WebGL1Renderer({
 //const controls = new OrbitControls(camera, renderer.domElement)
 
 renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio (Math.min (window.devicePixelRatio, 2))
-renderer.gammaInput + true;
-renderer.gammaOutput = true;
-renderer.gammaFactor = 2.2;
+renderer.setPixelRatio (Math.min (window.devicePixelRatio, 1))
+// renderer.gammaInput + true;
+// renderer.gammaOutput = true;
+// renderer.gammaFactor = 80.2;
 renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.shadowMap.enabled = true
-renderer.shadowMap.type = THREE.PCFSoftShadowMap
-
+//renderer.shadowMap.type = THREE.PCFSoftShadowMap
+//renderer.antialias = true
+renderer.stencil = false
+renderer.depth = false
+renderer.logarithmicDepthBuffer = false
 
 let currentIntersect = null
 
@@ -367,6 +376,8 @@ const target = new THREE.Vector3()
 
 function animate(){
 
+    const GLASSHEADArray = [danb,dyldisb,gingerb,joeyb,tylerb,toneb];
+    GLASSHEADaudio = GLASSHEADArray[Math.floor(Math.random() * GLASSHEADArray.length)];
     var timer = Date.now() * 0.0001;
     headspin()
 
@@ -390,13 +401,13 @@ function animate(){
 
     for(const intersect of intersects){
       intersect.object.material.color.set('green')
-      console.log('yes')
+      console.log('INTERSECTING')
     }
 
     if(intersects.length){
         if(currentIntersect === null){
             //on.play();
-            console.log('enter')
+            console.log('mouse enter event')
             
         }
 
@@ -406,21 +417,11 @@ function animate(){
         
         if(currentIntersect){
         //off.play();
-        console.log('exit')
+        console.log('mouse exit event')
     }
     currentIntersect = null
     }
-
-    
-
-
- //   if (intersects){
- //       headBox.material.color.set('green')
- //       console.log('yes')
-//  } else {headBox.material.color.set('red'); console.log('no')}
-
-    
-    
+   
     requestAnimationFrame(animate)
     renderer.render(scene, camera)
 }
