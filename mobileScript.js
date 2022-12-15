@@ -4,6 +4,7 @@ import {GLTFLoader} from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/G
 //import {OrbitControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js'
 
 
+
 //----------------------------------------------------------------------------------------------------  
 var off = new Audio('./audio/off.mp3');
 var on = new Audio('./audio/on.mp3');
@@ -278,7 +279,7 @@ const mouse = new THREE.Vector2()
 
 
 
-window.addEventListener('touchend',  (event) => {
+window.addEventListener('touchstart',  (event) => {
 
 
     if (event.changedTouches && event.changedTouches.length > 0) {
@@ -286,7 +287,11 @@ window.addEventListener('touchend',  (event) => {
       mouse.x = touch.clientX / sizes.width * 2 - 1;
       mouse.y = - (touch.clientY / sizes.height) * 2 + 1;
     } 
+
+   
   }, false);
+
+
 
 
 
@@ -299,7 +304,7 @@ window.addEventListener('touchend',  (event) => {
 
 
 
-    window.addEventListener('click', (event) =>{
+    window.addEventListener('touchstart', (event) =>{
 
 
         //const tap = event.
