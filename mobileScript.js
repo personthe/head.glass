@@ -35,7 +35,7 @@ var gingerb = new Audio('./audio/gingerb.mp3');
 var joeyb = new Audio('./audio/joeyb.mp3');
 var tylerb = new Audio('./audio/tylerb.mp3');
 var toneb = new Audio('./audio/tylerb.mp3');
-console.log('updated2')
+console.log('updated3')
 
 
 
@@ -278,7 +278,7 @@ const mouse = new THREE.Vector2()
 
 
 
-window.addEventListener('touchmove',  (event) => {
+window.addEventListener('touchend',  (event) => {
 
 
     if (event.changedTouches && event.changedTouches.length > 0) {
@@ -288,19 +288,23 @@ window.addEventListener('touchmove',  (event) => {
     } 
   }, false);
 
+
+
     let doorRotation = 0;
     let windowPos = 0;
     let tvON = 0;
-    window.addEventListener('touchend', (event) => {
-        const touchE = event.changedTouches[0];
-        mouse.x = touchE.clientX / sizes.width * 2 - 1;
-        mouse.y = - (touchE.clientY / sizes.height) * 2 + 1;
-    })
+    let resetHead = 0;
+
+
+
+
 
     window.addEventListener('click', (event) =>{
+
+
+        //const tap = event.
    
-        mouse.x = mouse.clientX / sizes.width * 2 - 1;
-        mouse.y = - (mouse.clientY / sizes.height) * 2 + 1;
+
 
         //console.log(currentIntersect)
 
@@ -310,19 +314,23 @@ window.addEventListener('touchmove',  (event) => {
             if(currentIntersect.object === headBox){
                 
                 //console.log('head clicked')
-                
+                if (resetHead === 0){
                 glassTap.pause()
                 glassTap.currentTime = 0
                 glassTap.play()
                 GLASSHEADaudio.play()
+                
                 if(head)head.position.set(0,1.3,0);
+                resetHead = 1}
 
+                if (resetHead === 1){
                 setTimeout(function() {
                     if(head)head.position.set(-0.6,1.16,-0.65);
 
 
                 glassLand.play()
-                    }, 2000);
+                resetHead = 0
+                    }, 2000);}
                     
             }else if(currentIntersect.object === windowBox){
                 //console.log('window clicked')
@@ -390,9 +398,9 @@ window.addEventListener('touchmove',  (event) => {
                         tvon.currentTime = 0
                         tvoff.play()
                         screen.traverse((o) => {if (o.isMesh) o.material = m4;});
-                        camera.fov = 35
+                        camera.fov = 40
                         camera.updateProjectionMatrix();
-                        camera.position.set(0, 2.45,4)
+                        camera.position.set(0, 2.8,4)
                         camera.rotation.set(-0.4,0,0)
 
                         tvON = 0;
@@ -404,8 +412,8 @@ window.addEventListener('touchmove',  (event) => {
     }) 
 
 //CAMERAS
-const camera = new THREE.PerspectiveCamera (35, sizes.width/sizes.height, .01, 1000)
-camera.position.set(0,2.45,4)
+const camera = new THREE.PerspectiveCamera (40, sizes.width/sizes.height, .01, 1000)
+camera.position.set(0,2.8,4)
 camera.rotation.x = -.4
 scene.add(camera)
 
@@ -431,13 +439,14 @@ let currentIntersect = null
 const target = new THREE.Vector3()
 
 
-//console.log(camera.rotation)
+
 
 //const controls = new OrbitControls(camera, renderer.domElement)
 
 
 
 function animate(){
+    
 
 const GLASSHEADArray = [danb,dyldisb,gingerb,joeyb,tylerb,toneb];
 GLASSHEADaudio = GLASSHEADArray[Math.floor(Math.random() * GLASSHEADArray.length)];
@@ -445,13 +454,11 @@ GLASSHEADaudio = GLASSHEADArray[Math.floor(Math.random() * GLASSHEADArray.length
     var timer = Date.now() * 0.0001;
     headspin()
 
+console.log(mouse)
 
 
 
 
-    target.x += ( mouse.x  - target.x ) * 1;
-    target.y += (  mouse.y + 2 - target.y ) * 1;
-    target.z = camera.position.z
 
     if(text)text.rotation.x +=.01;
 
