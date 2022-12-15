@@ -35,6 +35,7 @@ var gingerb = new Audio('./audio/gingerb.mp3');
 var joeyb = new Audio('./audio/joeyb.mp3');
 var tylerb = new Audio('./audio/tylerb.mp3');
 var toneb = new Audio('./audio/tylerb.mp3');
+console.log('phone')
 
 
 
@@ -96,23 +97,25 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     const invisibleRed = new THREE.MeshBasicMaterial({color: 'red'});
     invisibleRed.visible = false
     const headBox = new THREE.Mesh(headBoxGeometry,invisibleRed)
-    headBox.position.set(0,1.5,)
+    headBox.position.set(-.8,1.5,0)
+    headBox.rotation.set(0,1.28,0)
     scene.add(headBox)
 
 
     const tvBoxGeometry = new THREE.BoxGeometry(.65,.6,.16)
     const tvBox = new THREE.Mesh(tvBoxGeometry,invisibleRed)
-    tvBox.position.set(1.27,.6,-1.5)
+    tvBox.position.set(0.6,0.5,-0.30)
+    tvBox.rotation.set(0,2.1,0)
     scene.add(tvBox)
 
     const doorBoxGeometry = new THREE.BoxGeometry(.80,2,.16)
     const doorBox = new THREE.Mesh(doorBoxGeometry,invisibleRed)
-    doorBox.position.set(-1.1,.9,-1.8)
+    doorBox.position.set(0,.9,-1.8)
     scene.add(doorBox)
 
     const windowBoxGeometry = new THREE.BoxGeometry(.85,.69,.1)
     const windowBox = new THREE.Mesh(windowBoxGeometry,invisibleRed)
-    windowBox.position.set(2.30,1.35,-1)
+    windowBox.position.set(.7,1.35,-1)
     windowBox.rotation.set(0,-1.25,0)
     scene.add(windowBox)
 
@@ -146,11 +149,12 @@ let door;
 let pillar;
 let Room;
 let sky;
+let sky2;
 let outside;
 let blinds;
 let blindsopen;
   
-gltfloader.load('./objects/roomofstuff.gltf', function(glb){
+gltfloader.load('./objects/mobileroomofstuff.gltf', function(glb){
 
     room = glb.scene;
     
@@ -167,10 +171,15 @@ gltfloader.load('./objects/roomofstuff.gltf', function(glb){
     blindsopen.visible = false
 
     sky = room.getObjectByName("sky");
+    sky2 = room.getObjectByName("sky2");
+    console.log(sky2.position)
     pillar = room.getObjectByName("Pillar");
     
     pillar.traverse((o) => {if (o.isMesh) o.receiveShadow = true;});
     door = room.getObjectByName("Door");   
+
+ 
+
     
 
 });
@@ -180,7 +189,7 @@ gltfloader.load('./objects/head.gltf', function(glb){
 
     head = glb.scene;
     head.castShadow = true
-    head.position.set(0,1.21,0)
+    head.position.copy({ x: -0.75, y: 1.16, z: 0 })
     //head.traverse((o) => {if (o.isMesh) o.material.o = glass;});
     head.traverse((o) => {if (o.isMesh) o.castShadow = true;});
     groop1.add(head)
@@ -190,9 +199,10 @@ gltfloader.load('./objects/head.gltf', function(glb){
 let TV;
 let screen;
 
-gltfloader.load('./objects/TV.gltf', function(glb){
+gltfloader.load('./objects/mobileTV.gltf', function(glb){
     TV = glb.scene;
     screen = TV.getObjectByName("TVSCREEN");
+
     
     groop1.add(TV)
 
@@ -211,10 +221,10 @@ scene.add(groop1)
 
 //LIGHTS
 for(let i = 0; i< 3; i++){
-    const light3 = new THREE.DirectionalLight(0xffffff, .30)  
+    const light3 = new THREE.DirectionalLight(0xffffff, .45)  
     const lightHelper = new THREE.PointLightHelper(light3);
     
-    light3.position.x = (Math.random() - 0.5 * 1)
+    light3.position.x = (Math.random() - 0.5 * .1)
     light3.position.z = 3.5
     light3.position.y = 2
     //scene.add(lightHelper)
@@ -227,7 +237,15 @@ for(let i = 0; i< 3; i++){
     lightPoint.position.set(0,5,0)
     lightPoint.castShadow = true
     //scene.add(pointHelper)
-    scene.add(lightPoint)
+
+    
+    const lightPoint2 = new THREE.PointLight(0xffffff, .15)  
+    const pointHelper2 = new THREE.PointLightHelper(lightPoint2);
+    lightPoint2.rotation.set(.2,0,0)
+    lightPoint2.position.set(7.631196975708008,4.806565761566162,-5.424283027648926)
+    lightPoint2.castShadow = true
+    //scene.add(pointHelper)
+    scene.add(lightPoint2)
 }
 
 
@@ -257,7 +275,7 @@ const mouse = new THREE.Vector2()
 
 
 
-    window.addEventListener('mousemove', (event) =>{
+    window.addEventListener('touchmove', (event) =>{
     mouse.x = event.clientX / sizes.width * 2 - 1
     mouse.y = - (event.clientY / sizes.height) * 2 + 1
     
@@ -267,7 +285,7 @@ const mouse = new THREE.Vector2()
     let windowPos = 0;
     let tvON = 0;
 
-    window.addEventListener('click', (event) =>{
+    window.addEventListener('touchstart', (event) =>{
         if(currentIntersect){
             console.log(currentIntersect)
 
@@ -282,7 +300,7 @@ const mouse = new THREE.Vector2()
                 if(head)head.position.set(0,1.3,0);
 
                 setTimeout(function() {
-                    if(head)head.position.set(0,1.21,0);
+                    if(head)head.position.set(-0.75,1.16,0 );
 
 
                 glassLand.play()
@@ -293,7 +311,7 @@ const mouse = new THREE.Vector2()
                 
                 if(outside){
                     if (windowPos === 0) {
-                        outside.position.set(-.502,.6,-1.088);
+                        outside.position.set(-0.5039966106414795,0.63288713693618774,-0.39803987741470337);
                         blinds.visible = false
                         blindsopen.visible = true
                         windowclose.pause()
@@ -302,7 +320,7 @@ const mouse = new THREE.Vector2()
                         justWind.play()
                         windowPos = 3;
                     } else {
-                        outside.position.set(-.502,.432,-1.088);
+                        outside.position.set(-0.5039966106414795,0.43288713693618774,-0.39803987741470337);
                         blindsopen.visible = false
                         blinds.visible = true
                         windowPos = 0;
@@ -322,13 +340,13 @@ const mouse = new THREE.Vector2()
                         doorclose.pause()
                         doorclose.currentTime = 0
                         dooropen.play()
-                        door.rotation.set(0, 3, 0);
+                        door.rotation.set(0, 1.5, 0);
                         doorRotation = 3;
                     } else {
                         dooropen.pause()
                         dooropen.currentTime = 0
                         doorclose.play()
-                        door.rotation.set(0, 1.55, 0);
+                        door.rotation.set(0, 0, 0);
                         doorRotation = 0;
                     }
                 }
@@ -342,8 +360,10 @@ const mouse = new THREE.Vector2()
                         tvon.play()
                         music.play()
                         screen.traverse((o) => {if (o.isMesh) o.material = videoMat;});
-                        camera.position.set(1.26,.6,-.5)
-                        camera.rotation.set(0,0,0)
+                        camera.fov = 99
+                        camera.updateProjectionMatrix();
+                        camera.position.set(0, .24,-.18)
+                        camera.rotation.set(0,-1.265,0)
                         tvON = 3;
                     } else {
                         music.pause()
@@ -352,8 +372,10 @@ const mouse = new THREE.Vector2()
                         tvon.currentTime = 0
                         tvoff.play()
                         screen.traverse((o) => {if (o.isMesh) o.material = m4;});
-                        camera.position.set(0,2.45,4)
-                        camera.rotation.x = -.4
+                        camera.fov = 35
+                        camera.updateProjectionMatrix();
+                        camera.position.set(0, 2.45,4)
+                        camera.rotation.set(-0.4,0,0)
 
                         tvON = 0;
                     }
@@ -372,16 +394,15 @@ scene.add(camera)
 
 const renderer = new THREE.WebGL1Renderer({
     canvas: canvas})
-//const controls = new OrbitControls(camera, renderer.domElement)
-
-renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio (Math.min (window.devicePixelRatio, 1))
-// renderer.gammaInput + true;
-// renderer.gammaOutput = true;
- renderer.gammaFactor = 1.7;
-renderer.outputEncoding = THREE.GammaEncoding
-renderer.shadowMap.enabled = true
-//renderer.shadowMap.type = THREE.PCFSoftShadowMap
+    
+    renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio (Math.min (window.devicePixelRatio, 1))
+    // renderer.gammaInput + true;
+    // renderer.gammaOutput = true;
+    renderer.gammaFactor = 1.8;
+    renderer.outputEncoding = THREE.GammaEncoding
+    renderer.shadowMap.enabled = true
+    //renderer.shadowMap.type = THREE.PCFSoftShadowMap
 //renderer.antialias = true
 renderer.stencil = false
 renderer.depth = false
@@ -392,8 +413,9 @@ let currentIntersect = null
 const target = new THREE.Vector3()
 
 
+console.log(camera.rotation)
 
-
+//const controls = new OrbitControls(camera, renderer.domElement)
 
 function animate(){
 

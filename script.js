@@ -211,7 +211,7 @@ scene.add(groop1)
 
 //LIGHTS
 for(let i = 0; i< 3; i++){
-    const light3 = new THREE.DirectionalLight(0xffffff, .30)  
+    const light3 = new THREE.DirectionalLight(0xffffff, .40)  
     const lightHelper = new THREE.PointLightHelper(light3);
     
     light3.position.x = (Math.random() - 0.5 * 1)
