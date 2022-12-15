@@ -1,8 +1,8 @@
-import * as CANNON from 'https://unpkg.com/cannon@0.6.2/build/cannon.js';
+//import * as CANNON from 'https://unpkg.com/cannon@0.6.2/build/cannon.js';
 import * as THREE from 'https://unpkg.com/three@0.126.1/build/three.module.js'
 import {GLTFLoader} from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/GLTFLoader.js'
-import {OrbitControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js'
-import {DragControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/DragControls.js'
+//import {OrbitControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js'
+
 
 //----------------------------------------------------------------------------------------------------  
 var off = new Audio('./audio/off.mp3');
@@ -35,7 +35,7 @@ var gingerb = new Audio('./audio/gingerb.mp3');
 var joeyb = new Audio('./audio/joeyb.mp3');
 var tylerb = new Audio('./audio/tylerb.mp3');
 var toneb = new Audio('./audio/tylerb.mp3');
-console.log('phone')
+//console.log('phone')
 
 
 
@@ -172,7 +172,7 @@ gltfloader.load('./objects/mobileroomofstuff.gltf', function(glb){
 
     sky = room.getObjectByName("sky");
     sky2 = room.getObjectByName("sky2");
-    console.log(sky2.position)
+    //console.log(sky2.position)
     pillar = room.getObjectByName("Pillar");
     
     pillar.traverse((o) => {if (o.isMesh) o.receiveShadow = true;});
@@ -275,23 +275,25 @@ const mouse = new THREE.Vector2()
 
 
 
-    window.addEventListener('mousemove', (event) =>{
-    mouse.x = event.clientX / sizes.width * 2 - 1
-    mouse.y = - (event.clientY / sizes.height) * 2 + 1
-    
-    })
+window.addEventListener('touchmove', (event) => {
+    if (event.changedTouches && event.changedTouches.length > 0) {
+      const touch = event.changedTouches[0];
+      mouse.x = touch.clientX / sizes.width * 2 - 1;
+      mouse.y = - (touch.clientY / sizes.height) * 2 + 1;
+    }
+  }, false);
 
     let doorRotation = 0;
     let windowPos = 0;
     let tvON = 0;
 
-    window.addEventListener('click', (event) =>{
+    window.addEventListener('clicktouch', (event) =>{
         if(currentIntersect){
-            console.log(currentIntersect)
+            //console.log(currentIntersect)
 
             if(currentIntersect.object === headBox){
                 
-                console.log('head clicked')
+                //console.log('head clicked')
                 
                 glassTap.pause()
                 glassTap.currentTime = 0
@@ -307,7 +309,7 @@ const mouse = new THREE.Vector2()
                     }, 2000);
                     
             }else if(currentIntersect.object === windowBox){
-                console.log('window clicked')
+                //console.log('window clicked')
                 
                 if(outside){
                     if (windowPos === 0) {
@@ -334,7 +336,7 @@ const mouse = new THREE.Vector2()
                 
             }
             else if(currentIntersect.object === doorBox){
-                console.log('door clicked')
+                //console.log('door clicked')
                 if(door){
                     if (doorRotation === 0) {
                         doorclose.pause()
@@ -352,7 +354,7 @@ const mouse = new THREE.Vector2()
                 }
             }
             else if(currentIntersect.object === tvBox){
-                console.log('tv clicked')
+                //console.log('tv clicked')
                 if(screen){
                     if (tvON === 0) {
                         tvoff.pause()
@@ -401,7 +403,7 @@ const renderer = new THREE.WebGL1Renderer({
      renderer.gammaOutput = true;
     renderer.gammaFactor = 1.8;
 
-    renderer.shadowMap.enabled = true
+    renderer.shadowMap.enabled = false
     //renderer.shadowMap.type = THREE.PCFSoftShadowMap
 //renderer.antialias = true
 renderer.stencil = false
@@ -413,7 +415,7 @@ let currentIntersect = null
 const target = new THREE.Vector3()
 
 
-console.log(camera.rotation)
+//console.log(camera.rotation)
 
 //const controls = new OrbitControls(camera, renderer.domElement)
 
@@ -449,13 +451,13 @@ function animate(){
 
     for(const intersect of intersects){
       intersect.object.material.color.set('green')
-      console.log('INTERSECTING')
+      //console.log('INTERSECTING')
     }
 
     if(intersects.length){
         if(currentIntersect === null){
             //on.play();
-            console.log('mouse enter event')
+            //console.log('mouse enter event')
             
         }
 
@@ -465,7 +467,7 @@ function animate(){
         
         if(currentIntersect){
         //off.play();
-        console.log('mouse exit event')
+        //console.log('mouse exit event')
     }
     currentIntersect = null
     }
