@@ -269,11 +269,11 @@ const mouse = new THREE.Vector2()
 
     window.addEventListener('click', (event) =>{
         if(currentIntersect){
-            console.log(currentIntersect)
+            //constole.log(currentIntersect)
 
             if(currentIntersect.object === headBox){
                 
-                console.log('head clicked')
+                //constole.log('head clicked')
                 
                 glassTap.pause()
                 glassTap.currentTime = 0
@@ -289,7 +289,7 @@ const mouse = new THREE.Vector2()
                     }, 2000);
                     
             }else if(currentIntersect.object === windowBox){
-                console.log('window clicked')
+                //constole.log('window clicked')
                 
                 if(outside){
                     if (windowPos === 0) {
@@ -316,7 +316,7 @@ const mouse = new THREE.Vector2()
                 
             }
             else if(currentIntersect.object === doorBox){
-                console.log('door clicked')
+                //constole.log('door clicked')
                 if(door){
                     if (doorRotation === 0) {
                         doorclose.pause()
@@ -334,7 +334,7 @@ const mouse = new THREE.Vector2()
                 }
             }
             else if(currentIntersect.object === tvBox){
-                console.log('tv clicked')
+                //constole.log('tv clicked')
                 if(screen){
                     if (tvON === 0) {
                         tvoff.pause()
@@ -380,7 +380,7 @@ renderer.setPixelRatio (Math.min (window.devicePixelRatio, 1))
 // renderer.gammaOutput = true;
  renderer.gammaFactor = 1.7;
 renderer.outputEncoding = THREE.GammaEncoding
-renderer.shadowMap.enabled = true
+renderer.shadowMap.enabled = false
 //renderer.shadowMap.type = THREE.PCFSoftShadowMap
 //renderer.antialias = true
 renderer.stencil = false
@@ -427,13 +427,13 @@ function animate(){
 
     for(const intersect of intersects){
       intersect.object.material.color.set('green')
-      console.log('INTERSECTING')
+      //constole.log('INTERSECTING')
     }
 
     if(intersects.length){
         if(currentIntersect === null){
             //on.play();
-            console.log('mouse enter event')
+            //constole.log('mouse enter event')
             
         }
 
@@ -443,7 +443,7 @@ function animate(){
         
         if(currentIntersect){
         //off.play();
-        console.log('mouse exit event')
+        //constole.log('mouse exit event')
     }
     currentIntersect = null
     }
