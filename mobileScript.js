@@ -212,6 +212,8 @@ gltfloader.load('./objects/mobileTV.gltf', function(glb){
 function headspin(){
 
     if(head)head.rotation.y += 0.01;
+    if(sky)sky.rotation.z += .001
+    if(sky2)sky2.rotation.z += .001
     
 }
 
