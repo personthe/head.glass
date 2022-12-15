@@ -287,7 +287,7 @@ window.addEventListener('touchmove', (event) => {
     let windowPos = 0;
     let tvON = 0;
 
-    window.addEventListener('clicktouch', (event) =>{
+    window.addEventListener('touchstart', (event) =>{
         if(currentIntersect){
             //console.log(currentIntersect)
 
