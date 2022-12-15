@@ -48,8 +48,6 @@ let GLASSHEADaudio;
 
 
 
-
-
 //MATERICAL
 
 
@@ -277,7 +275,7 @@ const mouse = new THREE.Vector2()
 
 
 
-    window.addEventListener('touchmove', (event) =>{
+    window.addEventListener('mousemove', (event) =>{
     mouse.x = event.clientX / sizes.width * 2 - 1
     mouse.y = - (event.clientY / sizes.height) * 2 + 1
     
@@ -287,7 +285,7 @@ const mouse = new THREE.Vector2()
     let windowPos = 0;
     let tvON = 0;
 
-    window.addEventListener('touchstart', (event) =>{
+    window.addEventListener('click', (event) =>{
         if(currentIntersect){
             console.log(currentIntersect)
 
@@ -418,8 +416,6 @@ const target = new THREE.Vector3()
 console.log(camera.rotation)
 
 //const controls = new OrbitControls(camera, renderer.domElement)
-
-
 
 function animate(){
 
