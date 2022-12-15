@@ -35,7 +35,7 @@ var gingerb = new Audio('./audio/gingerb.mp3');
 var joeyb = new Audio('./audio/joeyb.mp3');
 var tylerb = new Audio('./audio/tylerb.mp3');
 var toneb = new Audio('./audio/tylerb.mp3');
-//console.log('phone')
+console.log('phone')
 
 
 
@@ -398,7 +398,7 @@ const renderer = new THREE.WebGL1Renderer({
     canvas: canvas})
     
     renderer.setSize(sizes.width, sizes.height)
-    renderer.setPixelRatio (Math.min (window.devicePixelRatio, .8))
+    renderer.setPixelRatio (Math.min (window.devicePixelRatio, 1))
     // renderer.gammaInput + true;
      renderer.gammaOutput = true;
     renderer.gammaFactor = 1.8;
