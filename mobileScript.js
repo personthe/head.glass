@@ -119,7 +119,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     windowBox.rotation.set(0,-1.25,0)
     scene.add(windowBox)
 
-    const textArray = ["GLASSHEAD","head.glass","I love GLASSHEAD","HEY its Tone Baloney"];
+    const textArray = ["GLASSHEAD","head.glass","I love GLASSHEAD","HEY its Tone Baloney",'OF COURSE!'];
     const textString = textArray[Math.floor(Math.random() * textArray.length)];
 
    
@@ -275,7 +275,7 @@ const mouse = new THREE.Vector2()
 
 
 
-    window.addEventListener('mousemove', (event) =>{
+    window.addEventListener('touchstart', (event) =>{
     mouse.x = event.clientX / sizes.width * 2 - 1
     mouse.y = - (event.clientY / sizes.height) * 2 + 1
     
@@ -396,7 +396,7 @@ const renderer = new THREE.WebGL1Renderer({
     canvas: canvas})
     
     renderer.setSize(sizes.width, sizes.height)
-    renderer.setPixelRatio (Math.min (window.devicePixelRatio, 1))
+    renderer.setPixelRatio (Math.min (window.devicePixelRatio, .8))
     // renderer.gammaInput + true;
     // renderer.gammaOutput = true;
     renderer.gammaFactor = 1.8;
