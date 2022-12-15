@@ -104,8 +104,8 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
 
     const tvBoxGeometry = new THREE.BoxGeometry(.65,.6,.16)
     const tvBox = new THREE.Mesh(tvBoxGeometry,invisibleRed)
-    tvBox.position.set(0.6,0.5,-0.30)
-    tvBox.rotation.set(0,2.1,0)
+    tvBox.position.set(0.6,0.4,-0.30)
+    tvBox.rotation.set(0,2,0)
     scene.add(tvBox)
 
     const doorBoxGeometry = new THREE.BoxGeometry(.80,2,.16)
@@ -398,9 +398,9 @@ const renderer = new THREE.WebGL1Renderer({
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio (Math.min (window.devicePixelRatio, .8))
     // renderer.gammaInput + true;
-    // renderer.gammaOutput = true;
+     renderer.gammaOutput = true;
     renderer.gammaFactor = 1.8;
-    renderer.outputEncoding = THREE.GammaEncoding
+
     renderer.shadowMap.enabled = true
     //renderer.shadowMap.type = THREE.PCFSoftShadowMap
 //renderer.antialias = true
