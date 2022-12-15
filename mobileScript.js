@@ -35,7 +35,7 @@ var gingerb = new Audio('./audio/gingerb.mp3');
 var joeyb = new Audio('./audio/joeyb.mp3');
 var tylerb = new Audio('./audio/tylerb.mp3');
 var toneb = new Audio('./audio/tylerb.mp3');
-console.log('updated')
+console.log('updated2')
 
 
 
@@ -193,6 +193,7 @@ gltfloader.load('./objects/head.gltf', function(glb){
     //head.traverse((o) => {if (o.isMesh) o.material.o = glass;});
     head.traverse((o) => {if (o.isMesh) o.castShadow = true;});
     groop1.add(head)
+    console.log(head.position)
     
 });
 
@@ -317,7 +318,7 @@ window.addEventListener('touchmove',  (event) => {
                 if(head)head.position.set(0,1.3,0);
 
                 setTimeout(function() {
-                    if(head)head.position.set(-0.75,1.16,0 );
+                    if(head)head.position.set(-0.6,1.16,-0.65);
 
 
                 glassLand.play()
