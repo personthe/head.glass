@@ -46,6 +46,7 @@ let GLASSHEADaudio;
 
 
 
+
 //MATERICAL
 
 
@@ -146,6 +147,8 @@ let pillar;
 let Room;
 let sky;
 let outside;
+let blinds;
+let blindsopen;
   
 gltfloader.load('./objects/roomofstuff.gltf', function(glb){
 
@@ -158,6 +161,11 @@ gltfloader.load('./objects/roomofstuff.gltf', function(glb){
     room.matrixAutoUpdate = false
     Room.traverse((o) => {if (o.isMesh) o.receiveShadow = true;});
     outside = room.getObjectByName("Window");
+    
+    blinds = room.getObjectByName("blinds");
+    blindsopen = room.getObjectByName("blindsopen");
+    blindsopen.visible = false
+
     sky = room.getObjectByName("sky");
     pillar = room.getObjectByName("Pillar");
     
@@ -286,6 +294,8 @@ const mouse = new THREE.Vector2()
                 if(outside){
                     if (windowPos === 0) {
                         outside.position.set(-.502,.6,-1.088);
+                        blinds.visible = false
+                        blindsopen.visible = true
                         windowclose.pause()
                         windowclose.currentTime = 0
                         windowopen.play()
@@ -293,6 +303,8 @@ const mouse = new THREE.Vector2()
                         windowPos = 3;
                     } else {
                         outside.position.set(-.502,.432,-1.088);
+                        blindsopen.visible = false
+                        blinds.visible = true
                         windowPos = 0;
                         windowopen.pause()
                         windowopen.currentTime = 0
@@ -379,7 +391,12 @@ let currentIntersect = null
 
 const target = new THREE.Vector3()
 
+
+
+
+
 function animate(){
+
 
     const GLASSHEADArray = [danb,dyldisb,gingerb,joeyb,tylerb,toneb];
 
