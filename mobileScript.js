@@ -275,7 +275,7 @@ const mouse = new THREE.Vector2()
 
 
 
-    window.addEventListener('touchstart', (event) =>{
+    window.addEventListener('mousemove', (event) =>{
     mouse.x = event.clientX / sizes.width * 2 - 1
     mouse.y = - (event.clientY / sizes.height) * 2 + 1
     
