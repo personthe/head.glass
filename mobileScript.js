@@ -97,7 +97,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     const invisibleRed = new THREE.MeshBasicMaterial({color: 'red'});
     invisibleRed.visible = false
     const headBox = new THREE.Mesh(headBoxGeometry,invisibleRed)
-    headBox.position.set(-.8,1.5,0)
+    headBox.position.set(-.65,1.5,-.5)
     headBox.rotation.set(0,1.28,0)
     scene.add(headBox)
 
@@ -189,7 +189,7 @@ gltfloader.load('./objects/head.gltf', function(glb){
 
     head = glb.scene;
     head.castShadow = true
-    head.position.copy({ x: -0.75, y: 1.16, z: 0 })
+    head.position.copy({ x: -0.60, y: 1.16, z: -.65 })
     //head.traverse((o) => {if (o.isMesh) o.material.o = glass;});
     head.traverse((o) => {if (o.isMesh) o.castShadow = true;});
     groop1.add(head)
@@ -275,19 +275,32 @@ const mouse = new THREE.Vector2()
 
 
 
-window.addEventListener('touchmove', (event) => {
+window.addEventListener('touchmove',  (event) => {
+
+
     if (event.changedTouches && event.changedTouches.length > 0) {
       const touch = event.changedTouches[0];
       mouse.x = touch.clientX / sizes.width * 2 - 1;
       mouse.y = - (touch.clientY / sizes.height) * 2 + 1;
-    }
+    } 
   }, false);
 
     let doorRotation = 0;
     let windowPos = 0;
     let tvON = 0;
+    window.addEventListener('touchend', (event) => {
+        const touchE = event.changedTouches[0];
+        mouse.x = touchE.clientX / sizes.width * 2 - 1;
+        mouse.y = - (touchE.clientY / sizes.height) * 2 + 1;
+    })
 
-    window.addEventListener('touchstart', (event) =>{
+    window.addEventListener('click', (event) =>{
+   
+        mouse.x = mouse.clientX / sizes.width * 2 - 1;
+        mouse.y = - (mouse.clientY / sizes.height) * 2 + 1;
+
+        //console.log(currentIntersect)
+
         if(currentIntersect){
             //console.log(currentIntersect)
 
@@ -419,12 +432,12 @@ const target = new THREE.Vector3()
 
 //const controls = new OrbitControls(camera, renderer.domElement)
 
+
+
 function animate(){
 
-
-    const GLASSHEADArray = [danb,dyldisb,gingerb,joeyb,tylerb,toneb];
-
-    GLASSHEADaudio = GLASSHEADArray[Math.floor(Math.random() * GLASSHEADArray.length)];
+const GLASSHEADArray = [danb,dyldisb,gingerb,joeyb,tylerb,toneb];
+GLASSHEADaudio = GLASSHEADArray[Math.floor(Math.random() * GLASSHEADArray.length)];
 
     var timer = Date.now() * 0.0001;
     headspin()
@@ -437,7 +450,9 @@ function animate(){
     target.y += (  mouse.y + 2 - target.y ) * 1;
     target.z = camera.position.z
 
-    if (text)text.lookAt( target );
+    if(text)text.rotation.x +=.01;
+
+
 
 
     raycaster.setFromCamera(mouse,camera)
