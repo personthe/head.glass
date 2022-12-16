@@ -165,6 +165,7 @@ let sky;
 let outside;
 let blinds;
 let blindsopen;
+let shirt;
   
 gltfloader.load('./objects/roomofstuff.gltf', function(glb){
 
@@ -173,6 +174,7 @@ gltfloader.load('./objects/roomofstuff.gltf', function(glb){
     
     
     groop1.add(room)
+    shirt = room.getObjectByName("shirt");
     Room = room.getObjectByName("Room");
     room.matrixAutoUpdate = false
     
@@ -342,7 +344,7 @@ const mouse = new THREE.Vector2()
                         doorclose.pause()
                         doorclose.currentTime = 0
                         dooropen.play()
-                        door.rotation.set(0, 3, 0);
+                        door.rotation.set(0, 3.3, 0);
                         doorRotation = 3;
                     } else {
                         dooropen.pause()
@@ -404,7 +406,7 @@ const mouse = new THREE.Vector2()
     }) 
 
 //CAMERAS
-const camera = new THREE.PerspectiveCamera (35, sizes.width/sizes.height, .01, 35)
+const camera = new THREE.PerspectiveCamera (35, sizes.width/sizes.height, .01, 45)
 camera.position.set(0,2.45,4)
 camera.rotation.x = -.4
 scene.add(camera)
@@ -452,7 +454,7 @@ function animate(){
 
 
 
-
+    if (shirt)shirt.rotation.y += .1;
 
     target.x += ( mouse.x  - target.x ) * .1;
     target.y += (  mouse.y + 2 - target.y ) * .1;

@@ -155,6 +155,7 @@ let sky2;
 let outside;
 let blinds;
 let blindsopen;
+let shirt;
 
   
 gltfloader.load('./objects/mobileroomofstuff.gltf', function(glb){
@@ -168,6 +169,8 @@ gltfloader.load('./objects/mobileroomofstuff.gltf', function(glb){
     room.matrixAutoUpdate = false
 
     outside = room.getObjectByName("Window");
+
+    shirt = room.getObjectByName("shirt");
     
     blinds = room.getObjectByName("blinds");
     blindsopen = room.getObjectByName("blindsopen");
@@ -373,13 +376,13 @@ window.addEventListener('touchstart',  (event) => {
                         doorclose.pause()
                         doorclose.currentTime = 0
                         dooropen.play()
-                        door.rotation.set(0, 1.5, 0);
+                        door.rotation.set(0, 3.5, 0);
                         doorRotation = 3;
                     } else {
                         dooropen.pause()
                         dooropen.currentTime = 0
                         doorclose.play()
-                        door.rotation.set(0, 0, 0);
+                        door.rotation.set(0, 1.55, 0);
                         doorRotation = 0;
                     }
                 }
@@ -419,7 +422,7 @@ window.addEventListener('touchstart',  (event) => {
     }) 
 
 //CAMERAS
-const camera = new THREE.PerspectiveCamera (40, sizes.width/sizes.height, .01, 35)
+const camera = new THREE.PerspectiveCamera (40, sizes.width/sizes.height, .01, 45)
 camera.position.set(0,2.8,4)
 camera.rotation.x = -.4
 scene.add(camera)
@@ -473,6 +476,7 @@ target.z = camera.position.z
 
 
 if (text)text.lookAt( target );
+if (shirt)shirt.rotation.y += .1;
 
 
 
