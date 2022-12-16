@@ -206,6 +206,7 @@ let outside;
 let blinds;
 let blindsopen;
 let shirt;
+let london;
   
 gltfloader.load('./objects/roomofstuff.gltf', function(glb){
 
@@ -220,7 +221,10 @@ gltfloader.load('./objects/roomofstuff.gltf', function(glb){
     
 
     outside = room.getObjectByName("Window");
-    
+
+    london = room.getObjectByName("london");
+    london.traverse((o) => {if (o.isMesh) o.material.roughness = 100})
+
     blinds = room.getObjectByName("blinds");
     blindsopen = room.getObjectByName("blindsopen");
     blindsopen.visible = false
@@ -340,6 +344,7 @@ const mouse = new THREE.Vector2()
                 glassTap.currentTime = 0
                 glassTap.play()
                 GLASSHEADaudio.play()
+                
                 if(head)head.position.set(0,1.3,0);
                 headreset = 1
                 setTimeout(function() {
@@ -483,18 +488,18 @@ const target = new THREE.Vector3()
 
 function animate(){
 
-
+    if(sky)sky.rotation.z += .001
 
     const GLASSHEADArray = [danb,dyldisb,gingerb,joeyb,tylerb,toneb];
 
     GLASSHEADaudio = GLASSHEADArray[Math.floor(Math.random() * GLASSHEADArray.length)];
 
     var timer = Date.now() * 0.0001;
-    headspin()
+   
 
 
 
-    if (shirt)shirt.rotation.y += .1;
+    if (shirt)shirt.rotation.y += .005;
 
     target.x += ( mouse.x  - target.x ) * .1;
     target.y += (  mouse.y + 2 - target.y ) * .1;

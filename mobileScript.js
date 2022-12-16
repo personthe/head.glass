@@ -237,6 +237,7 @@ gltfloader.load('./objects/head.gltf', function(glb){
     head = glb.scene;
 
     head.position.copy({ x: -0.60, y: 1.16, z: -.65 })
+    head.rotation.set(0,1,0)
     //head.traverse((o) => {if (o.isMesh) o.material.o = glass;});
 
     groop1.add(head)
@@ -259,7 +260,6 @@ gltfloader.load('./objects/mobileTV.gltf', function(glb){
 
 function headspin(){
 
-    if(head)head.rotation.y += 0.01;
     if(sky)sky.rotation.z += .001
     if(sky2)sky2.rotation.z += .001
     
@@ -375,12 +375,14 @@ window.addEventListener('touchstart',  (event) => {
                 GLASSHEADaudio.play()
                 if(head)head.position.set(0,1.3,0);
                 headreset = 1
+                head.rotation.set(0,0,0)
                 setTimeout(function() {
                     if(head)head.position.set(-0.6,1.16,-0.65);
 
 
                     headreset = 0
                 glassLand.play()
+                head.rotation.set(0,1,0)
                     }, 2000);
                     
             }else if(currentIntersect.object === windowBox){
