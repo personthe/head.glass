@@ -2,7 +2,47 @@
 import * as THREE from 'https://unpkg.com/three@0.126.1/build/three.module.js'
 import {GLTFLoader} from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/GLTFLoader.js'
 //import {OrbitControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js'
+//----------------------------------------------------------------------------------------------------
+let bCounter = 0
 
+document.addEventListener('contextmenu', function(e) {
+    
+    bCounter++;
+    
+    var dontDoThat = document.createElement('div');
+    
+    dontDoThat.innerHTML = 'right clicking is for loosers';
+    dontDoThat.style.color = 'white'
+
+    if(bCounter > 100){
+        dontDoThat.innerHTML = 'right-clicks = (' + (bCounter) + ')';
+    }
+
+    if(bCounter > 1000){
+        dontDoThat.innerHTML = 'just stop theres nothing to see after this = (' + (bCounter) + ')';
+    }
+    if(bCounter > 10000){
+        dontDoThat.innerHTML = 'why are you doing this??? (' + (bCounter) + ')';
+    }
+    if(bCounter > 100000){
+        dontDoThat.innerHTML = 'ok you are clearly a cheater (' + (bCounter) + ')';
+    }
+    if(bCounter > 1000000){
+        dontDoThat.innerHTML = 'you belong in a mental hospital (' + (bCounter) + ')';
+    }
+    dontDoThat.style.position = 'absolute';
+    dontDoThat.style.top = e.clientY + 'px';
+    dontDoThat.style.left = e.clientX + 'px';
+    dontDoThat.style.fontSize = '20px';
+    console.log(bCounter)
+
+    document.body.appendChild(dontDoThat);
+    
+    setTimeout(function() {
+      document.body.removeChild(dontDoThat);
+    }, 1000);
+
+  });
 
 //----------------------------------------------------------------------------------------------------  
 var off = new Audio('./audio/off.mp3');

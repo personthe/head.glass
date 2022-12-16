@@ -1,22 +1,6 @@
 document.addEventListener('contextmenu', event => event.preventDefault());
 
-document.addEventListener('contextmenu', function(e) {
-    var dontDoThat = document.createElement('div');
-    dontDoThat.innerHTML = 'right clicking is for loosers';
-    dontDoThat.style.position = 'absolute';
-    dontDoThat.style.top = e.clientY + 'px';
-    dontDoThat.style.left = e.clientX + 'px';
-    dontDoThat.style.fontSize = '10px';
-    if (document.body.style.backgroundColor === 'yellow') {
-      dontDoThat.style.color = 'black';
-    } else {
-      dontDoThat.style.color = 'white';
-    }
-    document.body.appendChild(dontDoThat);
-    setTimeout(function() {
-      document.body.removeChild(dontDoThat);
-    }, 2000);
-  });
+
 
 var minecraftServer = document.createElement('div');
 minecraftServer.innerHTML = 'Minecraft server : 135.148.29.252:25569';
