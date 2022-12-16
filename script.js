@@ -1,8 +1,8 @@
-import * as CANNON from 'https://unpkg.com/cannon@0.6.2/build/cannon.js';
+//import * as CANNON from 'https://unpkg.com/cannon@0.6.2/build/cannon.js';
 import * as THREE from 'https://unpkg.com/three@0.126.1/build/three.module.js'
 import {GLTFLoader} from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/GLTFLoader.js'
-import {OrbitControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js'
-import {DragControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/DragControls.js'
+//import {OrbitControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js'
+
 
 //----------------------------------------------------------------------------------------------------  
 var off = new Audio('./audio/off.mp3');
