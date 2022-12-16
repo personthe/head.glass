@@ -1,8 +1,10 @@
 //import * as CANNON from 'https://unpkg.com/cannon@0.6.2/build/cannon.js';
-import * as THREE from 'https://unpkg.com/three@0.126.1/build/three.module.js'
-import {GLTFLoader} from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/GLTFLoader.js'
+import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js'
+import {GLTFLoader} from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader.js'
+//three@0.126.1 orginal version
 //import {OrbitControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js'
 //----------------------------------------------------------------------------------------------------
+
 let bCounter = 0
 
 document.addEventListener('contextmenu', function(e) {
@@ -40,7 +42,7 @@ document.addEventListener('contextmenu', function(e) {
     
     setTimeout(function() {
       document.body.removeChild(dontDoThat);
-    }, 1000);
+    }, 3000);
 
   });
 
@@ -75,10 +77,23 @@ var gingerb = new Audio('./audio/gingerb.mp3');
 var joeyb = new Audio('./audio/joeyb.mp3');
 var tylerb = new Audio('./audio/tylerb.mp3');
 var toneb = new Audio('./audio/tylerb.mp3');
+var toneb = new Audio('./audio/tylerb.mp3');
+
+var beetle1 = new Audio('./audio/beetle1.mp3');
+var beetle2 = new Audio('./audio/beetle2.mp3');
+var beetle3 = new Audio('./audio/beetle3.mp3');
+var beetle4 = new Audio('./audio/beetle4.mp3');
+var beetle5 = new Audio('./audio/beetle5.mp3');
+
+var bsong1 = new Audio('./audio/bsong1.mp3');
+var bsong2 = new Audio('./audio/bsong2.mp3');
+var bsong3 = new Audio('./audio/bsong3.mp3');
 
 
 
 let GLASSHEADaudio;
+let BEETLEaudio;
+let SONGaudio;
 
 
 
@@ -164,6 +179,12 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     windowBox.rotation.set(0,-1.25,0)
     scene.add(windowBox)
 
+    const pictureBoxGeometry = new THREE.BoxGeometry(.60,1,.1)
+    const pictureBox = new THREE.Mesh(pictureBoxGeometry,invisibleRed)
+    pictureBox.position.set(-2.70,1.2,.59)
+    pictureBox.rotation.set(0,-1.8,0)
+    scene.add(pictureBox)
+
     const textArray = ["GLASSHEAD","head.glass","I love GLASSHEAD","HEY its Tone Baloney",'OF COURSE!','YUMMY!!!'];
     const textString = textArray[Math.floor(Math.random() * textArray.length)];
 
@@ -243,7 +264,7 @@ gltfloader.load('./objects/head.gltf', function(glb){
 
     head = glb.scene;
 
-    head.position.set(0,1.21,0)
+    head.position.set(0,1.175,0)
     //head.traverse((o) => {if (o.isMesh) o.material.o = glass;});
 
     groop1.add(head)
@@ -331,6 +352,7 @@ const mouse = new THREE.Vector2()
     let tvON = 0;
     let cabON = 0;
     let headreset = 0
+    let picturereset = 0
 
     window.addEventListener('click', (event) =>{
         if(currentIntersect){
@@ -346,16 +368,46 @@ const mouse = new THREE.Vector2()
                 GLASSHEADaudio.play()
                 
                 if(head)head.position.set(0,1.3,0);
+                
+                
+                    if(head)head.rotation.y ++
+                
                 headreset = 1
                 setTimeout(function() {
-                    if(head)head.position.set(0,1.21,0);
+                    if(head)head.position.set(0,1.175,0);
 
 
                     headreset = 0
                 glassLand.play()
                     }, 2000);
                     
-            }else if(currentIntersect.object === windowBox){
+            }
+            
+            else if(currentIntersect.object === pictureBox && picturereset === 0 ){
+                
+                //constole.log('picture clicked')
+                
+                BEETLEaudio.play()
+                SONGaudio.play()
+                picturereset = 1
+
+                camera.position.set(2,1.20,1)
+                camera.rotation.set(0,1.35,0)
+                camera.fov = 20
+                camera.updateProjectionMatrix();
+
+
+                setTimeout(function() {
+                    picturereset = 0
+                    camera.position.set(0,2.45,4)
+                    camera.rotation.set(-.4,0,0)
+                    camera.fov = 35
+                    camera.updateProjectionMatrix();
+                    }, 5000);
+                    
+            }
+            
+            else if(currentIntersect.object === windowBox){
                 //constole.log('window clicked')
                 
                 if(outside){
@@ -382,6 +434,7 @@ const mouse = new THREE.Vector2()
                 }
                 
             }
+            
             else if(currentIntersect.object === doorBox){
                 //constole.log('door clicked')
                 if(door){
@@ -488,11 +541,20 @@ const target = new THREE.Vector3()
 
 function animate(){
 
+    requestAnimationFrame(animate)
+
     if(sky)sky.rotation.z += .001
 
     const GLASSHEADArray = [danb,dyldisb,gingerb,joeyb,tylerb,toneb];
-
     GLASSHEADaudio = GLASSHEADArray[Math.floor(Math.random() * GLASSHEADArray.length)];
+
+    const BEETLEArray = [beetle1,beetle2,beetle3,beetle4,beetle5,beetle1,beetle2,beetle3,beetle5,];
+    BEETLEaudio = BEETLEArray[Math.floor(Math.random() * BEETLEArray.length)];
+
+    const SONGArray = [bsong1,bsong2,bsong3];
+    SONGaudio = SONGArray[Math.floor(Math.random() * SONGArray.length)];
+
+
 
     var timer = Date.now() * 0.0001;
    
@@ -511,7 +573,7 @@ function animate(){
 
     raycaster.setFromCamera(mouse,camera)
 
-    const objectToTests = [headBox, tvBox, windowBox,doorBox,cabBox]
+    const objectToTests = [headBox, tvBox, windowBox,doorBox,cabBox,pictureBox]
     const intersects = raycaster.intersectObjects(objectToTests)
 
     for(const object of objectToTests){
@@ -541,7 +603,7 @@ function animate(){
     currentIntersect = null
     }
    
-    requestAnimationFrame(animate)
+
     renderer.render(scene, camera)
 }
 animate()
