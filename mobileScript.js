@@ -36,7 +36,7 @@ var gingerb = new Audio('./audio/gingerb.mp3');
 var joeyb = new Audio('./audio/joeyb.mp3');
 var tylerb = new Audio('./audio/tylerb.mp3');
 var toneb = new Audio('./audio/tylerb.mp3');
-console.log('updated3')
+console.log('updated4')
 
 
 
@@ -304,8 +304,12 @@ window.addEventListener('touchstart',  (event) => {
 
 
 
-    window.addEventListener('touchstart', (event) =>{
 
+
+
+    window.addEventListener('click', (event) =>{
+
+        event.preventDefault();
 
         //const tap = event.
    
@@ -318,7 +322,7 @@ window.addEventListener('touchstart',  (event) => {
 
             if(currentIntersect.object === headBox){
                 
-                //console.log('head clicked')
+                console.log('head clicked')
                 if (resetHead === 0){
                 glassTap.pause()
                 glassTap.currentTime = 0
@@ -417,7 +421,7 @@ window.addEventListener('touchstart',  (event) => {
     }) 
 
 //CAMERAS
-const camera = new THREE.PerspectiveCamera (40, sizes.width/sizes.height, .01, 1000)
+const camera = new THREE.PerspectiveCamera (40, sizes.width/sizes.height, .01, 35)
 camera.position.set(0,2.8,4)
 camera.rotation.x = -.4
 scene.add(camera)
@@ -459,7 +463,7 @@ GLASSHEADaudio = GLASSHEADArray[Math.floor(Math.random() * GLASSHEADArray.length
     var timer = Date.now() * 0.0001;
     headspin()
 
-console.log(mouse)
+//console.log(mouse)
 
 
 

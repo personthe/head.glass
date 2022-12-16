@@ -364,7 +364,7 @@ const mouse = new THREE.Vector2()
     }) 
 
 //CAMERAS
-const camera = new THREE.PerspectiveCamera (35, sizes.width/sizes.height, .01, 1000)
+const camera = new THREE.PerspectiveCamera (35, sizes.width/sizes.height, .01, 35)
 camera.position.set(0,2.45,4)
 camera.rotation.x = -.4
 scene.add(camera)
