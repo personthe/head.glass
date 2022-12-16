@@ -519,7 +519,7 @@ target.z = camera.position.z
 
 
 if (text)text.lookAt( target );
-if (shirt)shirt.rotation.y += .1;
+if (shirt)shirt.rotation.y += .005;
 
 
 
