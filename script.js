@@ -100,6 +100,8 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     scene.add(headBox)
 
 
+
+
     const tvBoxGeometry = new THREE.BoxGeometry(.65,.6,.16)
     const tvBox = new THREE.Mesh(tvBoxGeometry,invisibleRed)
     tvBox.position.set(1.27,.6,-1.5)
@@ -122,7 +124,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     windowBox.rotation.set(0,-1.25,0)
     scene.add(windowBox)
 
-    const textArray = ["GLASSHEAD","head.glass","I love GLASSHEAD","HEY its Tone Baloney",'OF COURSE!'];
+    const textArray = ["GLASSHEAD","head.glass","I love GLASSHEAD","HEY its Tone Baloney",'OF COURSE!','YUMMY!!!'];
     const textString = textArray[Math.floor(Math.random() * textArray.length)];
 
    
@@ -173,7 +175,8 @@ gltfloader.load('./objects/roomofstuff.gltf', function(glb){
     groop1.add(room)
     Room = room.getObjectByName("Room");
     room.matrixAutoUpdate = false
-    Room.traverse((o) => {if (o.isMesh) o.receiveShadow = true;});
+    
+
     outside = room.getObjectByName("Window");
     
     blinds = room.getObjectByName("blinds");
@@ -183,7 +186,7 @@ gltfloader.load('./objects/roomofstuff.gltf', function(glb){
     sky = room.getObjectByName("sky");
     pillar = room.getObjectByName("Pillar");
     
-    pillar.traverse((o) => {if (o.isMesh) o.receiveShadow = true;});
+
     door = room.getObjectByName("Door");   
     
 
@@ -193,10 +196,10 @@ let head;
 gltfloader.load('./objects/head.gltf', function(glb){
 
     head = glb.scene;
-    head.castShadow = true
+
     head.position.set(0,1.21,0)
     //head.traverse((o) => {if (o.isMesh) o.material.o = glass;});
-    head.traverse((o) => {if (o.isMesh) o.castShadow = true;});
+
     groop1.add(head)
     
 });
@@ -232,14 +235,14 @@ for(let i = 0; i< 3; i++){
     light3.position.z = 3.5
     light3.position.y = 2
     //scene.add(lightHelper)
-    light3.castShadow = true
+
     scene.add(light3)
 
     const lightPoint = new THREE.DirectionalLight(0xffffff, .30)  
     const pointHelper = new THREE.DirectionalLightHelper(lightPoint);
     lightPoint.rotation.set(.2,0,0)
     lightPoint.position.set(0,5,0)
-    lightPoint.castShadow = true
+
     //scene.add(pointHelper)
     scene.add(lightPoint)
 }
@@ -432,7 +435,12 @@ const target = new THREE.Vector3()
 
 
 
+
+
+
+
 function animate(){
+
 
 
     const GLASSHEADArray = [danb,dyldisb,gingerb,joeyb,tylerb,toneb];
