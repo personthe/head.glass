@@ -105,6 +105,12 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     tvBox.position.set(1.27,.6,-1.5)
     scene.add(tvBox)
 
+    const cabBoxGeometry = new THREE.BoxGeometry(.7,.65,.13)
+    const cabBox = new THREE.Mesh(cabBoxGeometry,invisibleRed)
+    cabBox.position.set(2.3,.35,-.61)
+    cabBox.rotation.set(0,-1.3,0)
+    scene.add(cabBox)
+
     const doorBoxGeometry = new THREE.BoxGeometry(.80,2,.16)
     const doorBox = new THREE.Mesh(doorBoxGeometry,invisibleRed)
     doorBox.position.set(-1.1,.9,-1.8)
@@ -140,6 +146,14 @@ fontLoader.load('/font/helvetiker_regular.typeface.json',(font) =>{
               
         }
 )
+
+let cabinet;
+
+gltfloader.load('./objects/MusicCabnet.gltf', function(glb){
+    cabinet = glb.scene;  
+    groop1.add(cabinet)
+
+})
     
 let room;
 let door;
@@ -266,6 +280,7 @@ const mouse = new THREE.Vector2()
     let doorRotation = 0;
     let windowPos = 0;
     let tvON = 0;
+    let cabON = 0;
 
     window.addEventListener('click', (event) =>{
         if(currentIntersect){
@@ -353,9 +368,29 @@ const mouse = new THREE.Vector2()
                         tvoff.play()
                         screen.traverse((o) => {if (o.isMesh) o.material = m4;});
                         camera.position.set(0,2.45,4)
-                        camera.rotation.x = -.4
+                        camera.rotation.set(-.4,0,0)
 
                         tvON = 0;
+                    }
+                }
+            }
+            else if(currentIntersect.object === cabBox){
+                console.log('cab clicked')
+                
+                if(cabinet){
+                    //cab zoom
+                    if (cabON === 0) {
+
+                        camera.position.set(1,.3,-.15)
+                        camera.rotation.set(0,-1.27,0)
+                        cabON = 3;
+                    } else {
+                    //cab reset
+ 
+                        camera.position.set(0,2.45,4)
+                        camera.rotation.set(-.4,0,0)
+
+                        cabON = 0;
                     }
                 }
             }
@@ -418,7 +453,7 @@ function animate(){
 
     raycaster.setFromCamera(mouse,camera)
 
-    const objectToTests = [headBox, tvBox, windowBox,doorBox]
+    const objectToTests = [headBox, tvBox, windowBox,doorBox,cabBox]
     const intersects = raycaster.intersectObjects(objectToTests)
 
     for(const object of objectToTests){
