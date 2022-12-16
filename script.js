@@ -202,7 +202,7 @@ gltfloader.load('./objects/TV.gltf', function(glb){
 function headspin(){
 
     if(head)head.rotation.y += 0.01;
-    
+    if(sky)sky.rotation.z += .001
 }
 
 const groop1 = new THREE.Group()
