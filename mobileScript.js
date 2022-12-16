@@ -144,7 +144,8 @@ fontLoader.load('/font/helvetiker_regular.typeface.json',(font) =>{
               
         }
 )
-    
+
+
 let room;
 let door;
 let pillar;
@@ -154,6 +155,7 @@ let sky2;
 let outside;
 let blinds;
 let blindsopen;
+
   
 gltfloader.load('./objects/mobileroomofstuff.gltf', function(glb){
 
