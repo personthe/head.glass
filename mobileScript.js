@@ -471,7 +471,12 @@ GLASSHEADaudio = GLASSHEADArray[Math.floor(Math.random() * GLASSHEADArray.length
 
 
 
-    if(text)text.rotation.x +=.01;
+target.x += ( mouse.x  - target.x ) * .1;
+target.y += (  mouse.y + 2 - target.y ) * .1;
+target.z = camera.position.z
+
+
+if (text)text.lookAt( target );
 
 
 

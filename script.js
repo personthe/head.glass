@@ -444,9 +444,10 @@ function animate(){
 
 
 
-    target.x += ( mouse.x  - target.x ) * 1;
-    target.y += (  mouse.y + 2 - target.y ) * 1;
+    target.x += ( mouse.x  - target.x ) * .1;
+    target.y += (  mouse.y + 2 - target.y ) * .1;
     target.z = camera.position.z
+
 
     if (text)text.lookAt( target );
 
