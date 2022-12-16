@@ -300,7 +300,7 @@ window.addEventListener('touchstart',  (event) => {
     let doorRotation = 0;
     let windowPos = 0;
     let tvON = 0;
-    let resetHead = 0;
+    let headreset = 0
 
 
 
@@ -322,26 +322,23 @@ window.addEventListener('touchstart',  (event) => {
         if(currentIntersect){
             //console.log(currentIntersect)
 
-            if(currentIntersect.object === headBox){
+            if(currentIntersect.object === headBox && headreset === 0 ){
                 
-                console.log('head clicked')
-                if (resetHead === 0){
+                //constole.log('head clicked')
+                
                 glassTap.pause()
                 glassTap.currentTime = 0
                 glassTap.play()
                 GLASSHEADaudio.play()
-                
                 if(head)head.position.set(0,1.3,0);
-                resetHead = 1}
-
-                if (resetHead === 1){
+                headreset = 1
                 setTimeout(function() {
                     if(head)head.position.set(-0.6,1.16,-0.65);
 
 
+                    headreset = 0
                 glassLand.play()
-                resetHead = 0
-                    }, 2000);}
+                    }, 2000);
                     
             }else if(currentIntersect.object === windowBox){
                 //console.log('window clicked')

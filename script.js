@@ -281,12 +281,13 @@ const mouse = new THREE.Vector2()
     let windowPos = 0;
     let tvON = 0;
     let cabON = 0;
+    let headreset = 0
 
     window.addEventListener('click', (event) =>{
         if(currentIntersect){
             //constole.log(currentIntersect)
 
-            if(currentIntersect.object === headBox){
+            if(currentIntersect.object === headBox && headreset === 0 ){
                 
                 //constole.log('head clicked')
                 
@@ -295,11 +296,12 @@ const mouse = new THREE.Vector2()
                 glassTap.play()
                 GLASSHEADaudio.play()
                 if(head)head.position.set(0,1.3,0);
-
+                headreset = 1
                 setTimeout(function() {
                     if(head)head.position.set(0,1.21,0);
 
 
+                    headreset = 0
                 glassLand.play()
                     }, 2000);
                     
