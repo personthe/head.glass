@@ -3,6 +3,55 @@ import * as THREE from 'https://unpkg.com/three@0.126.1/build/three.module.js'
 import {GLTFLoader} from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/GLTFLoader.js'
 //import {OrbitControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js'
 //----------------------------------------------------------------------------------------------------
+// Create the div element
+var popup = document.createElement("div");
+// Set the class and style of the div element
+popup.className = "popup";
+popup.style.border = "1px solid black";
+popup.style.backgroundColor = "white";
+popup.style.position = "fixed";
+popup.style.top = "50%";
+popup.style.left = "50%";
+popup.style.transform = "translate(-50%, 20%)";
+popup.style.padding = "0px";
+popup.style.zIndex = "1000";
+// Create the anchor element
+var link = document.createElement("a");
+// Set the href and text of the anchor element
+link.href = "https://www.youtube.com/glasshead";
+link.innerHTML = "Tap for da youtube page";
+// Set the style of the anchor element
+link.style.fontFamily = 'Courier New'
+link.style.display = "block";
+link.style.fontSize = "28px";
+link.style.textAlign = "center";
+link.style.textDecoration = "none";
+link.style.color = "black";
+
+
+
+
+var back = document.createElement("div");
+
+back.className = "popup";
+back.style.border = "1px solid black";
+back.style.backgroundColor = "white";
+back.style.position = "fixed";
+back.style.top = "50%";
+back.style.left = "50%";
+back.style.transform = "translate(-50%, -500%)";
+back.style.padding = "0px";
+back.style.zIndex = "1000";
+
+var sext  = document.createElement("a");
+sext.innerHTML = "back";
+sext.style.fontFamily = 'Courier New'
+sext.style.display = "block";
+sext.style.fontSize = "28px";
+sext.style.textAlign = "center";
+sext.style.textDecoration = "none";
+sext.style.color = "black";
+
 let bCounter = 0
 
 document.addEventListener('contextmenu', function(e) {
@@ -434,6 +483,19 @@ window.addEventListener('touchstart',  (event) => {
                 //console.log('tv clicked')
                 if(screen){
                     if (tvON === 0) {
+                        
+
+
+
+document.body.appendChild(popup);
+popup.appendChild(link);
+
+
+document.body.appendChild(back);
+back.appendChild(sext);
+
+
+
                         tvoff.pause()
                         tvoff.currentTime = 0
                         tvon.play()
@@ -445,6 +507,11 @@ window.addEventListener('touchstart',  (event) => {
                         camera.rotation.set(0,-1.265,0)
                         tvON = 3;
                     } else {
+                        popup.removeChild(link);
+                        document.body.removeChild(popup);
+                        back.removeChild(sext);
+                        document.body.removeChild(back);
+
                         music.pause()
                         music.currentTime = 0
                         tvon.pause()
