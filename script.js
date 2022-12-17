@@ -630,93 +630,69 @@ const mouse = new THREE.Vector2()
                     }
                 }
             }
+
+            // click cab
             else if(currentIntersect.object === cabBox){
                 console.log('cab clicked')
                 enableCode()
                 
+                //cab toggle on
                 
-                if(cabinet){
-                    //cab zoom
-                    if (cabON === 0) {
-                        if(backCab)backCab.visible = true
-                        cabBox.position.set(2.05,.608,-.75)
-                        cabBox.scale.set(.1,.1,.1)
+                if (cabON === 0) {
+                if(backCab)backCab.visible = true
+                camera.position.set(1,.4,-.15)
+                camera.rotation.set(0,-1.27,0)
+                cabBox.position.set(2.05,.608,-.75)
+                cabBox.scale.set(.1,.1,.1)               
+                cabON = 3;
 
-                        //hello cart cliciked
-                        window.addEventListener('click', (event) =>{
+                //hello cart cliciked
+                window.addEventListener('click', (event) =>{
                            
-                           if(PurrentIntersect.object === helloBox){
-                            hello.play()
-                            goin.play()
-                            goout.pause()
-                            goout.currentTime = 0
-                               camera.position.set(1.8,.75,-.4)
-                               camera.fov = 65
-                           camera.updateProjectionMatrix();
-                               
-                           if(helloCart)helloCart.position.set
-                               (0.02808813750743866,
-                                   1.0787887573242188,
-                                   0.4893183708190918)
-                                   console.log('hello')
-                                   if(helloCart)helloCart.rotation.set(0,0,0)
-                           }
-                           })
-                           
-                        window.addEventListener('click', (event) =>{
-                           
-                           if(PurrentIntersect.object === helloBox){
-                            hello.play()
-                            goin.play()
-                            goout.pause()
-                            goout.currentTime = 0
-                               camera.position.set(1.8,.75,-.4)
-                               camera.fov = 65
-                           camera.updateProjectionMatrix();
-                               
-                           if(helloCart)helloCart.position.set
-                               (0.02808813750743866,
-                                   1.0787887573242188,
-                                   0.4893183708190918)
-                                   console.log('hello')
-                                   if(helloCart)helloCart.rotation.set(0,0,0)
-                           }
-                           })
+                if(PurrentIntersect.object === helloBox){
+                hello.play()
+                goin.play()
+                goout.pause()
+                goout.currentTime = 0
+                camera.position.set(1.8,.75,-.4)
+                camera.fov = 65
+                camera.updateProjectionMatrix();                              
+                if(helloCart)helloCart.position.set(0.02808813750743866,1.0787887573242188,0.4893183708190918)
+                console.log('hello')
+                if(helloCart)helloCart.rotation.set(0,0,0)
+                }
+            })
+        } 
+                
+                else {
+                //cab toogle off reset & carts reset
+                if(backCab)backCab.visible = false                       
+                goout.play()
 
-                           
-                        camera.position.set(1,.4,-.15)
-                        camera.rotation.set(0,-1.27,0)
-                        cabON = 3;
-                    } else {
-                        //cab reset & carts
-                        if(backCab)backCab.visible = false
+                goin.pause()
+                goin.currentTime = 0
 
-                        
+                hello.pause()
+                hello.currentTime = 0
 
-                        goout.play()
-                        goin.pause()
-                        goin.currentTime = 0
-                        hello.pause()
-                        hello.currentTime = 0
-                        disableCode()
-                        if(helloCart)helloCart.position.set(0.6845217347145081,-0.18564265966415405,0.5381841659545898)
-                        if(helloCart)helloCart.rotation.set(-0.537299633026123,0,0)
+                disableCode()
 
-                        cabBox.position.set(2.15,0.3,-0.76)
-                        cabBox.scale.set(1,1,1)
-                        
+                if(helloCart)helloCart.position.set(0.6845217347145081,-.26,0.5381841659545898)
+                if(helloCart)helloCart.rotation.set(-1.550,0,0)
 
-                    camera.fov = 35
-                    camera.updateProjectionMatrix();
-                        camera.position.set(0,2.45,4)
-                        camera.rotation.set(-.4,0,0)
+                cabBox.position.set(2.15,0.3,-0.76)
+                cabBox.scale.set(1,1,1)
 
-                        cabON = 0;
-                    }
+                camera.fov = 35
+                camera.updateProjectionMatrix();
+                camera.position.set(0,2.45,4)
+                camera.rotation.set(-.4,0,0)
+
+                cabON = 0;
                 }
             }
-
         }
+
     }) 
 
 //CAMERAS
@@ -773,7 +749,7 @@ function tvButtons(){
     }
 
     if(mouseOn.length){
-    if(PurrentIntersect === null){
+    if(PurrentIntersect === 0){
     //on.play();
     //console.log('mouse enter event')
         }
@@ -785,7 +761,7 @@ function tvButtons(){
         //off.play();
         console.log('mouse exit event')
         }
-    PurrentIntersect = null
+    PurrentIntersect = 0
     }
 
 
