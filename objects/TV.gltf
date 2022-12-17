@@ -182,7 +182,7 @@
         },
         {
             "doubleSided" : true,
-            "name" : "button",
+            "name" : "button.001",
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
                     0.982398509979248,
