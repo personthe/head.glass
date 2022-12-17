@@ -1,9 +1,11 @@
-//import * as CANNON from 'https://unpkg.com/cannon@0.6.2/build/cannon.js';
+//import * as CANNON from 'cannon';
 import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js'
-import {GLTFLoader} from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader.js'
+import {GLTFLoader } from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader.js'
 //three@0.126.1 orginal version
 //import {OrbitControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js'
 //----------------------------------------------------------------------------------------------------
+
+//const world = new CANNON.World()
 
 let bCounter = 0
 
@@ -89,11 +91,26 @@ var bsong1 = new Audio('./audio/bsong1.mp3');
 var bsong2 = new Audio('./audio/bsong2.mp3');
 var bsong3 = new Audio('./audio/bsong3.mp3');
 
+var goin = new Audio('./audio/goin.mp3');
+var goout = new Audio('./audio/goout.mp3');
+
+var hello = new Audio('./audio/hello.mp3');
+
 
 
 let GLASSHEADaudio;
 let BEETLEaudio;
 let SONGaudio;
+
+let codeEnabled = false;
+
+function disableCode() {
+  codeEnabled = false;
+}
+
+function enableCode() {
+  codeEnabled = true;
+}
 
 
 
@@ -149,18 +166,35 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
 //OBJECTS
     const headBoxGeometry = new THREE.BoxGeometry(.47,.6,.47)
     const invisibleRed = new THREE.MeshBasicMaterial({color: 'red'});
+    invisibleRed.transparent = true
+    invisibleRed.opacity = .5
+    
     invisibleRed.visible = false
     const headBox = new THREE.Mesh(headBoxGeometry,invisibleRed)
     headBox.position.set(0,1.5,)
     scene.add(headBox)
 
 
-
-
     const tvBoxGeometry = new THREE.BoxGeometry(.65,.6,.16)
     const tvBox = new THREE.Mesh(tvBoxGeometry,invisibleRed)
     tvBox.position.set(1.27,.6,-1.5)
     scene.add(tvBox)
+
+    const invisibleblue = new THREE.MeshBasicMaterial({color: 'blue'});
+    invisibleblue.visible = false
+    invisibleblue.transparent = true
+    invisibleblue.opacity = .5
+
+    const ytbuttonGeometry = new THREE.BoxGeometry(.5,.05,.02)
+    const ytbuttonBox = new THREE.Mesh(ytbuttonGeometry,invisibleblue)
+    ytbuttonBox.position.set(1.26,.41,-1.43)
+    scene.add(ytbuttonBox)
+
+    const helloGeometry = new THREE.BoxGeometry(.1,.09,.02)
+    const helloBox = new THREE.Mesh(helloGeometry,invisibleblue)
+    helloBox.position.set(2.15,.3,-.76)
+    
+    scene.add(helloBox)
 
     const cabBoxGeometry = new THREE.BoxGeometry(.7,.65,.13)
     const cabBox = new THREE.Mesh(cabBoxGeometry,invisibleRed)
@@ -212,9 +246,44 @@ fontLoader.load('/font/helvetiker_regular.typeface.json',(font) =>{
 
 let cabinet;
 
+//songs
+let helloCart;
+let gtagCart;
+let ntsCart;
+
+//cart in pos
+let cartIN;
+
+
+//console buttons
+let cartplay;
+let cartpause;
+let carteject;
+let backCab;
+
 gltfloader.load('./objects/MusicCabnet.gltf', function(glb){
     cabinet = glb.scene;  
     groop1.add(cabinet)
+
+    helloCart = cabinet.getObjectByName("helloCart");
+
+    gtagCart = cabinet.getObjectByName("gtagCart");
+    gtagCart.visible = false
+    ntsCart = cabinet.getObjectByName("ntsCart");
+    ntsCart.visible = false
+    cartIN = cabinet.getObjectByName("cartIN");
+    cartIN.visible = false
+
+    cartplay = cabinet.getObjectByName("play");
+    cartplay.visible = false
+    carteject = cabinet.getObjectByName("eject");
+    carteject.visible = false
+    cartpause = cabinet.getObjectByName("pause");
+    cartpause.visible = false
+
+    backCab = cabinet.getObjectByName("backCab");
+    backCab.visible = false
+
 
 })
     
@@ -223,6 +292,7 @@ let door;
 let pillar;
 let Room;
 let sky;
+let sky2;
 let outside;
 let blinds;
 let blindsopen;
@@ -251,6 +321,7 @@ gltfloader.load('./objects/roomofstuff.gltf', function(glb){
     blindsopen.visible = false
 
     sky = room.getObjectByName("sky");
+    sky2 = room.getObjectByName("sky2");
     pillar = room.getObjectByName("Pillar");
     
 
@@ -273,10 +344,22 @@ gltfloader.load('./objects/head.gltf', function(glb){
 
 let TV;
 let screen;
+let backTV;
+let glassheadborder
+let glassheadtext
 
 gltfloader.load('./objects/TV.gltf', function(glb){
     TV = glb.scene;
     screen = TV.getObjectByName("TVSCREEN");
+    backTV = TV.getObjectByName("back");
+    backTV.visible = false
+
+    glassheadborder = TV.getObjectByName("glassheadborder");
+    glassheadborder.visible = false
+
+    glassheadtext = TV.getObjectByName("glassheadtext");
+    glassheadtext.visible = false
+    
     
     groop1.add(TV)
 
@@ -284,9 +367,8 @@ gltfloader.load('./objects/TV.gltf', function(glb){
 
 
 function headspin(){
-
-    if(head)head.rotation.y += 0.01;
     if(sky)sky.rotation.z += .001
+    if(sky2)sky2.rotation.y -= .001
 }
 
 const groop1 = new THREE.Group()
@@ -312,8 +394,17 @@ for(let i = 0; i< 3; i++){
 
     //scene.add(pointHelper)
     scene.add(lightPoint)
+
+    
 }
 
+window.addEventListener('keydown', function(event) {
+    if (event.key === 'Backspace') {
+      // Do something when the backspace key is pressed
+    }
+    camera.position.set(0,2.45,4)
+    camera.rotation.set(-.4,0,0)
+})
 
 // Dookie stuff
 const sizes = {
@@ -322,6 +413,8 @@ const sizes = {
 }
 
 const raycaster = new THREE.Raycaster()
+
+
 
 window.addEventListener('resize', () =>{
     sizes.width = window.innerWidth
@@ -456,7 +549,54 @@ const mouse = new THREE.Vector2()
             else if(currentIntersect.object === tvBox){
                 //constole.log('tv clicked')
                 if(screen){
+                    
                     if (tvON === 0) {
+                        glassheadtext.visible = true
+                        glassheadborder.visible = true
+
+                        window.addEventListener('click', (event) =>{
+                        if(PurrentIntersect){
+                            //console.log(currentIntersect)
+                        if(PurrentIntersect.object === ytbuttonBox){
+                        function openWindow(url) {window.open(url, '_blank');}                  
+                        openWindow('https://www.youtube.com/@GLASSHEAD/videos');
+                                            
+                        console.log('button clicked')
+
+                        setTimeout(function() {
+                            PurrentIntersect = null
+                            tvBox.position.set(1.26,.6,-1.5)
+                            tvBox.scale.set(1,.9,1.16)
+                            glassheadtext.visible = false
+                            glassheadborder.visible = false
+                            if(backTV)backTV.visible = false
+                            disableCode()
+                            music.pause()
+                            music.currentTime = 0
+                            tvon.pause()
+                            tvon.currentTime = 0
+                            tvoff.play()
+                            screen.traverse((o) => {if (o.isMesh) o.material = m4;});
+                            camera.position.set(0,2.45,4)
+                            camera.rotation.set(-.4,0,0)
+    
+                            tvON = 0;
+                            
+                            }, 1000);
+                        }
+                        }
+                        })
+
+
+                        tvBox.position.set
+                        (1.0758627653121948,
+                        0.7370007038116455,
+                        -1.4301272630691528)
+                        tvBox.scale.set(.2,.2,.1)
+                        if(backTV)backTV.visible = true
+                        glassheadtext.visible = true
+                        glassheadborder.visible = true
+                        enableCode()
                         tvoff.pause()
                         tvoff.currentTime = 0
                         tvon.play()
@@ -465,7 +605,18 @@ const mouse = new THREE.Vector2()
                         camera.position.set(1.26,.6,-.5)
                         camera.rotation.set(0,0,0)
                         tvON = 3;
+
+    
+
+
                     } else {
+                        tvBox.position.set(1.26,.6,-1.5)
+                        tvBox.scale.set(1,.9,1.16)
+                        if(backTV)backTV.visible = false
+                        glassheadtext.visible = false
+                        glassheadborder.visible = false
+                        
+                        disableCode()
                         music.pause()
                         music.currentTime = 0
                         tvon.pause()
@@ -481,17 +632,82 @@ const mouse = new THREE.Vector2()
             }
             else if(currentIntersect.object === cabBox){
                 console.log('cab clicked')
+                enableCode()
+                
                 
                 if(cabinet){
                     //cab zoom
                     if (cabON === 0) {
+                        if(backCab)backCab.visible = true
+                        cabBox.position.set(2.05,.608,-.75)
+                        cabBox.scale.set(.1,.1,.1)
 
-                        camera.position.set(1,.3,-.15)
+                        //hello cart cliciked
+                        window.addEventListener('click', (event) =>{
+                           
+                           if(PurrentIntersect.object === helloBox){
+                            hello.play()
+                            goin.play()
+                            goout.pause()
+                            goout.currentTime = 0
+                               camera.position.set(1.8,.75,-.4)
+                               camera.fov = 65
+                           camera.updateProjectionMatrix();
+                               
+                           if(helloCart)helloCart.position.set
+                               (0.02808813750743866,
+                                   1.0787887573242188,
+                                   0.4893183708190918)
+                                   console.log('hello')
+                                   if(helloCart)helloCart.rotation.set(0,0,0)
+                           }
+                           })
+                           
+                        window.addEventListener('click', (event) =>{
+                           
+                           if(PurrentIntersect.object === helloBox){
+                            hello.play()
+                            goin.play()
+                            goout.pause()
+                            goout.currentTime = 0
+                               camera.position.set(1.8,.75,-.4)
+                               camera.fov = 65
+                           camera.updateProjectionMatrix();
+                               
+                           if(helloCart)helloCart.position.set
+                               (0.02808813750743866,
+                                   1.0787887573242188,
+                                   0.4893183708190918)
+                                   console.log('hello')
+                                   if(helloCart)helloCart.rotation.set(0,0,0)
+                           }
+                           })
+
+                           
+                        camera.position.set(1,.4,-.15)
                         camera.rotation.set(0,-1.27,0)
                         cabON = 3;
                     } else {
-                    //cab reset
- 
+                        //cab reset & carts
+                        if(backCab)backCab.visible = false
+
+                        
+
+                        goout.play()
+                        goin.pause()
+                        goin.currentTime = 0
+                        hello.pause()
+                        hello.currentTime = 0
+                        disableCode()
+                        if(helloCart)helloCart.position.set(0.6845217347145081,-0.18564265966415405,0.5381841659545898)
+                        if(helloCart)helloCart.rotation.set(-0.537299633026123,0,0)
+
+                        cabBox.position.set(2.15,0.3,-0.76)
+                        cabBox.scale.set(1,1,1)
+                        
+
+                    camera.fov = 35
+                    camera.updateProjectionMatrix();
                         camera.position.set(0,2.45,4)
                         camera.rotation.set(-.4,0,0)
 
@@ -528,6 +744,7 @@ renderer.depth = false
 renderer.logarithmicDepthBuffer = false
 
 let currentIntersect = null
+let PurrentIntersect = null
 
 const target = new THREE.Vector3()
 
@@ -536,14 +753,56 @@ const target = new THREE.Vector3()
 
 
 
+//-----------------------------tv buttons---------------------------------------
+function tvButtons(){
+    const buttons = [ytbuttonBox,helloBox]                  
+    const mouseOn = raycaster.intersectObjects(buttons)
+
+    for(const object of buttons)
+    {object.material.color.set('blue')
+    if(glassheadborder)glassheadborder.material.color.set('red')
+    //console.log('not Hovering Tv Buttons')
+    }
+
+    for(const intersect of mouseOn)
+    {
+         
+        if(glassheadborder)glassheadborder.material.color.set('green')
+        intersect.object.material.color.set('green')
+      //console.log('Hovering Tv Buttons')
+    }
+
+    if(mouseOn.length){
+    if(PurrentIntersect === null){
+    //on.play();
+    //console.log('mouse enter event')
+        }
+    PurrentIntersect = mouseOn[0]
+
+}   else {
+    
+    if(PurrentIntersect){
+        //off.play();
+        console.log('mouse exit event')
+        }
+    PurrentIntersect = null
+    }
 
 
+}
 
+console.log(helloBox)
+//--------------------------------------------------------------------
 function animate(){
+    headspin()
+    if(codeEnabled){
+        tvButtons()
+    }
 
     requestAnimationFrame(animate)
+    var timer = Date.now() * 0.0001;
 
-    if(sky)sky.rotation.z += .001
+
 
     const GLASSHEADArray = [danb,dyldisb,gingerb,joeyb,tylerb,toneb];
     GLASSHEADaudio = GLASSHEADArray[Math.floor(Math.random() * GLASSHEADArray.length)];
@@ -556,7 +815,6 @@ function animate(){
 
 
 
-    var timer = Date.now() * 0.0001;
    
 
 
@@ -577,10 +835,12 @@ function animate(){
     const intersects = raycaster.intersectObjects(objectToTests)
 
     for(const object of objectToTests){
+        if(backTV)backTV.material.color.set('red')
         object.material.color.set('red')
     }
 
     for(const intersect of intersects){
+        if(backTV)backTV.material.color.set('green')
       intersect.object.material.color.set('green')
       //constole.log('INTERSECTING')
     }
