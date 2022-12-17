@@ -102,6 +102,8 @@ let GLASSHEADaudio;
 let BEETLEaudio;
 let SONGaudio;
 
+function openWindow(url) {window.open(url, '_blank');} 
+
 let codeEnabled = false;
 
 function disableCode() {
@@ -551,17 +553,17 @@ const mouse = new THREE.Vector2()
                 if(screen){
                     
                     if (tvON === 0) {
+
+                        
                         glassheadtext.visible = true
                         glassheadborder.visible = true
 
                         window.addEventListener('click', (event) =>{
-                        if(PurrentIntersect){
-                            //console.log(currentIntersect)
-                        if(PurrentIntersect.object === ytbuttonBox){
-                        function openWindow(url) {window.open(url, '_blank');}                  
+
+                        if(PurrentIntersect.object === ytbuttonBox){                 
                         openWindow('https://www.youtube.com/@GLASSHEAD/videos');
                                             
-                        console.log('button clicked')
+                        //console.log('button clicked')
 
                         setTimeout(function() {
                             PurrentIntersect = null
@@ -583,7 +585,7 @@ const mouse = new THREE.Vector2()
                             tvON = 0;
                             
                             }, 1000);
-                        }
+                        
                         }
                         })
 
