@@ -812,10 +812,12 @@ function animate(){
 
     for(const object of objectToTests){
         if(backTV)backTV.material.color.set('red')
+        if(backCab)backCab.material.color.set('red')
         object.material.color.set('red')
     }
 
     for(const intersect of intersects){
+        if(backCab)backCab.material.color.set('green')
         if(backTV)backTV.material.color.set('green')
       intersect.object.material.color.set('green')
       //constole.log('INTERSECTING')
