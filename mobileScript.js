@@ -554,7 +554,7 @@ window.addEventListener('touchstart',  (event) => {
 
                 if(PurrentIntersect.object === shirtBox)
                 {                 
-                    window.location.replace('Pages/store.html');
+                    window.location.replace('/store');
                     doyouwannabuy.pause()
                     setTimeout(function() {
                         disableCode()
