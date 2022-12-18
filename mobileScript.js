@@ -115,6 +115,8 @@ var bsong1 = new Audio('./audio/bsong1.mp3');
 var bsong2 = new Audio('./audio/bsong2.mp3');
 var bsong3 = new Audio('./audio/bsong3.mp3');
 
+var doyouwannabuy = new Audio('./audio/doyouwannabuy.mp3');
+
 
 
 let GLASSHEADaudio;
@@ -209,7 +211,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
 
     const shirtGeometry = new THREE.BoxGeometry(.5,.6,.02)
     const shirtBox = new THREE.Mesh(shirtGeometry,invisibleblue)
-    shirtBox.position.set(-1.2376863956451416,1,-2.6752665042877197)
+    shirtBox.position.set(0,1,-2.6752665042877197)
     scene.add(shirtBox)
 
     const pictureBoxGeometry = new THREE.BoxGeometry(.60,1,.1)
@@ -540,8 +542,36 @@ window.addEventListener('touchstart',  (event) => {
                 }
                 
             }
-            else if(currentIntersect.object === doorBox){
+            else if(currentIntersect.object === doorBox && shirtBox){
                 //console.log('door clicked')
+                enableCode()
+                doyouwannabuy.play()
+                camera.position.set(0,3.6,4)
+                camera.fov = 20
+                camera.updateProjectionMatrix();
+                window.addEventListener('click', (event) =>{
+                    event.preventDefault();
+
+                if(PurrentIntersect.object === shirtBox)
+                {                 
+                    window.location.assign('https://i.imgur.com/RnM77f0.png') - 1;
+                    doyouwannabuy.pause()
+                    setTimeout(function() {
+                        disableCode()
+                        dooropen.pause()
+                        dooropen.currentTime = 0
+                        doorclose.play()
+                        door.rotation.set(0, 1.55, 0);
+                        doorRotation = 0;
+                        camera.fov = 40
+                        camera.updateProjectionMatrix();
+                        camera.position.set(0, 2.8,4)
+                        camera.rotation.set(-0.4,0,0)
+
+
+                      }, 1000);
+                }
+            })
                 if(door){
                     if (doorRotation === 0) {
                         doorclose.pause()
@@ -550,6 +580,12 @@ window.addEventListener('touchstart',  (event) => {
                         door.rotation.set(0, 3.5, 0);
                         doorRotation = 3;
                     } else {
+                        camera.fov = 40
+                        camera.updateProjectionMatrix();
+                        camera.position.set(0, 2.8,4)
+                        camera.rotation.set(-0.4,0,0)
+                        doyouwannabuy.pause()
+                        doyouwannabuy.currentTime = 0
                         dooropen.pause()
                         dooropen.currentTime = 0
                         doorclose.play()
@@ -612,7 +648,7 @@ window.addEventListener('touchstart',  (event) => {
                         camera.rotation.set(0,-1.265,0)
                         tvON = 3;
                     } else {
-                       
+                       disableCode()
                         glassheadtext.visible = false
                         glassheadborder.visible = false
                         if(backTV)backTV.visible = false

@@ -403,13 +403,13 @@ for(let i = 0; i< 3; i++){
     
 }
 
-window.addEventListener('keydown', function(event) {
-    if (event.key === 'Backspace') {
-      // Do something when the backspace key is pressed
-    }
-    camera.position.set(0,2.45,4)
-    camera.rotation.set(-.4,0,0)
-})
+// window.addEventListener('keydown', function(event) {
+//     if (event.key === 'Backspace') {
+//       // Do something when the backspace key is pressed
+//     }
+//     camera.position.set(0,2.45,4)
+//     camera.rotation.set(-.4,0,0)
+// })
 
 // Dookie stuff
 const sizes = {
