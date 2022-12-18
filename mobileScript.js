@@ -554,7 +554,7 @@ window.addEventListener('touchstart',  (event) => {
 
                 if(PurrentIntersect.object === shirtBox)
                 {                 
-                    window.location.assign('https://i.imgur.com/RnM77f0.png') - 1;
+                    window.location.replace('Pages/store.html');
                     doyouwannabuy.pause()
                     setTimeout(function() {
                         disableCode()

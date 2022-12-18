@@ -540,7 +540,7 @@ const mouse = new THREE.Vector2()
                 doyouwannabuy.play()
                 if(PurrentIntersect.object === shirtBox)
                 {                 
-                    window.location.assign('https://i.imgur.com/6Si9Zey.png') - 1;
+                    window.location.replace('Pages/store.html');
                 
                 }
                 if(door){

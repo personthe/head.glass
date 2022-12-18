@@ -5,18 +5,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>GLASSHEAD</title>
+    
+    <title>GLASSHEAD STORE</title>
     <link rel="icon" type="image/x-icon" href="/favecon.ico">
     
 </head>
 
 <body>  
 
-    
+    <a href="/index.html"><strong>Back</strong></a>
+
+    <style>
+
+        a
+        {
+            color:hotpink;
+            font-size: 30px;
+            
+            
+        }
+
+        body 
+        {
+
+        text-align: center;
+        }
+
+    </style>
+
+    <img id="myImage" src='/imges/marjk.2png.png' >
+
 
     <canvas class="webgl"></canvas>
-    <script type="module" src="HTMLJAVA.js"></script>
+    
     <script>
         
     
@@ -29,12 +50,12 @@
             // Include the mobile-specific script file
             var script = document.createElement("script");
             script.type="module"
-            script.src = "mobileScript.js";
+            script.src = "storeMobile.js";
             document.body.appendChild(script);
         } else {
             var script = document.createElement("script");
             script.type="module"
-            script.src = "script.js";
+            script.src = "store.js";
             document.body.appendChild(script);
         }
     </script>
