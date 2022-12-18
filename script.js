@@ -366,6 +366,7 @@ gltfloader.load('./objects/TV.gltf', function(glb){
     glassheadborder.visible = false
 
     glassheadtext = TV.getObjectByName("glassheadtext");
+    glassheadtext.material.emissive.set('white')
     glassheadtext.visible = false
     
     
