@@ -344,7 +344,7 @@ gltfloader.load('./objects/mobileTV.gltf', function(glb){
     glassheadborder.visible = false
 
     glassheadtext = TV.getObjectByName("glassheadtext");
-    glassheadtext.material.emissive = ('white')
+    glassheadtext.material.emissive.set('white')
     glassheadtext.visible = false
 
     
