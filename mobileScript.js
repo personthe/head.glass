@@ -121,6 +121,18 @@ let GLASSHEADaudio;
 let BEETLEaudio;
 let SONGaudio;
 
+let codeEnabled = false;
+
+function disableCode() {
+  codeEnabled = false;
+}
+
+function enableCode() {
+  codeEnabled = true;
+}
+
+
+
 
 
 
@@ -176,10 +188,24 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     const headBoxGeometry = new THREE.BoxGeometry(.47,.6,.47)
     const invisibleRed = new THREE.MeshBasicMaterial({color: 'red'});
     invisibleRed.visible = false
+    invisibleRed.transparent = true
+    invisibleRed.opacity = .5
+
     const headBox = new THREE.Mesh(headBoxGeometry,invisibleRed)
     headBox.position.set(-.65,1.5,-.5)
     headBox.rotation.set(0,1.28,0)
     scene.add(headBox)
+
+    const invisibleblue = new THREE.MeshBasicMaterial({color: 'blue'});
+    invisibleblue.visible = false
+    invisibleblue.transparent = true
+    invisibleblue.opacity = .5
+
+    const ytbuttonGeometry = new THREE.BoxGeometry(.5,.12,.02)
+    const ytbuttonBox = new THREE.Mesh(ytbuttonGeometry,invisibleblue)
+    ytbuttonBox.position.set(0.57,0.18,-0.36)
+    ytbuttonBox.rotation.set(0,5,0)
+    scene.add(ytbuttonBox)
 
     const pictureBoxGeometry = new THREE.BoxGeometry(.60,1,.1)
     const pictureBox = new THREE.Mesh(pictureBoxGeometry,invisibleRed)
@@ -201,7 +227,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
 
     const windowBoxGeometry = new THREE.BoxGeometry(.85,.69,.1)
     const windowBox = new THREE.Mesh(windowBoxGeometry,invisibleRed)
-    windowBox.position.set(.7,1.35,-1)
+    windowBox.position.set(.8,1.35,-1)
     windowBox.rotation.set(0,-1.25,0)
     scene.add(windowBox)
 
@@ -294,10 +320,22 @@ gltfloader.load('./objects/head.gltf', function(glb){
 
 let TV;
 let screen;
+let backTV;
+let glassheadborder
+let glassheadtext
 
 gltfloader.load('./objects/mobileTV.gltf', function(glb){
     TV = glb.scene;
     screen = TV.getObjectByName("TVSCREEN");
+
+    backTV = TV.getObjectByName("back");
+    backTV.visible = false
+
+    glassheadborder = TV.getObjectByName("glassheadborder");
+    glassheadborder.visible = false
+
+    glassheadtext = TV.getObjectByName("glassheadtext");
+    glassheadtext.visible = false
 
     
     groop1.add(TV)
@@ -383,6 +421,12 @@ window.addEventListener('touchstart',  (event) => {
    
   }, false);
 
+  window.addEventListener('mousemove', (event) =>{
+    mouse.x = event.clientX / sizes.width * 2 - 1
+    mouse.y = - (event.clientY / sizes.height) * 2 + 1
+    
+    })
+
 
 
 
@@ -452,7 +496,7 @@ window.addEventListener('touchstart',  (event) => {
 
                 setTimeout(function() {
                     picturereset = 0
-                    camera.position.set(0,2.8,4)
+                    camera.position.set(0,2.8,)
                     camera.rotation.set(-0.4,0,0)
                     camera.fov = 40
                     camera.updateProjectionMatrix();
@@ -509,13 +553,21 @@ window.addEventListener('touchstart',  (event) => {
                 //console.log('tv clicked')
                 if(screen){
                     if (tvON === 0) {
+
+                        window.addEventListener('click', (event) =>{
+                        if(PurrentIntersect.object === ytbuttonBox)
+                        {                 
+                            window.location.assign('https://www.youtube.com/@GLASSHEAD/videos') - 1;
+                            //console.log('button clicked')       
+                        }
+                        })
+                        enableCode()
+                        tvBox.position.set(.5,.49,-.58)
+                        tvBox.scale.set(.2,.2,.1)
+                        if(backTV)backTV.visible = true
+                        glassheadtext.visible = true
+                        glassheadborder.visible = true
                         
-
-
-
-
-
-
                         tvoff.pause()
                         tvoff.currentTime = 0
                         tvon.play()
@@ -527,7 +579,9 @@ window.addEventListener('touchstart',  (event) => {
                         camera.rotation.set(0,-1.265,0)
                         tvON = 3;
                     } else {
-
+                        
+                        tvBox.position.set(.6,.49,-.1)
+                        tvBox.scale.set(1,1,1)
 
                         music.pause()
                         music.currentTime = 0
@@ -571,7 +625,6 @@ renderer.stencil = false
 renderer.depth = false
 renderer.logarithmicDepthBuffer = false
 
-let currentIntersect = null
 
 const target = new THREE.Vector3()
 
@@ -580,9 +633,78 @@ const target = new THREE.Vector3()
 
 //const controls = new OrbitControls(camera, renderer.domElement)
 
+//---------------------------------------------------------------------------
+let currentIntersect = 0
+let PurrentIntersect = 0
+let SurrentIntersect = 0
+
+window.addEventListener("pageshow", function(event) {
+    var historyTraversal = event.persisted || 
+                           (typeof window.performance != "undefined" && 
+                            window.performance.navigation.type === 2);
+    if (historyTraversal) {
+      // Reset the page
+      window.location.reload();
+    }
+  });
+
+function tvButtons(){
+    const buttons = [ytbuttonBox,]                  
+    const mouseOn = raycaster.intersectObjects(buttons)
+
+    for(const object of buttons)
+    {object.material.color.set('blue')
+    if(glassheadborder)glassheadborder.material.color.set('red')
+    //console.log('not Hovering Tv Buttons')
+    }
+
+    for(const intersect of mouseOn)
+    {
+         
+        if(glassheadborder)glassheadborder.material.color.set('green')
+        
+        intersect.object.material.color.set('green')
+      //console.log('Hovering Tv Buttons')
+    }
+
+    if(mouseOn.length){
+    if(PurrentIntersect === 0){
+    //on.play();
+    //console.log('mouse enter event')
+        }
+    PurrentIntersect = mouseOn[0]
+
+}   else {
+    
+    if(PurrentIntersect){
+        //off.play();
+        console.log('mouse exit event')
+        }
+    PurrentIntersect = 0
+    }
+//-----------------------------------------------------------------------
+
+window.addEventListener('keydown', function(event) {
+    if (event.key === 'Backspace') {
+      // Do something when the backspace key is pressed
+    }
+    camera.fov = 40
+    camera.updateProjectionMatrix();
+    camera.position.set(0, 2.8,4)
+    camera.rotation.set(-0.4,0,0)
+})
+
+}
+
+console.log(tvBox.position)
 
 
 function animate(){
+
+    if(codeEnabled)
+    {
+        tvButtons()
+    }
 
     const BEETLEArray = [beetle1,beetle2,beetle3,beetle4,beetle5,beetle1,beetle2,beetle3,beetle5,];
     BEETLEaudio = BEETLEArray[Math.floor(Math.random() * BEETLEArray.length)];
