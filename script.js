@@ -102,8 +102,6 @@ let GLASSHEADaudio;
 let BEETLEaudio;
 let SONGaudio;
 
-function openWindow(url) {window.open(url, '_blank');} 
-
 let codeEnabled = false;
 
 function disableCode() {
@@ -171,7 +169,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     invisibleRed.transparent = true
     invisibleRed.opacity = .5
     
-    invisibleRed.visible = false
+    //invisibleRed.visible = false
     const headBox = new THREE.Mesh(headBoxGeometry,invisibleRed)
     headBox.position.set(0,1.5,)
     scene.add(headBox)
@@ -183,7 +181,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     scene.add(tvBox)
 
     const invisibleblue = new THREE.MeshBasicMaterial({color: 'blue'});
-    invisibleblue.visible = false
+    //invisibleblue.visible = false
     invisibleblue.transparent = true
     invisibleblue.opacity = .5
 
@@ -191,6 +189,11 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     const ytbuttonBox = new THREE.Mesh(ytbuttonGeometry,invisibleblue)
     ytbuttonBox.position.set(1.26,.41,-1.43)
     scene.add(ytbuttonBox)
+
+    const shirtGeometry = new THREE.BoxGeometry(.5,.6,.02)
+    const shirtBox = new THREE.Mesh(shirtGeometry,invisibleblue)
+    shirtBox.position.set(-1.2376863956451416,1,-2.6752665042877197)
+    scene.add(shirtBox)
 
     const helloGeometry = new THREE.BoxGeometry(.1,.09,.02)
     const helloBox = new THREE.Mesh(helloGeometry,invisibleblue)
@@ -532,14 +535,24 @@ const mouse = new THREE.Vector2()
             
             else if(currentIntersect.object === doorBox){
                 //constole.log('door clicked')
+                if(PurrentIntersect.object === shirtBox)
+                {                 
+                    window.location.assign('https://i.imgur.com/6Si9Zey.png') - 1;
+                
+                }
                 if(door){
                     if (doorRotation === 0) {
+                        codeEnabled = true;
+
+
+
                         doorclose.pause()
                         doorclose.currentTime = 0
                         dooropen.play()
                         door.rotation.set(0, 3.3, 0);
                         doorRotation = 3;
                     } else {
+                        codeEnabled = false;
                         dooropen.pause()
                         dooropen.currentTime = 0
                         doorclose.play()
@@ -561,7 +574,7 @@ const mouse = new THREE.Vector2()
                         window.addEventListener('click', (event) =>{
 
                         if(PurrentIntersect.object === ytbuttonBox){                 
-                        openWindow('https://www.youtube.com/@GLASSHEAD/videos') - 1;
+                        window.location.assign('https://www.youtube.com/@GLASSHEAD/videos') - 1;
                                             
                         //console.log('button clicked')
 
@@ -722,9 +735,9 @@ renderer.stencil = false
 renderer.depth = false
 renderer.logarithmicDepthBuffer = false
 
-let currentIntersect = null
-let PurrentIntersect = null
-let SurrentIntersect = null
+let currentIntersect = 0
+let PurrentIntersect = 0
+let SurrentIntersect = 0
 
 const target = new THREE.Vector3()
 
@@ -735,7 +748,7 @@ const target = new THREE.Vector3()
 
 //-----------------------------tv buttons---------------------------------------
 function tvButtons(){
-    const buttons = [ytbuttonBox,helloBox]                  
+    const buttons = [ytbuttonBox,helloBox,shirtBox]                  
     const mouseOn = raycaster.intersectObjects(buttons)
 
     for(const object of buttons)
