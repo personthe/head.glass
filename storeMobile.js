@@ -6,7 +6,7 @@ window.addEventListener('click', (event) =>{
 })
 
 var img = document.getElementById('myImage');
-img.style.width = window.innerWidth + 'px';
+img.style.width = 365 + 'px';
 
 
 //ANIMATION
