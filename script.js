@@ -102,6 +102,8 @@ let GLASSHEADaudio;
 let BEETLEaudio;
 let SONGaudio;
 
+var doyouwannabuy = new Audio('./audio/doyouwannabuy.mp3');
+
 let codeEnabled = false;
 
 function disableCode() {
@@ -535,6 +537,7 @@ const mouse = new THREE.Vector2()
             
             else if(currentIntersect.object === doorBox){
                 //constole.log('door clicked')
+                doyouwannabuy.play()
                 if(PurrentIntersect.object === shirtBox)
                 {                 
                     window.location.assign('https://i.imgur.com/6Si9Zey.png') - 1;
@@ -552,6 +555,8 @@ const mouse = new THREE.Vector2()
                         door.rotation.set(0, 3.3, 0);
                         doorRotation = 3;
                     } else {
+                        doyouwannabuy.pause()
+                        doyouwannabuy.currentTime = 0
                         codeEnabled = false;
                         dooropen.pause()
                         dooropen.currentTime = 0
