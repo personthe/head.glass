@@ -58,7 +58,7 @@ document.addEventListener('contextmenu', function(e) {
         dontDoThat.innerHTML = 'you belong in a mental hospital (' + (bCounter) + ')';
     }
     dontDoThat.style.position = 'absolute';
-    dontDoThat.style.top = e.clientY + 'px';
+    dontDoThat.style.top = e.clientY - 20 + 'px';
     dontDoThat.style.left = e.clientX + 'px';
     dontDoThat.style.fontSize = '20px';
     console.log(bCounter)
