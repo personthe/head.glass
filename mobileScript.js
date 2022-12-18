@@ -116,6 +116,7 @@ var bsong2 = new Audio('./audio/bsong2.mp3');
 var bsong3 = new Audio('./audio/bsong3.mp3');
 
 var doyouwannabuy = new Audio('./audio/doyouwannabuy.mp3');
+doyouwannabuy.loop = true
 
 
 

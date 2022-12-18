@@ -103,6 +103,7 @@ let BEETLEaudio;
 let SONGaudio;
 
 var doyouwannabuy = new Audio('./audio/doyouwannabuy.mp3');
+doyouwannabuy.loop = true
 
 let codeEnabled = false;
 
