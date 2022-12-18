@@ -169,7 +169,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     invisibleRed.transparent = true
     invisibleRed.opacity = .5
     
-    //invisibleRed.visible = false
+    invisibleRed.visible = false
     const headBox = new THREE.Mesh(headBoxGeometry,invisibleRed)
     headBox.position.set(0,1.5,)
     scene.add(headBox)
@@ -181,7 +181,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     scene.add(tvBox)
 
     const invisibleblue = new THREE.MeshBasicMaterial({color: 'blue'});
-    //invisibleblue.visible = false
+    invisibleblue.visible = false
     invisibleblue.transparent = true
     invisibleblue.opacity = .5
 
