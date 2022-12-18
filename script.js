@@ -221,7 +221,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     pictureBox.rotation.set(0,-1.8,0)
     scene.add(pictureBox)
 
-    const textArray = ["GLASSHEAD","head.glass","I love GLASSHEAD","HEY its Tone Baloney",'OF COURSE!','YUMMY!!!'];
+    const textArray = ["GLASSHEAD","GLASSHEAD","GLASSHEAD","GLASSHEAD","GLASSHEAD","GLASSHEAD","head.glass","I love GLASSHEAD","HEY its Tone Baloney",'OF COURSE!','YUMMY!!!','DAD ASS SERIOUS',];
     const textString = textArray[Math.floor(Math.random() * textArray.length)];
 
    
