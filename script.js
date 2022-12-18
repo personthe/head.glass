@@ -100,6 +100,8 @@ var hello = new Audio('./audio/hello.mp3');
 
 var nothingtosay = new Audio('./audio/nothingtosay.mp3');
 
+var gtag = new Audio('./audio/gtag.mp3');
+
 
 
 let GLASSHEADaudio;
@@ -216,6 +218,13 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     
     scene.add(ntsBox)
 
+    const gtagGeometry = new THREE.BoxGeometry(.1,.09,.02)
+    const gtagBox = new THREE.Mesh(gtagGeometry,invisibleblue)
+    gtagBox.position.set(2.18,.3,-.592)
+    gtagBox.rotation.set(0,-.1,0)
+    
+    scene.add(gtagBox)
+
     const cabBoxGeometry = new THREE.BoxGeometry(.7,.65,.13)
     const cabBox = new THREE.Mesh(cabBoxGeometry,invisibleRed)
     cabBox.position.set(2.3,.35,-.61)
@@ -288,7 +297,7 @@ gltfloader.load('./objects/MusicCabnet.gltf', function(glb){
     helloCart = cabinet.getObjectByName("helloCart");
 
     gtagCart = cabinet.getObjectByName("gtagCart");
-    gtagCart.visible = false
+    //gtagCart.visible = false
     ntsCart = cabinet.getObjectByName("ntsCart");
     //ntsCart.visible = false
     cartIN = cabinet.getObjectByName("cartIN");
@@ -670,7 +679,7 @@ const mouse = new THREE.Vector2()
                 camera.fov = 65
                 camera.updateProjectionMatrix();                              
                 if(helloCart)helloCart.position.set(0.02808813750743866,1.0787887573242188,0.4893183708190918)
-                console.log('hello')
+                //console.log('hello')
                 if(helloCart)helloCart.rotation.set(0,0,0)
                 }
 
@@ -683,8 +692,21 @@ const mouse = new THREE.Vector2()
                 camera.fov = 65
                 camera.updateProjectionMatrix();                              
                 if(ntsCart)ntsCart.position.set(0.02808813750743866,1.0787887573242188,0.4893183708190918)
-                console.log('nts')
+                //console.log('nts')
                 if(ntsCart)ntsCart.rotation.set(0,0,0)
+                }
+
+                if(PurrentIntersect.object === gtagBox){
+                gtag.play()
+                goin.play()
+                goout.pause()
+                goout.currentTime = 0
+                camera.position.set(1.8,.75,-.4)
+                camera.fov = 65
+                camera.updateProjectionMatrix();                              
+                if(gtagCart)gtagCart.position.set(0.02808813750743866,1.0787887573242188,0.4893183708190918)
+                //console.log('nts')
+                if(gtagCart)gtagCart.rotation.set(0,0,3.14)
                 }
             
             
@@ -707,6 +729,9 @@ const mouse = new THREE.Vector2()
                 nothingtosay.pause()
                 nothingtosay.currentTime = 0
 
+                gtag.pause()
+                gtag.currentTime = 0
+
                 disableCode()
 
                 if(helloCart)helloCart.position.set(0.6845217347145081,-.20,0.5381841659545898)
@@ -714,6 +739,9 @@ const mouse = new THREE.Vector2()
 
                 if(ntsCart)ntsCart.position.set(0.4,-.20,0.6)
                 if(ntsCart)ntsCart.rotation.set(0,-1.1,0)
+
+                if(gtagCart)gtagCart.rotation.set(0,-1.1,3.14)
+                if(gtagCart)gtagCart.position.set(.15,-.20,0.6)
 
                 cabBox.position.set(2.15,0.3,-0.76)
                 cabBox.scale.set(1,1,1)
@@ -775,7 +803,7 @@ window.addEventListener("pageshow", function(event) {
 
 //-----------------------------tv buttons---------------------------------------
 function tvButtons(){
-    const buttons = [ytbuttonBox,helloBox,shirtBox,ntsBox]                  
+    const buttons = [ytbuttonBox,helloBox,shirtBox,ntsBox,gtagBox]                  
     const mouseOn = raycaster.intersectObjects(buttons)
 
     for(const object of buttons)
