@@ -7,6 +7,8 @@ import {GLTFLoader } from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/
 
 //const world = new CANNON.World()
 
+
+
 let bCounter = 0
 
 document.addEventListener('contextmenu', function(e) {
@@ -95,6 +97,8 @@ var goin = new Audio('./audio/goin.mp3');
 var goout = new Audio('./audio/goout.mp3');
 
 var hello = new Audio('./audio/hello.mp3');
+
+var nothingtosay = new Audio('./audio/nothingtosay.mp3');
 
 
 
@@ -200,9 +204,17 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
 
     const helloGeometry = new THREE.BoxGeometry(.1,.09,.02)
     const helloBox = new THREE.Mesh(helloGeometry,invisibleblue)
-    helloBox.position.set(2.15,.3,-.76)
+    helloBox.position.set(2.15,.3,-.75)
+    helloBox.rotation.set(0,-.1,0)
     
     scene.add(helloBox)
+
+    const ntsGeometry = new THREE.BoxGeometry(.1,.09,.02)
+    const ntsBox = new THREE.Mesh(ntsGeometry,invisibleblue)
+    ntsBox.position.set(2.15,.3,-.660)
+    ntsBox.rotation.set(0,-.1,0)
+    
+    scene.add(ntsBox)
 
     const cabBoxGeometry = new THREE.BoxGeometry(.7,.65,.13)
     const cabBox = new THREE.Mesh(cabBoxGeometry,invisibleRed)
@@ -278,7 +290,7 @@ gltfloader.load('./objects/MusicCabnet.gltf', function(glb){
     gtagCart = cabinet.getObjectByName("gtagCart");
     gtagCart.visible = false
     ntsCart = cabinet.getObjectByName("ntsCart");
-    ntsCart.visible = false
+    //ntsCart.visible = false
     cartIN = cabinet.getObjectByName("cartIN");
     cartIN.visible = false
 
@@ -660,7 +672,23 @@ const mouse = new THREE.Vector2()
                 if(helloCart)helloCart.position.set(0.02808813750743866,1.0787887573242188,0.4893183708190918)
                 console.log('hello')
                 if(helloCart)helloCart.rotation.set(0,0,0)
-                }})
+                }
+
+                if(PurrentIntersect.object === ntsBox){
+                nothingtosay.play()
+                goin.play()
+                goout.pause()
+                goout.currentTime = 0
+                camera.position.set(1.8,.75,-.4)
+                camera.fov = 65
+                camera.updateProjectionMatrix();                              
+                if(ntsCart)ntsCart.position.set(0.02808813750743866,1.0787887573242188,0.4893183708190918)
+                console.log('nts')
+                if(ntsCart)ntsCart.rotation.set(0,0,0)
+                }
+            
+            
+            })
 
 
         } 
@@ -676,10 +704,16 @@ const mouse = new THREE.Vector2()
                 hello.pause()
                 hello.currentTime = 0
 
+                nothingtosay.pause()
+                nothingtosay.currentTime = 0
+
                 disableCode()
 
-                if(helloCart)helloCart.position.set(0.6845217347145081,-.26,0.5381841659545898)
-                if(helloCart)helloCart.rotation.set(-1.550,0,0)
+                if(helloCart)helloCart.position.set(0.6845217347145081,-.20,0.5381841659545898)
+                if(helloCart)helloCart.rotation.set(0,-1.1,0)
+
+                if(ntsCart)ntsCart.position.set(0.4,-.20,0.6)
+                if(ntsCart)ntsCart.rotation.set(0,-1.1,0)
 
                 cabBox.position.set(2.15,0.3,-0.76)
                 cabBox.scale.set(1,1,1)
@@ -741,7 +775,7 @@ window.addEventListener("pageshow", function(event) {
 
 //-----------------------------tv buttons---------------------------------------
 function tvButtons(){
-    const buttons = [ytbuttonBox,helloBox,shirtBox]                  
+    const buttons = [ytbuttonBox,helloBox,shirtBox,ntsBox]                  
     const mouseOn = raycaster.intersectObjects(buttons)
 
     for(const object of buttons)
@@ -810,7 +844,7 @@ function backcolor(){
 
 }
 
-console.log(helloBox)
+
 //--------------------------------------------------------------------
 function animate(){
     headspin()

@@ -1,4 +1,6 @@
 *
+
+
 {
     margin: 0;
     padding: 0;
@@ -9,6 +11,8 @@
 html,
 body
 { 
+
+    
     margin: 0;
     height: 100vh;
     font-family: 'Poppins';
@@ -21,5 +25,13 @@ body
     top: 0;
     left: 0;
     outline: none;
+    cursor: url('/imges/mouse1.png'), auto;
 }
+
+.webgl:active
+{
+    cursor: url('/imges/mouse2.png'), auto;
+}
+
+
 
