@@ -576,31 +576,10 @@ const mouse = new THREE.Vector2()
                         if(PurrentIntersect.object === ytbuttonBox){                 
                         window.location.assign('https://www.youtube.com/@GLASSHEAD/videos') - 1;
                                             
-                        //console.log('button clicked')
-
-                        setTimeout(function() {
-                            PurrentIntersect = null
-                            tvBox.position.set(1.26,.6,-1.5)
-                            tvBox.scale.set(1,.9,1.16)
-                            glassheadtext.visible = false
-                            glassheadborder.visible = false
-                            if(backTV)backTV.visible = false
-                            disableCode()
-                            music.pause()
-                            music.currentTime = 0
-                            tvon.pause()
-                            tvon.currentTime = 0
-                            tvoff.play()
-                            screen.traverse((o) => {if (o.isMesh) o.material = m4;});
-                            camera.position.set(0,2.45,4)
-                            camera.rotation.set(-.4,0,0)
-    
-                            tvON = 0;
-                            
-                            }, 1000);
-                        
+                        //console.log('button clicked')       
                         }
                         })
+                        enableCode()
 
 
                         tvBox.position.set
@@ -611,7 +590,6 @@ const mouse = new THREE.Vector2()
                         if(backTV)backTV.visible = true
                         glassheadtext.visible = true
                         glassheadborder.visible = true
-                        enableCode()
                         tvoff.pause()
                         tvoff.currentTime = 0
                         tvon.play()
@@ -741,7 +719,15 @@ let SurrentIntersect = 0
 
 const target = new THREE.Vector3()
 
-
+window.addEventListener("pageshow", function(event) {
+    var historyTraversal = event.persisted || 
+                           (typeof window.performance != "undefined" && 
+                            window.performance.navigation.type === 2);
+    if (historyTraversal) {
+      // Reset the page
+      window.location.reload();
+    }
+  });
 
 
 
