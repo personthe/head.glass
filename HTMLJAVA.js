@@ -2,14 +2,15 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 
 
 
-var minecraftServer = document.createElement('div');
-minecraftServer.innerHTML = 'Minecraft server : 135.148.29.252:25569';
+var minecraftServer = document.createElement('nobr');
+minecraftServer.innerHTML = '<b>MINECRAFT SERVER IP: 135.148.29.252:25569<b>';
 minecraftServer.style.position = 'absolute';
-minecraftServer.style.bottom = '10px';
+minecraftServer.style.bottom = '30px';
 minecraftServer.style.left = '50%';
 minecraftServer.style.transform = 'translateX(-50%)';
 minecraftServer.style.color = 'white';
-minecraftServer.style.fontSize = '10px';
+minecraftServer.style.fontSize = '11px';
+minecraftServer.style.fontFamily = 'Arial';
 document.body.appendChild(minecraftServer);
 
 minecraftServer.addEventListener('click', function() {
@@ -20,9 +21,9 @@ minecraftServer.addEventListener('click', function() {
   textArea.select();
   document.execCommand('copy');
   document.body.removeChild(textArea);
-  minecraftServer.innerHTML = 'SERVER IP COPIED TO CLIPBOARD!';
+  minecraftServer.innerHTML = '<strong>SERVER IP COPIED TO CLIPBOARD!<strong>';
   setTimeout(function() {
-    minecraftServer.innerHTML = 'Minecraft server : 135.148.29.252:25569';
+    minecraftServer.innerHTML = '<b>MINECRAFT SERVER IP: 135.148.29.252:25569<b>';
     }, 2000);
 
   });

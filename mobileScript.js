@@ -239,7 +239,7 @@ let text;
 fontLoader.load('/font/helvetiker_regular.typeface.json',(font) =>{
     const textgeo = new THREE.TextGeometry(textString,{
         font: font,
-        size: 0.5,
+        size: 0.6,
         height: 0.2,
         curveSegments: .1,
         bevelEnabled: false,
@@ -248,7 +248,7 @@ fontLoader.load('/font/helvetiker_regular.typeface.json',(font) =>{
     text = new THREE.Mesh(textgeo,textMat)
         textgeo.center()
         scene.add(text)
-        text.position.set(0,.1,.9)
+        text.position.set(0,.1,.5)
         const size = .15
         text.scale.set(size,size,size)  
 
@@ -285,7 +285,9 @@ gltfloader.load('./objects/mobileroomofstuff.gltf', function(glb){
     shirt = room.getObjectByName("shirt");
     
     blinds = room.getObjectByName("blinds");
+
     blindsopen = room.getObjectByName("blindsopen");
+
     photo = room.getObjectByName('beetle');
     console.log(photo.position)
     blindsopen.visible = false
@@ -510,6 +512,7 @@ window.addEventListener('touchstart',  (event) => {
                 if(outside){
                     if (windowPos === 0) {
                         outside.position.set(-0.5039966106414795,0.63288713693618774,-0.39803987741470337);
+
                         blinds.visible = false
                         blindsopen.visible = true
                         windowclose.pause()
@@ -555,6 +558,7 @@ window.addEventListener('touchstart',  (event) => {
                     if (tvON === 0) {
 
                         window.addEventListener('click', (event) =>{
+                            event.preventDefault();
                         if(PurrentIntersect.object === ytbuttonBox)
                         {                 
                             window.location.assign('https://www.youtube.com/@GLASSHEAD/videos') - 1;
@@ -579,7 +583,10 @@ window.addEventListener('touchstart',  (event) => {
                         camera.rotation.set(0,-1.265,0)
                         tvON = 3;
                     } else {
-                        
+                       
+                        glassheadtext.visible = false
+                        glassheadborder.visible = false
+                        if(backTV)backTV.visible = false
                         tvBox.position.set(.6,.49,-.1)
                         tvBox.scale.set(1,1,1)
 

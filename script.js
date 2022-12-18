@@ -232,7 +232,7 @@ let text;
 fontLoader.load('/font/helvetiker_regular.typeface.json',(font) =>{
     const textgeo = new THREE.TextGeometry(textString,{
         font: font,
-        size: 0.5,
+        size: 0.7,
         height: 0.2,
         curveSegments: .1,
         bevelEnabled: false,
@@ -241,7 +241,7 @@ fontLoader.load('/font/helvetiker_regular.typeface.json',(font) =>{
     text = new THREE.Mesh(textgeo,textMat)
         textgeo.center()
         scene.add(text)
-        text.position.set(0,.1,.9)
+        text.position.set(0,.1,.6)
         const size = .15
         text.scale.set(size,size,size)  
 
