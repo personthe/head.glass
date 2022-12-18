@@ -8,6 +8,8 @@
     
 }
 
+
+
 html,
 body
 { 
@@ -17,6 +19,8 @@ body
     height: 100vh;
     font-family: 'Poppins';
     background: rgb(0, 0, 0);
+    cursor: url('/imges/mouse1.png'), auto;
+    
 }
 
 .webgl
@@ -25,7 +29,7 @@ body
     top: 0;
     left: 0;
     outline: none;
-    cursor: url('/imges/mouse1.png'), auto;
+
 }
 
 .webgl:active
@@ -33,5 +37,8 @@ body
     cursor: url('/imges/mouse2.png'), auto;
 }
 
+nobr {
+    cursor: url('/imges/copy.png'),auto;
+  }
 
 

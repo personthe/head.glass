@@ -29,8 +29,10 @@ minecraftServer.addEventListener('click', function() {
   });
 
 var sheep = new Audio('https://www.myinstants.com/media/sounds/minecraft-sheep2.mp3');
+var copy = new Audio('/audio/copySound.mp3');
 minecraftServer.addEventListener('click', function() {
   sheep.play();
+  copy.play();
 });
   
   document.body.style.overflow = 'hidden';
