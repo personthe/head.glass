@@ -9,7 +9,7 @@
       // Set the style of the h1 element
       h1.style.fontSize = "20px";
       h1.style.textAlign = "center";
-      h1.style.marginTop = 15 + 'px';
+      h1.style.marginTop = 0 + 'px';
       h1.style.zIndex = 2;
       
       h1.style.color = "white";

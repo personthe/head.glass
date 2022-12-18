@@ -25,7 +25,7 @@
         console.log(navigator.userAgent)
     
         // Check if the user agent is a mobile device
-        if (/15E148 Safari|15E148 Snapchat/i.test(userAgent)) {
+        if (/15E148 Safari|15E148 Snapchat|13.1.2 Safari|13.1 Safari|12.1.2 Safari|14.1.2 Safari/i.test(userAgent)) {
             // Include the mobile-specific script file
             var script = document.createElement("script");
             script.type="module"
