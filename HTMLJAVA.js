@@ -9,7 +9,7 @@ minecraftServer.style.bottom = '10px';
 minecraftServer.style.left = '50%';
 minecraftServer.style.transform = 'translateX(-50%)';
 minecraftServer.style.color = 'white';
-minecraftServer.style.fontSize = '11px';
+minecraftServer.style.fontSize = '10px';
 document.body.appendChild(minecraftServer);
 
 minecraftServer.addEventListener('click', function() {
