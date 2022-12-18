@@ -207,6 +207,11 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     ytbuttonBox.rotation.set(0,5,0)
     scene.add(ytbuttonBox)
 
+    const shirtGeometry = new THREE.BoxGeometry(.5,.6,.02)
+    const shirtBox = new THREE.Mesh(shirtGeometry,invisibleblue)
+    shirtBox.position.set(-1.2376863956451416,1,-2.6752665042877197)
+    scene.add(shirtBox)
+
     const pictureBoxGeometry = new THREE.BoxGeometry(.60,1,.1)
     const pictureBox = new THREE.Mesh(pictureBoxGeometry,invisibleRed)
     pictureBox.position.set(-0.73,2.8,0.0)
@@ -498,10 +503,10 @@ window.addEventListener('touchstart',  (event) => {
 
                 setTimeout(function() {
                     picturereset = 0
-                    camera.position.set(0,2.8,)
-                    camera.rotation.set(-0.4,0,0)
                     camera.fov = 40
                     camera.updateProjectionMatrix();
+                    camera.position.set(0, 2.8,4)
+                    camera.rotation.set(-0.4,0,0)
                     }, 5000);
                     
             }
@@ -679,7 +684,7 @@ window.addEventListener("pageshow", function(event) {
   });
 
 function tvButtons(){
-    const buttons = [ytbuttonBox,]                  
+    const buttons = [ytbuttonBox,shirtBox]                  
     const mouseOn = raycaster.intersectObjects(buttons)
 
     for(const object of buttons)
