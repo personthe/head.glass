@@ -5,16 +5,15 @@ window.addEventListener('click', (event) =>{
     sadsong.play();
 })
 
-function gaypicture(){
-    var img = document.getElementById('myImage');
-    img.style.width = window.innerWidth + 'px';
-    img.style.height = window.innerHeight + 'px';
-}
+var img = document.getElementById('myImage');
+img.style.width = window.innerWidth + 'px';
+img.style.height = window.innerHeight + 'px';
 
 //ANIMATION
 function animate()
+
 {
-    gaypicture()
+
     
 
     var timer = Date.now() * 0.0001;   
