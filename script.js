@@ -662,8 +662,9 @@ const mouse = new THREE.Vector2()
                 if(helloCart)helloCart.position.set(0.02808813750743866,1.0787887573242188,0.4893183708190918)
                 console.log('hello')
                 if(helloCart)helloCart.rotation.set(0,0,0)
-                }
-            })
+                }})
+
+
         } 
                 
                 else {
@@ -723,6 +724,7 @@ renderer.logarithmicDepthBuffer = false
 
 let currentIntersect = null
 let PurrentIntersect = null
+let SurrentIntersect = null
 
 const target = new THREE.Vector3()
 
@@ -746,6 +748,7 @@ function tvButtons(){
     {
          
         if(glassheadborder)glassheadborder.material.color.set('green')
+        
         intersect.object.material.color.set('green')
       //console.log('Hovering Tv Buttons')
     }
@@ -769,12 +772,45 @@ function tvButtons(){
 
 }
 
+function backcolor(){
+    const sbuttons = [backCab,backTV]                  
+    const selectedback = raycaster.intersectObjects(sbuttons)
+
+    for(const object of sbuttons)
+    {object.material.color.set('red')
+    //console.log('turning first color')
+    }
+    for(const intersect of selectedback)
+    {
+    intersect.object.material.color.set('green')
+    //console.log('Hovering Tv Buttons')
+    }
+    if(selectedback.length){
+    if(SurrentIntersect === 0){
+    //on.play();
+    console.log('back selected')
+    if(backTV)backTV.material.color.set('red')
+    if(backCab)backCab.material.color.set('red')
+    }
+    SurrentIntersect = selectedback[0]
+    } 
+    else {   
+    if(SurrentIntersect){
+        //off.play();
+        console.log('back un selected')
+        }
+    SurrentIntersect = 0
+    }
+
+}
+
 console.log(helloBox)
 //--------------------------------------------------------------------
 function animate(){
     headspin()
     if(codeEnabled){
         tvButtons()
+        backcolor()
     }
 
     requestAnimationFrame(animate)
@@ -813,14 +849,11 @@ function animate(){
     const intersects = raycaster.intersectObjects(objectToTests)
 
     for(const object of objectToTests){
-        if(backTV)backTV.material.color.set('red')
-        if(backCab)backCab.material.color.set('red')
         object.material.color.set('red')
     }
 
     for(const intersect of intersects){
-        if(backCab)backCab.material.color.set('green')
-        if(backTV)backTV.material.color.set('green')
+
       intersect.object.material.color.set('green')
       //constole.log('INTERSECTING')
     }
