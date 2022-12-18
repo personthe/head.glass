@@ -245,7 +245,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
    
 let text;
 fontLoader.load('/font/helvetiker_regular.typeface.json',(font) =>{
-    const textgeo = new THREE.TextGeometry('balls',{
+    const textgeo = new THREE.TextGeometry(textString,{
         font: font,
         size: 0.6,
         height: 0.2,
