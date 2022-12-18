@@ -562,7 +562,30 @@ window.addEventListener('touchstart',  (event) => {
                         if(PurrentIntersect.object === ytbuttonBox)
                         {                 
                             window.location.assign('https://www.youtube.com/@GLASSHEAD/videos') - 1;
-                            //console.log('button clicked')       
+                            //console.log('button clicked')  
+                            
+                            
+                            setTimeout(function() {
+                                glassheadtext.visible = false
+                                glassheadborder.visible = false
+                                if(backTV)backTV.visible = false
+                                tvBox.position.set(.6,.49,-.1)
+                                tvBox.scale.set(1,1,1)
+        
+                                music.pause()
+                                music.currentTime = 0
+                                tvon.pause()
+                                tvon.currentTime = 0
+                                tvoff.play()
+                                screen.traverse((o) => {if (o.isMesh) o.material = m4;});
+                                camera.fov = 40
+                                camera.updateProjectionMatrix();
+                                camera.position.set(0, 2.8,4)
+                                camera.rotation.set(-0.4,0,0)
+        
+                                tvON = 0; 
+                              }, 1000);
+
                         }
                         })
                         enableCode()
