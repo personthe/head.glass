@@ -190,7 +190,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
 //OBJECTS
     const headBoxGeometry = new THREE.BoxGeometry(.47,.6,.47)
     const invisibleRed = new THREE.MeshBasicMaterial({color: 'red'});
-    invisibleRed.visible = false
+    //invisibleRed.visible = false
     invisibleRed.transparent = true
     invisibleRed.opacity = .5
 
