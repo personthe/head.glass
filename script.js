@@ -561,7 +561,7 @@ const mouse = new THREE.Vector2()
                         window.addEventListener('click', (event) =>{
 
                         if(PurrentIntersect.object === ytbuttonBox){                 
-                        openWindow('https://www.youtube.com/@GLASSHEAD/videos');
+                        openWindow('https://www.youtube.com/@GLASSHEAD/videos') - 1;
                                             
                         //console.log('button clicked')
 
