@@ -245,7 +245,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
    
 let text;
 fontLoader.load('/font/helvetiker_regular.typeface.json',(font) =>{
-    const textgeo = new THREE.TextGeometry('textString',{
+    const textgeo = new THREE.TextGeometry(textString,{
         font: font,
         size: 0.6,
         height: 0.2,
@@ -418,9 +418,12 @@ window.addEventListener('resize', () =>{
 
 const mouse = new THREE.Vector2()
 
+let clickEvent = new MouseEvent('click')
 
 
 window.addEventListener('touchstart',  (event) => {
+
+    window.dispatchEvent(clickEvent);
 
 
     if (event.changedTouches && event.changedTouches.length > 0) {
@@ -450,15 +453,9 @@ window.addEventListener('touchstart',  (event) => {
 
 
 
-    let element = document.getElementById('.webgl');
 
-    // Create a new mouse click event
-    let clickEvent = new TouchEvent('touchend', {
-        bubbles: true,
-        cancelable: true,
-      });
   
-    // Dispatch the click event on the element
+
     
 
 
@@ -466,7 +463,7 @@ window.addEventListener('touchstart',  (event) => {
 
     window.addEventListener('click', (event) =>{
         
-        window.dispatchEvent(clickEvent);
+        
         
 
         //const tap = event.
