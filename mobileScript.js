@@ -453,7 +453,10 @@ window.addEventListener('touchstart',  (event) => {
     let element = document.getElementById('.webgl');
 
     // Create a new mouse click event
-    let clickEvent = new MouseEvent('touchend');
+    let clickEvent = new TouchEvent('touchend', {
+        bubbles: true,
+        cancelable: true,
+      });
   
     // Dispatch the click event on the element
     
