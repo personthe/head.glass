@@ -418,7 +418,7 @@ window.addEventListener('resize', () =>{
 
 const mouse = new THREE.Vector2()
 
-let clickEvent = new MouseEvent('mousedown')
+
 
 
 window.addEventListener('touchstart',  (event) => {
@@ -458,10 +458,17 @@ window.addEventListener('touchstart',  (event) => {
 
     
 
+let MOUSECLICKER = new MouseEvent('click')
+
+window.addEventListener('touchend',(o)=>{
+o.preventDefault()
+o.target.dispatchEvent(MOUSECLICKER)
+if(dispatchEvent){
+    console.log('ok')
+}
 
 
-
-    window.addEventListener('mousedown'||'touchend', (event) =>{
+    window.addEventListener('mousedown', (event) =>{
         
         
         
@@ -681,6 +688,8 @@ window.addEventListener('touchstart',  (event) => {
 
         }
     }) 
+
+})
 
 //CAMERAS
 const camera = new THREE.PerspectiveCamera (40, sizes.width/sizes.height, .01, 45)
