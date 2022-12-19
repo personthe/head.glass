@@ -458,19 +458,19 @@ window.addEventListener('touchstart',  (event) => {
 
     
 
-let MOUSECLICKER = new MouseEvent('click')
-
-window.addEventListener('touchend',(o)=>{
-o.preventDefault()
-o.target.dispatchEvent(MOUSECLICKER)
-if(dispatchEvent){
-    console.log('ok')
-}
 
 
-    window.addEventListener('mousedown', (event) =>{
+
+    const clickEvent = new MouseEvent('click', {
+        view: window,
+        bubbles: true,
+        cancelable: true
+      });
+
+    window.addEventListener('click', (event) =>{
         
-        
+        event.preventDefault(); // prevent the default touch behavior
+  dispatchEvent(clickEvent);
         
 
         //const tap = event.
@@ -689,7 +689,6 @@ if(dispatchEvent){
         }
     }) 
 
-})
 
 //CAMERAS
 const camera = new THREE.PerspectiveCamera (40, sizes.width/sizes.height, .01, 45)
