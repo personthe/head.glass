@@ -765,7 +765,7 @@ const mouse = new THREE.Vector2()
                 camera.fov = 65
                 camera.updateProjectionMatrix();
                                           
-                if(gtagCart)gtagCart.position.set(0.02808813750743866,1.787887573242188,0.4893183708190918)
+                if(gtagCart)gtagCart.position.set(0.02808813750743866,1.1,0.4893183708190918)
                 //console.log('nts')
                 if(gtagCart)gtagCart.rotation.set(0,0,3.14)
                 }
