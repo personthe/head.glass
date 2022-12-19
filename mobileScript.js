@@ -245,7 +245,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
    
 let text;
 fontLoader.load('/font/helvetiker_regular.typeface.json',(font) =>{
-    const textgeo = new THREE.TextGeometry(textString,{
+    const textgeo = new THREE.TextGeometry('textString',{
         font: font,
         size: 0.6,
         height: 0.2,
@@ -423,7 +423,7 @@ let clickEvent = new MouseEvent('click')
 
 window.addEventListener('touchstart',  (event) => {
 
-    window.dispatchEvent(clickEvent);
+
 
 
     if (event.changedTouches && event.changedTouches.length > 0) {
@@ -457,7 +457,11 @@ window.addEventListener('touchstart',  (event) => {
   
 
     
+    window.addEventListener('touchstart',(o) =>{
+        o.preventDefault()
+        window.dispatchEvent(clickEvent);
 
+    })
 
 
 
