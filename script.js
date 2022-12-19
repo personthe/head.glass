@@ -53,6 +53,9 @@ document.addEventListener('contextmenu', function(e) {
 //----------------------------------------------------------------------------------------------------  
 var off = new Audio('./audio/off.mp3');
 var on = new Audio('./audio/on.mp3');
+
+
+
 var windowopen = new Audio('./audio/windowopen.mp3');
 var windowclose = new Audio('./audio/windowclose.mp3');
 var dooropen = new Audio('./audio/dooropen.mp3');
@@ -111,14 +114,24 @@ let SONGaudio;
 var doyouwannabuy = new Audio('./audio/doyouwannabuy.mp3');
 doyouwannabuy.loop = true
 
-let codeEnabled = false;
+let enableSelectButtonCode = false;
 
-function disableCode() {
-  codeEnabled = false;
+function disableSelectButtonCode() {
+  enableSelectButtonCode = false;
 }
 
 function enableCode() {
-  codeEnabled = true;
+  enableSelectButtonCode = true;
+}
+
+let enableHoverCode = false;
+
+function DisableHoverCode() {
+  enableHoverCode = false;
+}
+
+function enableCode2() {
+  enableHoverCode = true;
 }
 
 
@@ -568,7 +581,7 @@ const mouse = new THREE.Vector2()
                 }
                 if(door){
                     if (doorRotation === 0) {
-                        codeEnabled = true;
+                        enableSelectButtonCode = true;
 
 
 
@@ -580,7 +593,7 @@ const mouse = new THREE.Vector2()
                     } else {
                         doyouwannabuy.pause()
                         doyouwannabuy.currentTime = 0
-                        codeEnabled = false;
+                        enableSelectButtonCode = false;
                         dooropen.pause()
                         dooropen.currentTime = 0
                         doorclose.play()
@@ -637,7 +650,7 @@ const mouse = new THREE.Vector2()
                         glassheadtext.visible = false
                         glassheadborder.visible = false
                         
-                        disableCode()
+                        disableSelectButtonCode()
                         music.pause()
                         music.currentTime = 0
                         tvon.pause()
@@ -656,6 +669,7 @@ const mouse = new THREE.Vector2()
             else if(currentIntersect.object === cabBox){
                 console.log('cab clicked')
                 enableCode()
+                enableCode2()
                 
                 //cab toggle on
                 
@@ -667,10 +681,14 @@ const mouse = new THREE.Vector2()
                 cabBox.scale.set(.1,.1,.1)               
                 cabON = 3;
 
+
+
                 //hello cart cliciked
+
                 window.addEventListener('click', (event) =>{
                            
                 if(PurrentIntersect.object === helloBox){
+                DisableHoverCode()
                 hello.play()
                 goin.play()
                 goout.pause()
@@ -684,6 +702,7 @@ const mouse = new THREE.Vector2()
                 }
 
                 if(PurrentIntersect.object === ntsBox){
+                DisableHoverCode()
                 nothingtosay.play()
                 goin.play()
                 goout.pause()
@@ -696,14 +715,17 @@ const mouse = new THREE.Vector2()
                 if(ntsCart)ntsCart.rotation.set(0,0,0)
                 }
 
+                
                 if(PurrentIntersect.object === gtagBox){
+                DisableHoverCode()
                 gtag.play()
                 goin.play()
                 goout.pause()
                 goout.currentTime = 0
                 camera.position.set(1.8,.75,-.4)
                 camera.fov = 65
-                camera.updateProjectionMatrix();                              
+                camera.updateProjectionMatrix();
+                                          
                 if(gtagCart)gtagCart.position.set(0.02808813750743866,1.0787887573242188,0.4893183708190918)
                 //console.log('nts')
                 if(gtagCart)gtagCart.rotation.set(0,0,3.14)
@@ -731,8 +753,8 @@ const mouse = new THREE.Vector2()
 
                 gtag.pause()
                 gtag.currentTime = 0
-
-                disableCode()
+                DisableHoverCode()
+                disableSelectButtonCode()
 
                 if(helloCart)helloCart.position.set(0.6845217347145081,-.20,0.5381841659545898)
                 if(helloCart)helloCart.rotation.set(0,-1.1,0)
@@ -809,12 +831,13 @@ function tvButtons(){
     for(const object of buttons)
     {object.material.color.set('blue')
     if(glassheadborder)glassheadborder.material.color.set('red')
+    if (shirt)shirt.material.color.set('green')
     //console.log('not Hovering Tv Buttons')
     }
 
     for(const intersect of mouseOn)
     {
-         
+        if (shirt)shirt.material.color.set('yellow')
         if(glassheadborder)glassheadborder.material.color.set('green')
         
         intersect.object.material.color.set('green')
@@ -823,7 +846,7 @@ function tvButtons(){
 
     if(mouseOn.length){
     if(PurrentIntersect === 0){
-    //on.play();
+    on.play();
     //console.log('mouse enter event')
         }
     PurrentIntersect = mouseOn[0]
@@ -831,7 +854,8 @@ function tvButtons(){
 }   else {
     
     if(PurrentIntersect){
-        //off.play();
+        on.pause();
+        on.currentTime = 0;
         console.log('mouse exit event')
         }
     PurrentIntersect = 0
@@ -872,17 +896,69 @@ function backcolor(){
 
 }
 
+function hover(){
+    let on = 0
+    
+    const ntsintersections = raycaster.intersectObject(ntsBox);
+    if (ntsintersections.length > 0) 
+    {
+      //console.log('nts hover')
+      ntsCart.position.set(0.4,-.15,0.6);
+      
+    } 
+
+    else if(ntsCart)
+    {
+        ntsCart.position.set(0.4,-.20,0.6)
+    }
+
+    const hellointersections = raycaster.intersectObject(helloBox);
+    if (hellointersections.length > 0) 
+    {
+      //console.log('hello hover')
+      helloCart.position.set(0.6845217347145081,-.15,0.5381841659545898);
+    } 
+
+    else if(helloCart)
+    {
+        helloCart.position.set(0.6845217347145081,-.20,0.5381841659545898)
+    }
+    const gtagintersections = raycaster.intersectObject(gtagBox);
+    
+    if (gtagintersections.length > 0) 
+    {
+      //console.log('hello hover')
+      gtagCart.position.set(.15,-.15,0.6);
+      
+    } 
+    else if(gtagCart)
+    {
+        gtagCart.position.set(.15,-.20,0.6); 
+        
+    }
+
+}
+
 
 //--------------------------------------------------------------------
 function animate(){
+    
     headspin()
-    if(codeEnabled){
+    if(enableSelectButtonCode){
+        
         tvButtons()
         backcolor()
     }
 
+    if(enableHoverCode){
+        hover()
+
+    }
+
     requestAnimationFrame(animate)
     var timer = Date.now() * 0.0001;
+
+
 
 
 
