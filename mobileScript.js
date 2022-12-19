@@ -450,14 +450,21 @@ window.addEventListener('touchstart',  (event) => {
 
 
 
+    let element = document.getElementById('.webgl');
+
+    // Create a new mouse click event
+    let clickEvent = new MouseEvent('touchend');
+  
+    // Dispatch the click event on the element
+    
 
 
 
 
-
-    window.addEventListener('touchstart', (event) =>{
-
-        event.preventDefault();
+    window.addEventListener('click', (event) =>{
+        
+        window.dispatchEvent(clickEvent);
+        
 
         //const tap = event.
    
