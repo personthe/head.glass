@@ -25,7 +25,7 @@
         console.log(navigator.userAgent)
     
         // Check if the user agent is a mobile device
-        if (/Safari|iPhone|iPad|iPod/i.test(userAgent)) {
+        if (/Safari/i.test(userAgent)) {
             // Include the mobile-specific script file
             var script = document.createElement("script");
             script.type="module"
