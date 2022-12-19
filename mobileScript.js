@@ -455,7 +455,7 @@ window.addEventListener('touchstart',  (event) => {
 
 
 
-    window.addEventListener('click', (event) =>{
+    window.addEventListener('click','touchstart', (event) =>{
 
         event.preventDefault();
 
