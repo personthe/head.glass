@@ -472,7 +472,7 @@ window.addEventListener('touchend',  (event) => {
 
     setTimeout(function() {
         window.dispatchEvent(clickEvent);
-      }, 10)
+      }, 100)
     })
 
     window.addEventListener('mousedown', (event) =>{
