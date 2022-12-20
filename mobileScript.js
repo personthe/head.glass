@@ -572,7 +572,7 @@ window.addEventListener('touchend',  (event) => {
                 camera.position.set(0,3.6,4)
                 camera.fov = 20
                 camera.updateProjectionMatrix();
-                window.addEventListener('click', (event) =>{
+                window.addEventListener('mousedown', (event) =>{
                     event.preventDefault();
 
                 if(PurrentIntersect.object === shirtBox)
@@ -622,7 +622,7 @@ window.addEventListener('touchend',  (event) => {
                 if(screen){
                     if (tvON === 0) {
 
-                        window.addEventListener('click', (event) =>{
+                        window.addEventListener('mousedown', (event) =>{
                             event.preventDefault();
                         if(PurrentIntersect.object === ytbuttonBox)
                         {                 
