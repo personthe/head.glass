@@ -424,17 +424,18 @@ const mouse = new THREE.Vector2()
 window.addEventListener('touchend',  (event) => {
     event.preventDefault();
 
-
-
-
     if (event.changedTouches && event.changedTouches.length > 0) {
       const touch = event.changedTouches[0];
       mouse.x = touch.clientX / sizes.width * 2 - 1;
       mouse.y = - (touch.clientY / sizes.height) * 2 + 1;
     } 
+});
 
-   
-  });
+window.addEventListener('mousemove', (event) =>{
+    mouse.x = event.clientX / sizes.width * 2 - 1
+    mouse.y = - (event.clientY / sizes.height) * 2 + 1
+    
+    })
 
 
 
