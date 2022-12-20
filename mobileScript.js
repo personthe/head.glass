@@ -473,7 +473,7 @@ window.addEventListener('mousemove', (event) =>{
 
     setTimeout(function() {
         window.dispatchEvent(clickEvent);
-      }, 100)
+      }, 20)
     })
 
     window.addEventListener('mousedown', (event) =>{
