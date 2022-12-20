@@ -11,6 +11,7 @@ minecraftServer.style.transform = 'translateX(-50%)';
 minecraftServer.style.color = 'white';
 minecraftServer.style.fontSize = '11px';
 minecraftServer.style.fontFamily = 'Arial';
+minecraftServer.style.padding = 0;
 document.body.appendChild(minecraftServer);
 
 minecraftServer.addEventListener('click', function() {
