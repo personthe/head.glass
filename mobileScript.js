@@ -565,7 +565,7 @@ window.addEventListener('touchend',  (event) => {
                 }
                 
             }
-            else if(currentIntersect.object === doorBox && shirtBox){
+            else if(currentIntersect.object === doorBox){
                 //console.log('door clicked')
                 enableCode()
                 doyouwannabuy.play()
@@ -623,10 +623,10 @@ window.addEventListener('touchend',  (event) => {
                     if (tvON === 0) {
 
                         window.addEventListener('mousedown', (event) =>{
-                            event.preventDefault();
+                            
                         if(PurrentIntersect.object === ytbuttonBox)
                         {                 
-                            window.location.assign('https://www.youtube.com/@GLASSHEAD/videos') - 1;
+                            window.location.assign('https://www.youtube.com/@GLASSHEAD/videos');
                             //console.log('button clicked')  
                             
                             
