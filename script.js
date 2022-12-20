@@ -9,6 +9,9 @@ import {GLTFLoader } from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/
 
 
 
+
+
+
 let bCounter = 0
 
 document.addEventListener('contextmenu', function(e) {
@@ -111,6 +114,12 @@ var wiiFit = new Audio('./audio/WiiFit.mp3');
 
 var thiccLikeMewTwo = new Audio('./audio/thiccLikeMewTwo.mp3');
 
+var familygamenight = new Audio('./audio/familygamenight.mp3')
+
+var liverpool = new Audio('./audio/liverpool.mp3')
+
+var flipflopsintherain = new Audio('./audio/flipflopsintherain.mp3')
+
 
 
 let GLASSHEADaudio;
@@ -192,6 +201,8 @@ const videoMat = new THREE.MeshBasicMaterial({map: videoTex,lightMapIntensity : 
 const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
 
 //OBJECTS
+
+//boxes
     const headBoxGeometry = new THREE.BoxGeometry(.47,.6,.47)
     const invisibleRed = new THREE.MeshBasicMaterial({color: 'red'});
     invisibleRed.transparent = true
@@ -245,22 +256,54 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     scene.add(gtagBox)
 
     
+    
+    const thiccLikeMewBox = new THREE.Mesh(helloGeometry,invisibleblue)
+    thiccLikeMewBox.position.set(2.22,.3,-.525)
+    thiccLikeMewBox.rotation.set(0,-.1,0)
+    
+    scene.add(thiccLikeMewBox)
+    
+    const wiiFitBox = new THREE.Mesh(helloGeometry,invisibleblue)
+    wiiFitBox.position.set(2.22,.3,-.455)
+    wiiFitBox.rotation.set(0,-.1,0)
+    
+    scene.add(wiiFitBox)
+    
+    const familygamenightBox = new THREE.Mesh(helloGeometry,invisibleblue)
+    familygamenightBox.position.set(2.22,.3,-.39)
+    familygamenightBox.rotation.set(0,-.1,0)
+    
+    scene.add(familygamenightBox)
+    
+    const cabBoxGeometry = new THREE.BoxGeometry(.7,.65,.13)
+    const cabBox = new THREE.Mesh(cabBoxGeometry,invisibleRed)
+    cabBox.position.set(2.3,.35,-.61)
+    cabBox.rotation.set(0,-1.3,0)
+    scene.add(cabBox)
+    
+    const doorBoxGeometry = new THREE.BoxGeometry(.80,2,.16)
+    const doorBox = new THREE.Mesh(doorBoxGeometry,invisibleRed)
+    doorBox.position.set(-1.1,.9,-1.8)
+    scene.add(doorBox)
+    
     const cottonMouthBox = new THREE.Mesh(helloGeometry,invisibleblue)
     cottonMouthBox.position.set(2.1,.15,-.73)
     cottonMouthBox.rotation.set(0,0,0)
     
     scene.add(cottonMouthBox)
 
-    const cabBoxGeometry = new THREE.BoxGeometry(.7,.65,.13)
-    const cabBox = new THREE.Mesh(cabBoxGeometry,invisibleRed)
-    cabBox.position.set(2.3,.35,-.61)
-    cabBox.rotation.set(0,-1.3,0)
-    scene.add(cabBox)
+    const liverpoolbox = new THREE.Mesh(helloGeometry,invisibleblue)
+    liverpoolbox.position.set(2.1,.15,-.645)
+    liverpoolbox.rotation.set(0,0,0)
+    
+    scene.add(liverpoolbox)
 
-    const doorBoxGeometry = new THREE.BoxGeometry(.80,2,.16)
-    const doorBox = new THREE.Mesh(doorBoxGeometry,invisibleRed)
-    doorBox.position.set(-1.1,.9,-1.8)
-    scene.add(doorBox)
+    const flipflopsintherainBox = new THREE.Mesh(helloGeometry,invisibleblue)
+    flipflopsintherainBox.position.set(2.1,.155,-.575)
+    flipflopsintherainBox.rotation.set(0,0,0)
+    
+    scene.add(flipflopsintherainBox)
+//--------------------------------------------------------------------------------
 
     const windowBoxGeometry = new THREE.BoxGeometry(.85,.69,.1)
     const windowBox = new THREE.Mesh(windowBoxGeometry,invisibleRed)
@@ -301,6 +344,8 @@ fontLoader.load('/font/helvetiker_regular.typeface.json',(font) =>{
 
 let cabinet;
 
+
+//musiccab
 //songs
 let helloCart;
 let gtagCart;
@@ -308,6 +353,9 @@ let ntsCart;
 let cottonMouthCart
 let wiiFitCart
 let thiccLikeMewTwoCart
+let familygamenightCart
+let flipflopsintherainCart
+let liverpoolCart
 
 //cart in pos
 let cartIN;
@@ -336,20 +384,37 @@ gltfloader.load('./objects/MusicCabnet.gltf', function(glb){
     cottonMouthCart = cabinet.getObjectByName("cottonMouth");
 
     wiiFitCart = cabinet.getObjectByName("wiiFit");
-    wiiFitCart.visible = false
+    //wiiFitCart.visible = false
 
     thiccLikeMewTwoCart = cabinet.getObjectByName("thiccLikeMew");
-    thiccLikeMewTwoCart.visible = false
+    //thiccLikeMewTwoCart.visible = false
+
+    liverpoolCart = cabinet.getObjectByName("liverpool");
+    //liverpoolCart.visible = false
+
+    familygamenightCart = cabinet.getObjectByName("familygamenight");
+    //familygamenightCart.visible = false
+
+    flipflopsintherainCart = cabinet.getObjectByName("flipflopsintherain");
+    //flipflopsintherainCart.visible = false
+
 
     cartplay = cabinet.getObjectByName("play");
-    cartplay.visible = false
+    //cartplay.visible = false
+    //cartplay.traverse((o) => {if (o.isMesh) o.material.roughness = 1})
+
+
     carteject = cabinet.getObjectByName("eject");
-    carteject.visible = false
+    //carteject.visible = false
+
     cartpause = cabinet.getObjectByName("pause");
-    cartpause.visible = false
+    //cartpause.visible = false
 
     backCab = cabinet.getObjectByName("backCab");
     backCab.visible = false
+
+
+    //make button // emissive.set('white')})
 
 
 })
@@ -459,12 +524,12 @@ for(let i = 0; i< 3; i++){
     const pointHelper = new THREE.DirectionalLightHelper(lightPoint);
     lightPoint.rotation.set(.2,0,0)
     lightPoint.position.set(0,5,0)
-
     //scene.add(pointHelper)
-    scene.add(lightPoint)
-
+    scene.add(lightPoint)   
+    
     
 }
+
 
 // window.addEventListener('keydown', function(event) {
 //     if (event.key === 'Backspace') {
@@ -690,7 +755,7 @@ const mouse = new THREE.Vector2()
                 }
             }
 
-            // click cab
+            // click cab //musiccab logic
             else if(currentIntersect.object === cabBox){
                 console.log('cab clicked')
                 enableCode()
@@ -769,6 +834,81 @@ const mouse = new THREE.Vector2()
                 //console.log('nts')
                 if(gtagCart)gtagCart.rotation.set(0,0,3.14)
                 }
+
+                if(PurrentIntersect.object === wiiFitBox){
+                DisableHoverCode()
+                wiiFit.play()
+                goin.play()
+                goout.pause()
+                goout.currentTime = 0
+                camera.position.set(1.8,.75,-.4)
+                camera.fov = 65
+                camera.updateProjectionMatrix();
+                                          
+                if(wiiFitCart)wiiFitCart.position.set(0.02808813750743866,1.1,0.4893183708190918)
+                //console.log('nts')
+                if(wiiFitCart)wiiFitCart.rotation.set(0,0,3.14)
+                }
+
+                if(PurrentIntersect.object === thiccLikeMewBox){
+                DisableHoverCode()
+                thiccLikeMewTwo.play()
+                goin.play()
+                goout.pause()
+                goout.currentTime = 0
+                camera.position.set(1.8,.75,-.4)
+                camera.fov = 65
+                camera.updateProjectionMatrix();
+                                          
+                if(thiccLikeMewTwoCart)thiccLikeMewTwoCart.position.set(0.02808813750743866,1.1,0.4893183708190918)
+                //console.log('nts')
+                if(thiccLikeMewTwoCart)thiccLikeMewTwoCart.rotation.set(0,0,3.14)
+                }
+
+                if(PurrentIntersect.object === familygamenightBox){
+                DisableHoverCode()
+                familygamenight.play()
+                goin.play()
+                goout.pause()
+                goout.currentTime = 0
+                camera.position.set(1.8,.75,-.4)
+                camera.fov = 65
+                camera.updateProjectionMatrix();
+                                          
+                if(familygamenightCart)familygamenightCart.position.set(0.02808813750743866,1.1,0.4893183708190918)
+                //console.log('nts')
+                if(familygamenightCart)familygamenightCart.rotation.set(0,0,3.14)
+                }
+
+                if(PurrentIntersect.object === liverpoolbox){
+                DisableHoverCode()
+                liverpool.play()
+                goin.play()
+                goout.pause()
+                goout.currentTime = 0
+                camera.position.set(1.8,.75,-.4)
+                camera.fov = 65
+                camera.updateProjectionMatrix();
+                                          
+                if(liverpoolCart)liverpoolCart.position.set(0.02808813750743866,1.1,0.4893183708190918)
+                //console.log('nts')
+                if(liverpoolCart)liverpoolCart.rotation.set(0,0,3.14)
+                }
+
+                if(PurrentIntersect.object === flipflopsintherainBox){
+                DisableHoverCode()
+                flipflopsintherain.play()
+                goin.play()
+                goout.pause()
+                goout.currentTime = 0
+                camera.position.set(1.8,.75,-.4)
+                camera.fov = 65
+                camera.updateProjectionMatrix();
+                                          
+                if(flipflopsintherainCart)flipflopsintherainCart.position.set(0.02808813750743866,1.1,0.4893183708190918)
+                //console.log('nts')
+                if(flipflopsintherainCart)flipflopsintherainCart.rotation.set(0,0,3.14)
+                }
             
             
             })
@@ -796,9 +936,25 @@ const mouse = new THREE.Vector2()
                 cottonmouth.pause()
                 cottonmouth.currentTime = 0
 
+                wiiFit.pause()
+                wiiFit.currentTime = 0
+
+                thiccLikeMewTwo.pause()
+                thiccLikeMewTwo.currentTime = 0
+
+                familygamenight.pause()
+                familygamenight.currentTime = 0
+
+                flipflopsintherain.pause()
+                flipflopsintherain.currentTime = 0
+
+                liverpool.pause()
+                liverpool.currentTime = 0
+
                 DisableHoverCode()
                 disableSelectButtonCode()
 
+                //reset cart positions
                 if(helloCart)helloCart.position.set(0.6845217347145081,-.20,0.5381841659545898)
                 if(helloCart)helloCart.rotation.set(0,-1.1,0)
 
@@ -810,6 +966,21 @@ const mouse = new THREE.Vector2()
                 
                 if(cottonMouthCart)cottonMouthCart.rotation.set(0,-1.25,3.14)
                 if(cottonMouthCart)cottonMouthCart.position.set(0.657220184803009,-0.7026517987251282,0.718595027923584)
+                
+                if(wiiFitCart)wiiFitCart.rotation.set(0,-1.1,3.14)
+                if(wiiFitCart)wiiFitCart.position.set(-0.3143464922904968,-0.19119787216186523,0.5665731430053711)
+
+                if(thiccLikeMewTwoCart)thiccLikeMewTwoCart.rotation.set(0,-1.1,3.14)
+                if(thiccLikeMewTwoCart)thiccLikeMewTwoCart.position.set(-0.08537335693836212,-0.18832868337631226,0.5930662155151367)
+
+                if(familygamenightCart)familygamenightCart.rotation.set(0,-1.1,3.14)
+                if(familygamenightCart)familygamenightCart.position.set(-0.5208156704902649,-0.1916351318359375,0.5428767204284668)
+                
+                if(flipflopsintherainCart)flipflopsintherainCart.rotation.set(0,-1.1,3.14)
+                if(flipflopsintherainCart)flipflopsintherainCart.position.set(0.18647770583629608,-0.7092075347900391,0.708808422088623)
+
+                if(liverpoolCart)liverpoolCart.rotation.set(0,-1.2,3.14)
+                if(liverpoolCart)liverpoolCart.position.set(0.4148997664451599,-0.707334041595459,0.7095093727111816)
 
                 cabBox.position.set(2.15,0.3,-0.76)
                 cabBox.scale.set(1,1,1)
@@ -871,7 +1042,8 @@ window.addEventListener("pageshow", function(event) {
 
 //-----------------------------tv buttons---------------------------------------
 function tvButtons(){
-    const buttons = [ytbuttonBox,helloBox,shirtBox,ntsBox,gtagBox,cottonMouthBox]                  
+    //raybuttons
+    const buttons = [ytbuttonBox,helloBox,shirtBox,ntsBox,gtagBox,cottonMouthBox,wiiFitBox,thiccLikeMewBox,familygamenightBox,flipflopsintherainBox,liverpoolbox]                  
     const mouseOn = raycaster.intersectObjects(buttons)
 
     for(const object of buttons)
@@ -949,10 +1121,8 @@ function hover(){
     if (ntsintersections.length > 0) 
     {
       //console.log('nts hover')
-      ntsCart.position.set(0.4,-.15,0.6);
-      
+      ntsCart.position.set(0.4,-.15,0.6);      
     } 
-
     else if(ntsCart)
     {
         ntsCart.position.set(0.4,-.20,0.6)
@@ -964,37 +1134,86 @@ function hover(){
       //console.log('hello hover')
       helloCart.position.set(0.6845217347145081,-.15,0.5381841659545898);
     } 
-
     else if(helloCart)
     {
         helloCart.position.set(0.6845217347145081,-.20,0.5381841659545898)
     }
+
     const gtagintersections = raycaster.intersectObject(gtagBox);
-    
     if (gtagintersections.length > 0) 
     {
       //console.log('hello hover')
       gtagCart.position.set(.15,-.15,0.6);
-      
     } 
     else if(gtagCart)
     {
-        gtagCart.position.set(.15,-.20,0.6); 
-        
+        gtagCart.position.set(.15,-.20,0.6);         
     }
 
-    const cottonintersections = raycaster.intersectObject(cottonMouthBox);
-    
+    const cottonintersections = raycaster.intersectObject(cottonMouthBox); 
     if (cottonintersections.length > 0) 
     {
       //console.log('hello hover')
-      cottonMouthCart.position.set(0.657220184803009,-0.6026517987251282,0.718595027923584);
-      
+      cottonMouthCart.position.set(0.657220184803009,-0.65,0.718595027923584);  
     } 
-    else if(gtagCart)
+    else if(cottonMouthCart)
     {
-        cottonMouthCart.position.set(0.657220184803009,-0.7026517987251282,0.718595027923584); 
-        
+        cottonMouthCart.position.set(0.657220184803009,-0.7026517987251282,0.718595027923584);     
+    }
+
+    const thiccintersections = raycaster.intersectObject(thiccLikeMewBox); 
+    if (thiccintersections.length > 0) 
+    {
+      //console.log('hello hover')
+      thiccLikeMewTwoCart.position.set(-0.08537335693836212,-0.15,0.5930662155151367);  
+    } 
+    else if(thiccLikeMewTwoCart)
+    {
+        thiccLikeMewTwoCart.position.set(-0.08537335693836212,-0.18832868337631226,0.5930662155151367);     
+    }
+
+    const WIIintersections = raycaster.intersectObject(wiiFitBox); 
+    if (WIIintersections.length > 0) 
+    {
+      //console.log('hello hover')
+      wiiFitCart.position.set(-0.3143464922904968,-0.15,0.5665731430053711);  
+    } 
+    else if(wiiFitCart)
+    {
+        wiiFitCart.position.set(-0.3143464922904968,-0.19119787216186523,0.5665731430053711);     
+    }
+
+    const familyintersections = raycaster.intersectObject(familygamenightBox); 
+    if (familyintersections.length > 0) 
+    {
+      //console.log('hello hover')
+      familygamenightCart.position.set(-0.5208156704902649,-0.15,0.5428767204284668);  
+    } 
+    else if(familygamenightCart)
+    {
+        familygamenightCart.position.set(-0.5208156704902649,-0.1916351318359375,0.5428767204284668);     
+    }
+
+    const liverintersections = raycaster.intersectObject(liverpoolbox); 
+    if (liverintersections.length > 0) 
+    {
+      //console.log('hello hover')
+      liverpoolCart.position.set(0.4148997664451599,-0.65,0.7095093727111816);  
+    } 
+    else if(liverpoolCart)
+    {
+        liverpoolCart.position.set(0.4148997664451599,-0.707334041595459,0.7095093727111816);     
+    }
+
+    const flipintersections = raycaster.intersectObject(flipflopsintherainBox); 
+    if (flipintersections.length > 0) 
+    {
+      //console.log('hello hover')
+      flipflopsintherainCart.position.set(0.18647770583629608,-0.65,0.708808422088623);  
+    } 
+    else if(flipflopsintherainCart)
+    {
+        flipflopsintherainCart.position.set(0.18647770583629608,-0.7092075347900391,0.708808422088623);     
     }
 
 }
