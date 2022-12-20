@@ -13,9 +13,19 @@
 
 <body>  
 
+    <style type="text/css">
+        *:not(input):not(textarea) {
+    -webkit-user-select: none; /* disable selection for Webkit-based browsers */
+    user-select: none; /* disable selection for standard-compliant browsers */
+    -webkit-touch-callout: none; /* disable the IOS popup when long-press on a link */
+    
+}
+    </style>
     
 
-    <canvas class="webgl"></canvas>
+    
+
+    <canvas id="cum" class="webgl"></canvas>
     <script type="module" src="HTMLJAVA.js"></script>
     <script>
         
