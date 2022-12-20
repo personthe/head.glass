@@ -421,7 +421,8 @@ const mouse = new THREE.Vector2()
 
 
 
-window.addEventListener('touchstart',  (event) => {
+window.addEventListener('touchend',  (event) => {
+    event.preventDefault();
 
 
 
@@ -433,13 +434,9 @@ window.addEventListener('touchstart',  (event) => {
     } 
 
    
-  }, false);
+  });
 
-  window.addEventListener('mousemove', (event) =>{
-    mouse.x = event.clientX / sizes.width * 2 - 1
-    mouse.y = - (event.clientY / sizes.height) * 2 + 1
-    
-    })
+
 
 
 
@@ -459,18 +456,29 @@ window.addEventListener('touchstart',  (event) => {
     
 
 
+ 
 
-
-    const clickEvent = new MouseEvent('click', {
+    const clickEvent = new MouseEvent('mousedown', {
         view: window,
-        bubbles: true,
-        cancelable: true
+        bubbles: false,
+        cancelable: false
       });
 
-    window.addEventListener('click', (event) =>{
+    window.addEventListener('touchend', (event) =>
+
+    {        
+    event.preventDefault(); // prevent the default touch behavior
+    
+
+    setTimeout(function() {
+        window.dispatchEvent(clickEvent);
+      }, 1)
+    })
+
+    window.addEventListener('mousedown', (event) =>{
         
-        event.preventDefault(); // prevent the default touch behavior
-  dispatchEvent(clickEvent);
+         // prevent the default touch behavior
+  
         
 
         //const tap = event.
