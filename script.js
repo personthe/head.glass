@@ -12,6 +12,7 @@ import {GLTFLoader } from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/
 
 
 
+
 let bCounter = 0
 
 document.addEventListener('contextmenu', function(e) {
@@ -119,6 +120,14 @@ var familygamenight = new Audio('./audio/familygamenight.mp3')
 var liverpool = new Audio('./audio/liverpool.mp3')
 
 var flipflopsintherain = new Audio('./audio/flipflopsintherain.mp3')
+
+var creativemode = new Audio('./audio/creativemode.mp3')
+
+var hatersay = new Audio('./audio/hatersay.mp3')
+
+var Philiphoffmin = new Audio('./audio/Philiphoffmin.mp3')
+
+var bars = new Audio('./audio/bars.mp3')
 
 
 
@@ -303,6 +312,30 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     flipflopsintherainBox.rotation.set(0,0,0)
     
     scene.add(flipflopsintherainBox)
+
+    const creativemodeBox = new THREE.Mesh(helloGeometry,invisibleblue)
+    creativemodeBox.position.set(2.22,.3,-.335)
+    creativemodeBox.rotation.set(0,-.1,0)
+    
+    scene.add(creativemodeBox)
+
+    const hatersayBox = new THREE.Mesh(helloGeometry,invisibleblue)
+    hatersayBox.position.set(2.1,.16,-.51)
+    hatersayBox.rotation.set(0,0,0)
+    
+    scene.add(hatersayBox)
+
+    const PhiliphoffminBox = new THREE.Mesh(helloGeometry,invisibleblue)
+    PhiliphoffminBox.position.set(2.1,.16,-.45)
+    PhiliphoffminBox.rotation.set(0,0,0)
+    
+    scene.add(PhiliphoffminBox)
+
+    const barsBox = new THREE.Mesh(helloGeometry,invisibleblue)
+    barsBox.position.set(2.1,.16,-.385)
+    barsBox.rotation.set(0,-.2,0)
+    
+    scene.add(barsBox)
 //--------------------------------------------------------------------------------
 
     const windowBoxGeometry = new THREE.BoxGeometry(.85,.69,.1)
@@ -356,6 +389,10 @@ let thiccLikeMewTwoCart
 let familygamenightCart
 let flipflopsintherainCart
 let liverpoolCart
+let creativemodeCart
+let hatersayCart
+let PhiliphoffminCart
+let barsCart
 
 //cart in pos
 let cartIN;
@@ -396,6 +433,18 @@ gltfloader.load('./objects/MusicCabnet.gltf', function(glb){
     //familygamenightCart.visible = false
 
     flipflopsintherainCart = cabinet.getObjectByName("flipflopsintherain");
+    //flipflopsintherainCart.visible = false
+
+    creativemodeCart = cabinet.getObjectByName("creativeModeCart");
+    //flipflopsintherainCart.visible = false
+
+    hatersayCart = cabinet.getObjectByName("hatersayCart");
+    //flipflopsintherainCart.visible = false
+
+    PhiliphoffminCart = cabinet.getObjectByName("piliphoffmanCart");
+    //flipflopsintherainCart.visible = false
+
+    barsCart = cabinet.getObjectByName("barsCart");
     //flipflopsintherainCart.visible = false
 
 
@@ -531,13 +580,13 @@ for(let i = 0; i< 3; i++){
 }
 
 
-// window.addEventListener('keydown', function(event) {
-//     if (event.key === 'Backspace') {
-//       // Do something when the backspace key is pressed
-//     }
-//     camera.position.set(0,2.45,4)
-//     camera.rotation.set(-.4,0,0)
-// })
+ window.addEventListener('keydown', function(event) {
+     if (event.key === 'Backspace') {
+       // Do something when the backspace key is pressed
+     }
+     camera.position.set(0,2.45,4)
+     camera.rotation.set(-.4,0,0)
+ })
 
 // Dookie stuff
 const sizes = {
@@ -909,6 +958,66 @@ const mouse = new THREE.Vector2()
                 //console.log('nts')
                 if(flipflopsintherainCart)flipflopsintherainCart.rotation.set(0,0,3.14)
                 }
+
+                if(PurrentIntersect.object === creativemodeBox){
+                DisableHoverCode()
+                creativemode.play()
+                goin.play()
+                goout.pause()
+                goout.currentTime = 0
+                camera.position.set(1.8,.75,-.4)
+                camera.fov = 65
+                camera.updateProjectionMatrix();
+                                          
+                if(creativemodeCart)creativemodeCart.position.set(0.02808813750743866,1.1,0.4893183708190918)
+                //console.log('nts')
+                if(creativemodeCart)creativemodeCart.rotation.set(0,0,3.14)
+                }
+
+                if(PurrentIntersect.object === hatersayBox){
+                DisableHoverCode()
+                hatersay.play()
+                goin.play()
+                goout.pause()
+                goout.currentTime = 0
+                camera.position.set(1.8,.75,-.4)
+                camera.fov = 65
+                camera.updateProjectionMatrix();
+                                          
+                if(hatersayCart)hatersayCart.position.set(0.02808813750743866,1.1,0.4893183708190918)
+                //console.log('nts')
+                if(hatersayCart)hatersayCart.rotation.set(0,0,3.14)
+                }
+                
+                if(PurrentIntersect.object === PhiliphoffminBox){
+                DisableHoverCode()
+                Philiphoffmin.play()
+                goin.play()
+                goout.pause()
+                goout.currentTime = 0
+                camera.position.set(1.8,.75,-.4)
+                camera.fov = 65
+                camera.updateProjectionMatrix();
+                                          
+                if(PhiliphoffminCart)PhiliphoffminCart.position.set(0.02808813750743866,1.1,0.4893183708190918)
+                //console.log('nts')
+                if(PhiliphoffminCart)PhiliphoffminCart.rotation.set(0,0,3.14)
+                }
+
+                if(PurrentIntersect.object === barsBox){
+                DisableHoverCode()
+                bars.play()
+                goin.play()
+                goout.pause()
+                goout.currentTime = 0
+                camera.position.set(1.8,.75,-.4)
+                camera.fov = 65
+                camera.updateProjectionMatrix();
+                                          
+                if(barsCart)barsCart.position.set(0.02808813750743866,1.1,0.4893183708190918)
+                //console.log('nts')
+                if(barsCart)barsCart.rotation.set(0,0,3.14)
+                }
             
             
             })
@@ -951,6 +1060,18 @@ const mouse = new THREE.Vector2()
                 liverpool.pause()
                 liverpool.currentTime = 0
 
+                creativemode.pause()
+                creativemode.currentTime = 0
+
+                hatersay.pause()
+                hatersay.currentTime = 0
+                
+                Philiphoffmin.pause()
+                Philiphoffmin.currentTime = 0
+
+                bars.pause()
+                bars.currentTime = 0
+
                 DisableHoverCode()
                 disableSelectButtonCode()
 
@@ -979,8 +1100,17 @@ const mouse = new THREE.Vector2()
                 if(flipflopsintherainCart)flipflopsintherainCart.rotation.set(0,-1.1,3.14)
                 if(flipflopsintherainCart)flipflopsintherainCart.position.set(0.18647770583629608,-0.7092075347900391,0.708808422088623)
 
-                if(liverpoolCart)liverpoolCart.rotation.set(0,-1.2,3.14)
-                if(liverpoolCart)liverpoolCart.position.set(0.4148997664451599,-0.707334041595459,0.7095093727111816)
+                if(creativemodeCart)creativemodeCart.rotation.set(0,-1.2,3.14)
+                if(creativemodeCart)creativemodeCart.position.set(-0.7084792256355286,-0.19124191999435425,0.5211467742919922)
+                
+                if(hatersayCart)hatersayCart.rotation.set(0,-1.2,3.14)
+                if(hatersayCart)hatersayCart.position.set(-0.025738433003425598,-0.7035372257232666,0.7074694633483887)
+                
+                if(PhiliphoffminCart)PhiliphoffminCart.rotation.set(0,-1.2,3.14)
+                if(PhiliphoffminCart)PhiliphoffminCart.position.set(-0.22537000477313995,-0.7094168066978455,0.6649813652038574)
+                
+                if(barsCart)barsCart.rotation.set(0,-1.2,3.14)
+                if(barsCart)barsCart.position.set(-0.452989399433136,-0.7069311141967773,0.6877660751342773)
 
                 cabBox.position.set(2.15,0.3,-0.76)
                 cabBox.scale.set(1,1,1)
@@ -1043,7 +1173,7 @@ window.addEventListener("pageshow", function(event) {
 //-----------------------------tv buttons---------------------------------------
 function tvButtons(){
     //raybuttons
-    const buttons = [ytbuttonBox,helloBox,shirtBox,ntsBox,gtagBox,cottonMouthBox,wiiFitBox,thiccLikeMewBox,familygamenightBox,flipflopsintherainBox,liverpoolbox]                  
+    const buttons = [ytbuttonBox,helloBox,shirtBox,ntsBox,gtagBox,cottonMouthBox,wiiFitBox,thiccLikeMewBox,familygamenightBox,flipflopsintherainBox,liverpoolbox,creativemodeBox,hatersayBox,PhiliphoffminBox,barsBox]                  
     const mouseOn = raycaster.intersectObjects(buttons)
 
     for(const object of buttons)
@@ -1121,8 +1251,9 @@ function hover(){
     if (ntsintersections.length > 0) 
     {
       //console.log('nts hover')
-      ntsCart.position.set(0.4,-.15,0.6);      
+      ntsCart.position.set(0.4,-.15,0.6);
     } 
+
     else if(ntsCart)
     {
         ntsCart.position.set(0.4,-.20,0.6)
@@ -1216,7 +1347,53 @@ function hover(){
         flipflopsintherainCart.position.set(0.18647770583629608,-0.7092075347900391,0.708808422088623);     
     }
 
+    const creativeintersections = raycaster.intersectObject(creativemodeBox); 
+    if (creativeintersections.length > 0) 
+    {
+      //console.log('hello hover')
+      creativemodeCart.position.set(-0.7084792256355286,-0.15,0.5211467742919922);  
+    } 
+    else if(creativemodeCart)
+    {
+        creativemodeCart.position.set(-0.7084792256355286,-0.19124191999435425,0.5211467742919922);     
+    }
+
+    const haterintersections = raycaster.intersectObject(hatersayBox); 
+    if (haterintersections.length > 0) 
+    {
+      //console.log('hello hover')
+      hatersayCart.position.set(-0.025738433003425598,-0.65,0.7074694633483887);  
+    } 
+    else if(hatersayCart)
+    {
+        hatersayCart.position.set(-0.025738433003425598,-0.7035372257232666,0.7074694633483887);     
+    }
+
+    const phlipintintersections = raycaster.intersectObject(PhiliphoffminBox); 
+    if (phlipintintersections.length > 0) 
+    {
+      //console.log('hello hover')
+      PhiliphoffminCart.position.set(-0.22537000477313995,-0.65,0.6649813652038574);  
+    } 
+    else if(PhiliphoffminCart)
+    {
+        PhiliphoffminCart.position.set(-0.22537000477313995,-0.7094168066978455,0.6649813652038574);     
+    }
+
+    const barsintersections = raycaster.intersectObject(barsBox); 
+    if (barsintersections.length > 0) 
+    {
+      //console.log('hello hover')
+      barsCart.position.set(-0.452989399433136,-0.65,0.6877660751342773);  
+    } 
+    else if(barsCart)
+    {
+        barsCart.position.set(-0.452989399433136,-0.7069311141967773,0.6877660751342773);     
+    }
+
 }
+
+
 
 
 //--------------------------------------------------------------------
