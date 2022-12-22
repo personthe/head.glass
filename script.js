@@ -1,6 +1,9 @@
+
 //import * as CANNON from 'cannon';
-import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js'
 import {GLTFLoader } from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader.js'
+import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js'
+
+
 //three@0.126.1 orginal version
 //import {OrbitControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js'
 //----------------------------------------------------------------------------------------------------
@@ -59,6 +62,8 @@ var off = new Audio('./audio/off.mp3');
 var on = new Audio('./audio/on.mp3');
 
 
+
+var pig = new Audio('./audio/pig.mp3');
 
 var windowopen = new Audio('./audio/windowopen.mp3');
 var windowclose = new Audio('./audio/windowclose.mp3');
@@ -227,6 +232,11 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     const tvBox = new THREE.Mesh(tvBoxGeometry,invisibleRed)
     tvBox.position.set(1.27,.6,-1.5)
     scene.add(tvBox)
+
+    const mapGeometry = new THREE.BoxGeometry(.65,.5,.1)
+    const mapBox = new THREE.Mesh(mapGeometry,invisibleRed)
+    mapBox.position.set(.8,1.32,-1.8)
+    scene.add(mapBox)
 
     const invisibleblue = new THREE.MeshBasicMaterial({color: 'blue'});
     invisibleblue.visible = false
@@ -803,6 +813,14 @@ const mouse = new THREE.Vector2()
                     }
                 }
             }
+
+            else if(currentIntersect.object === mapBox)
+            {   
+                pig.pause()  
+                pig.currentTime = 0
+                pig.play()                          
+            window.open('http://135.148.29.252:7341/#world:-121:0:291:1500:0:0:0:0:perspective');
+            } 
 
             // click cab //musiccab logic
             else if(currentIntersect.object === cabBox){
@@ -1445,7 +1463,7 @@ function animate(){
 
     raycaster.setFromCamera(mouse,camera)
 
-    const objectToTests = [headBox, tvBox, windowBox,doorBox,cabBox,pictureBox]
+    const objectToTests = [headBox, tvBox, windowBox,doorBox,cabBox,pictureBox,mapBox]
     const intersects = raycaster.intersectObjects(objectToTests)
 
     for(const object of objectToTests){

@@ -11,12 +11,10 @@
     
 </head>
 
-<body{ -webkit-text-size-adjust: none; }
-*{ margin : 0; padding : 0;box-sizing: border-box; }
--webkit-box-sizing: border-box;-moz-box-sizing: border-box;
-padding: env(safe-area-inset-top) env(safe-area-inset-right)       env(safe-area-inset-bottom) env(safe-area-inset-left);>  
 
-    
+
+
+<body>  
 
     <style type="text/css">
         *:not(input):not(textarea) {
@@ -24,6 +22,7 @@ padding: env(safe-area-inset-top) env(safe-area-inset-right)       env(safe-area
     user-select: none; /* disable selection for standard-compliant browsers */
     -webkit-touch-callout: none; /* disable the IOS popup when long-press on a link */
     -webkit-text-size-adjust: none;
+    -webkit-padding-start: 0%;
      
 }
     </style>
@@ -32,7 +31,12 @@ padding: env(safe-area-inset-top) env(safe-area-inset-right)       env(safe-area
     
 
     <canvas id="cum" class="webgl"></canvas>
-    <script type="module" src="HTMLJAVA.js"></script>
+
+    <script src="HTMLJAVA.js"></script>
+
+
+    
+
     <script>
         
     
@@ -52,13 +56,13 @@ padding: env(safe-area-inset-top) env(safe-area-inset-right)       env(safe-area
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
             // Include the mobile-specific script file
             var script = document.createElement("script");
-            script.type="module"
             script.src = "mobileScript.js";
+            script.type="module"
             document.body.appendChild(script);
         } else {
             var script = document.createElement("script");
-            script.type="module"
             script.src = "script.js";
+            script.type="module"
             document.body.appendChild(script);
         }
     </script>

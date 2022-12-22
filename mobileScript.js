@@ -76,6 +76,7 @@ document.addEventListener('contextmenu', function(e) {
 //----------------------------------------------------------------------------------------------------  
 var off = new Audio('./audio/off.mp3');
 var on = new Audio('./audio/on.mp3');
+var pig = new Audio('./audio/pig.mp3');
 var windowopen = new Audio('./audio/windowopen.mp3');
 var windowclose = new Audio('./audio/windowclose.mp3');
 var dooropen = new Audio('./audio/dooropen.mp3');
@@ -238,6 +239,11 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     windowBox.position.set(.8,1.35,-1)
     windowBox.rotation.set(0,-1.25,0)
     scene.add(windowBox)
+
+    const mapGeometry = new THREE.BoxGeometry(.65,.5,.1)
+    const mapBox = new THREE.Mesh(mapGeometry,invisibleRed)
+    mapBox.position.set(0,2.345,-1)
+    scene.add(mapBox)
 
     const textArray = ["GLASSHEAD","GLASSHEAD","GLASSHEAD","GLASSHEAD","GLASSHEAD","GLASSHEAD","head.glass","I love GLASSHEAD","HEY its Tone Baloney",'OF COURSE!','YUMMY!!!','DAD ASS SERIOUS',];
     const textString = textArray[Math.floor(Math.random() * textArray.length)];
@@ -538,6 +544,14 @@ window.addEventListener('mousemove', (event) =>{
                     
             }
 
+            else if(currentIntersect.object === mapBox)
+            {   
+                pig.pause()  
+                pig.currentTime = 0
+                pig.play()                          
+            window.open('http://135.148.29.252:7341/#world:-121:0:291:1500:0:0:0:0:perspective');
+            } 
+
             else if(currentIntersect.object === windowBox){
                 //console.log('window clicked')
                 
@@ -835,7 +849,7 @@ if (shirt)shirt.rotation.y += .005;
 
     raycaster.setFromCamera(mouse,camera)
 
-    const objectToTests = [headBox, tvBox, windowBox,doorBox,pictureBox]
+    const objectToTests = [headBox, tvBox, windowBox,doorBox,pictureBox,mapBox]
     const intersects = raycaster.intersectObjects(objectToTests)
 
     for(const object of objectToTests){
