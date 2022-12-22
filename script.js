@@ -15,7 +15,6 @@ import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js'
 
 
 
-
 let bCounter = 0
 
 document.addEventListener('contextmenu', function(e) {
@@ -279,8 +278,13 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     const thiccLikeMewBox = new THREE.Mesh(helloGeometry,invisibleblue)
     thiccLikeMewBox.position.set(2.22,.3,-.525)
     thiccLikeMewBox.rotation.set(0,-.1,0)
+
+    const volumeGeometry = new THREE.BoxGeometry(.01,.02,.02)
+    const volumebuttonBox = new THREE.Mesh(volumeGeometry,invisibleblue)
+    volumebuttonBox.position.set(2.1,.645,-.61)
+    volumebuttonBox.rotation.set(0,.3,0)
     
-    scene.add(thiccLikeMewBox)
+    scene.add(volumebuttonBox)
     
     const wiiFitBox = new THREE.Mesh(helloGeometry,invisibleblue)
     wiiFitBox.position.set(2.22,.3,-.455)
@@ -412,6 +416,7 @@ let cartIN;
 let cartplay;
 let cartpause;
 let carteject;
+let volumebutton;
 let backCab;
 
 
@@ -467,6 +472,9 @@ gltfloader.load('./objects/MusicCabnet.gltf', function(glb){
     //carteject.visible = false
 
     cartpause = cabinet.getObjectByName("pause");
+    //cartpause.visible = false
+
+    volumebutton = cabinet.getObjectByName("volumebutton");
     //cartpause.visible = false
 
     backCab = cabinet.getObjectByName("backCab");
@@ -1191,7 +1199,7 @@ window.addEventListener("pageshow", function(event) {
 //-----------------------------tv buttons---------------------------------------
 function tvButtons(){
     //raybuttons
-    const buttons = [ytbuttonBox,helloBox,shirtBox,ntsBox,gtagBox,cottonMouthBox,wiiFitBox,thiccLikeMewBox,familygamenightBox,flipflopsintherainBox,liverpoolbox,creativemodeBox,hatersayBox,PhiliphoffminBox,barsBox]                  
+    const buttons = [ytbuttonBox,helloBox,shirtBox,ntsBox,gtagBox,cottonMouthBox,wiiFitBox,thiccLikeMewBox,familygamenightBox,flipflopsintherainBox,liverpoolbox,creativemodeBox,hatersayBox,PhiliphoffminBox,barsBox,volumebuttonBox]                  
     const mouseOn = raycaster.intersectObjects(buttons)
 
     for(const object of buttons)
@@ -1411,8 +1419,56 @@ function hover(){
 
 }
 
+//------------------button stuff-------------------------------------------------
+document.addEventListener('mousedown', function(event) 
+    {
 
 
+        
+        function setVolumeBasedOnDistance(head) {
+            const distance = head.position.distanceTo(volumebuttonBox.position);
+            gtag.volume = 1 - distance / 100; // Adjust the volume based on the distance
+            console.log(distance)
+          }
+
+    });
+
+//----------------------head stuff----------------------------------------------
+document.addEventListener('wheel', function(event) {
+    if (event.deltaY < 0) {     
+        if(head)head.rotation.y +=.1
+
+        if (event.deltaY < 0 && event.shiftKey) {
+        if(head)head.rotation.y +=.3   
+        }
+    }
+
+    if (event.deltaY > 0) {
+      
+        if(head)head.rotation.y -=.1
+
+        if (event.deltaY > 0 && event.shiftKey) {
+            if(head)head.rotation.y -=.3   
+            }
+    }
+  });
+
+document.addEventListener('mousedown', function(event) {
+    if (event.button === 1) {
+      
+        if(head)head.position.set(0,1.3,0);
+      
+    }
+  });
+document.addEventListener('mouseup', function(event) {
+    if (event.button === 1) {
+
+        glassLand.play()
+        if(head)head.position.set(0,1.175,0);
+    } else         glassLand.pause
+    glassLand.currentTime = 0
+  });
+//----------------------head stuff----------------------------------------------
 
 //--------------------------------------------------------------------
 function animate(){
