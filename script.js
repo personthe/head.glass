@@ -279,6 +279,8 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     thiccLikeMewBox.position.set(2.22,.3,-.525)
     thiccLikeMewBox.rotation.set(0,-.1,0)
 
+    scene.add(thiccLikeMewBox)
+
     const volumeGeometry = new THREE.BoxGeometry(.01,.02,.02)
     const volumebuttonBox = new THREE.Mesh(volumeGeometry,invisibleblue)
     volumebuttonBox.position.set(2.1,.645,-.61)
@@ -598,13 +600,13 @@ for(let i = 0; i< 3; i++){
 }
 
 
- window.addEventListener('keydown', function(event) {
+ /*window.addEventListener('keydown', function(event) {
      if (event.key === 'Backspace') {
        // Do something when the backspace key is pressed
      }
      camera.position.set(0,2.45,4)
      camera.rotation.set(-.4,0,0)
- })
+ })*/
 
 // Dookie stuff
 const sizes = {
