@@ -793,6 +793,20 @@ function tvButtons(){
         }
     PurrentIntersect = 0
     }
+
+    //head--------------------------------------------------------------------------------
+    document.addEventListener('touchmove', function(event) {
+        if (event.scale < 1) {     
+            if(head)head.rotation.y +=.1
+        }
+    
+        if (event.scale > 1) {
+          
+            if(head)head.rotation.y -=.1
+    
+        }
+      });
+    
 //-----------------------------------------------------------------------
 
 window.addEventListener('keydown', function(event) {
