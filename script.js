@@ -283,10 +283,17 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
 
     const volumeGeometry = new THREE.BoxGeometry(.01,.02,.02)
     const volumebuttonBox = new THREE.Mesh(volumeGeometry,invisibleblue)
-    volumebuttonBox.position.set(2.1,.645,-.61)
+    volumebuttonBox.position.set(2.128,.645,-.444)
     volumebuttonBox.rotation.set(0,.3,0)
-    
     scene.add(volumebuttonBox)
+    
+    const volumebuttonBox2 = new THREE.Mesh(volumeGeometry,invisibleblue)
+    volumebuttonBox2.position.set(2.09,.645,-.62)
+    volumebuttonBox2.rotation.set(0,.3,0)
+    
+
+    
+    scene.add(volumebuttonBox2)
     
     const wiiFitBox = new THREE.Mesh(helloGeometry,invisibleblue)
     wiiFitBox.position.set(2.22,.3,-.455)
@@ -824,6 +831,7 @@ const mouse = new THREE.Vector2()
                 }
             }
 
+
             else if(currentIntersect.object === mapBox)
             {   
                 pig.pause()  
@@ -834,7 +842,7 @@ const mouse = new THREE.Vector2()
 
             // click cab //musiccab logic
             else if(currentIntersect.object === cabBox){
-                console.log('cab clicked')
+                //console.log('cab clicked')
                 enableCode()
                 enableCode2()
                 
@@ -1140,6 +1148,9 @@ const mouse = new THREE.Vector2()
                 if(barsCart)barsCart.rotation.set(0,-1.2,3.14)
                 if(barsCart)barsCart.position.set(-0.452989399433136,-0.7069311141967773,0.6877660751342773)
 
+                if(liverpoolCart)liverpoolCart.rotation.set(0,-1.2,3.14)
+                if(liverpoolCart)liverpoolCart.position.set(0.4148997664451599,-0.707334041595459,0.7095093727111816)
+
                 cabBox.position.set(2.15,0.3,-0.76)
                 cabBox.scale.set(1,1,1)
 
@@ -1232,7 +1243,7 @@ function tvButtons(){
     if(PurrentIntersect){
         on.pause();
         on.currentTime = 0;
-        console.log('mouse exit event')
+        //console.log('mouse exit event')
         }
     PurrentIntersect = 0
     }
@@ -1256,7 +1267,7 @@ function backcolor(){
     if(selectedback.length){
     if(SurrentIntersect === 0){
     //on.play();
-    console.log('back selected')
+    //console.log('back selected')
     if(backTV)backTV.material.color.set('red')
     if(backCab)backCab.material.color.set('red')
     }
@@ -1265,7 +1276,7 @@ function backcolor(){
     else {   
     if(SurrentIntersect){
         //off.play();
-        console.log('back un selected')
+        //console.log('back un selected')
         }
     SurrentIntersect = 0
     }
@@ -1420,20 +1431,105 @@ function hover(){
     }
 
 }
+let SongsVolume = 
 
+    [
+    gtag,
+    liverpool,
+    familygamenight,
+    creativemode,
+    bars,
+    wiiFit,
+    thiccLikeMewTwo,
+    hello,
+    nothingtosay,
+    flipflopsintherain,
+    cottonmouth,
+    hatersay
+    ,Philiphoffmin
+    ];
+
+    
+for (var i = 0; i < SongsVolume.length; i++) {
+    SongsVolume[i].volume = 0.05;}
 //------------------button stuff-------------------------------------------------
-document.addEventListener('mousedown', function(event) 
-    {
 
 
+    function setVolumeBasedOnDistance() {
         
-        function setVolumeBasedOnDistance(head) {
-            const distance = head.position.distanceTo(volumebuttonBox.position);
-            gtag.volume = 1 - distance / 100; // Adjust the volume based on the distance
-            console.log(distance)
-          }
 
-    });
+        addEventListener('mousedown',(o)=>{
+    
+            raycaster.setFromCamera(mouse,camera)
+              
+            const poop = raycaster.intersectObject(volumebuttonBox);
+              
+           if (poop.length > 0) {
+            
+
+            
+            
+            if(volumebutton && volumebutton.position.z < 0.6){
+                
+                volumebutton.position.z += 0.0002
+            //console.log(volumebutton.position.z)
+        }
+            
+            
+
+            for (var i = 0; i < SongsVolume.length; i++) 
+            
+                {
+                    if (SongsVolume[i].volume < 0.99){
+                        SongsVolume[i].volume += 0.0001;
+                    }
+
+
+                }
+
+                
+                
+             
+                
+                //console.log('up',poop[0].point.z)
+
+                }
+
+            const poop2 = raycaster.intersectObject(volumebuttonBox2);
+              
+           if (poop2.length > 0) {
+
+            
+            if(volumebutton && volumebutton.position.z > -.6){
+                volumebutton.position.z -= 0.0002
+            }
+            
+
+            for (var i = 0; i < SongsVolume.length; i++) 
+            
+                {
+                    if (SongsVolume[i].volume > 0.05){
+                        
+                        
+                        SongsVolume[i].volume -= 0.0001;
+                    }
+
+
+                }
+
+                
+                
+             
+                
+                //console.log('down',poop2[0].point.z)
+
+                }
+
+
+                })
+                
+
+      }
 
 //----------------------head stuff----------------------------------------------
 document.addEventListener('wheel', function(event) {
@@ -1470,11 +1566,21 @@ document.addEventListener('mouseup', function(event) {
     } else         glassLand.pause
     glassLand.currentTime = 0
   });
-//----------------------head stuff----------------------------------------------
 
+
+
+
+
+
+
+//----------------------head stuff----------------------------------------------
+let time = Date.now()
 //--------------------------------------------------------------------
 function animate(){
     
+    
+
+
     headspin()
     if(enableSelectButtonCode){
         
@@ -1486,9 +1592,11 @@ function animate(){
         hover()
 
     }
-
-    requestAnimationFrame(animate)
-    var timer = Date.now() * 0.0001;
+    
+    window.requestAnimationFrame(animate)
+    const currentTime = Date.now()
+    const deltatime = currentTime - time
+    time = currentTime
 
 
 
@@ -1520,6 +1628,8 @@ function animate(){
 
 
     raycaster.setFromCamera(mouse,camera)
+
+    setVolumeBasedOnDistance()
 
     const objectToTests = [headBox, tvBox, windowBox,doorBox,cabBox,pictureBox,mapBox]
     const intersects = raycaster.intersectObjects(objectToTests)
