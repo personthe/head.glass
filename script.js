@@ -1,7 +1,11 @@
 
 //import * as CANNON from 'cannon';
-import {GLTFLoader } from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader.js'
-import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js'
+
+import {GUI} from "./dat.gui.module.js"
+import {GLTFLoader } from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/GLTFLoader.js'
+import * as THREE from 'https://unpkg.com/three@0.126.1/build/three.module.js'
+
+
 
 
 //three@0.126.1 orginal version
@@ -11,7 +15,7 @@ import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js'
 //const world = new CANNON.World()
 
 
-
+//const gui = new GUI()
 
 
 
@@ -26,20 +30,20 @@ document.addEventListener('contextmenu', function(e) {
     dontDoThat.innerHTML = 'right clicking is for loosers';
     dontDoThat.style.color = 'white'
 
-    if(bCounter > 100){
+    if(bCounter > 30){
         dontDoThat.innerHTML = 'right-clicks = (' + (bCounter) + ')';
     }
 
-    if(bCounter > 1000){
+    if(bCounter > 300){
         dontDoThat.innerHTML = 'just stop theres nothing to see after this = (' + (bCounter) + ')';
     }
-    if(bCounter > 10000){
+    if(bCounter > 3000){
         dontDoThat.innerHTML = 'why are you doing this??? (' + (bCounter) + ')';
     }
-    if(bCounter > 100000){
+    if(bCounter > 30000){
         dontDoThat.innerHTML = 'ok you are clearly a cheater (' + (bCounter) + ')';
     }
-    if(bCounter > 1000000){
+    if(bCounter > 300000){
         dontDoThat.innerHTML = 'you belong in a mental hospital (' + (bCounter) + ')';
     }
     dontDoThat.style.position = 'absolute';
@@ -79,6 +83,9 @@ music.loop = true
 
 var tvon = new Audio('./audio/tvon.mp3');
 var tvoff = new Audio('./audio/tvoff.mp3');
+
+var lightOn = new Audio('./audio/lightOn.mp3');
+var lightOff = new Audio('./audio/lightOff.mp3');
 
 const fontLoader = new THREE.FontLoader()
 const canvas = document.querySelector('.webgl')
@@ -131,7 +138,31 @@ var hatersay = new Audio('./audio/hatersay.mp3')
 
 var Philiphoffmin = new Audio('./audio/Philiphoffmin.mp3')
 
+var UP = new Audio('./audio/UP.mp3')
+
+var DOWN = new Audio('./audio/DOWN.mp3')
+
 var bars = new Audio('./audio/bars.mp3')
+
+let SongsVolume = 
+
+    [
+    gtag,
+    liverpool,
+    familygamenight,
+    creativemode,
+    bars,
+    wiiFit,
+    thiccLikeMewTwo,
+    hello,
+    nothingtosay,
+    flipflopsintherain,
+    cottonmouth,
+    hatersay
+    ,Philiphoffmin,
+    UP,
+    DOWN
+    ];
 
 
 
@@ -160,6 +191,14 @@ function DisableHoverCode() {
 
 function enableCode2() {
   enableHoverCode = true;
+}
+
+function DisableYeahCode() {
+  enableYeahCode = false;
+}
+
+function enableYeahCode() {
+  enableYeahCode = true;
 }
 
 
@@ -222,23 +261,34 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     invisibleRed.opacity = .5
     
     invisibleRed.visible = false
+    //gui.add(invisibleRed,'visible',0,1,1).name('Red Debug')
     const headBox = new THREE.Mesh(headBoxGeometry,invisibleRed)
     headBox.position.set(0,1.5,)
     scene.add(headBox)
 
 
     const tvBoxGeometry = new THREE.BoxGeometry(.65,.6,.16)
-    const tvBox = new THREE.Mesh(tvBoxGeometry,invisibleRed)
+    let tvBox = new THREE.Mesh(tvBoxGeometry,invisibleRed)
     tvBox.position.set(1.27,.6,-1.5)
     scene.add(tvBox)
 
-    const mapGeometry = new THREE.BoxGeometry(.65,.5,.1)
+    const mapGeometry = new THREE.BoxGeometry(.620,.5,.1)
     const mapBox = new THREE.Mesh(mapGeometry,invisibleRed)
-    mapBox.position.set(.8,1.32,-1.8)
+    mapBox.position.set(0.698,1.448,-1.84)
+
     scene.add(mapBox)
+
+    
+    
+    const SwitchGeometry = new THREE.BoxGeometry(.1,.25,.1)
+    const SwitchBox = new THREE.Mesh(SwitchGeometry,invisibleRed)
+    SwitchBox.position.set(-0.51,1.015,-1.777)
+
+    scene.add(SwitchBox)
 
     const invisibleblue = new THREE.MeshBasicMaterial({color: 'blue'});
     invisibleblue.visible = false
+    //gui.add(invisibleblue,'visible',0,1,1).name('Blue Debug')
     invisibleblue.transparent = true
     invisibleblue.opacity = .5
 
@@ -258,6 +308,26 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     helloBox.rotation.set(0,-.1,0)
     
     scene.add(helloBox)
+
+    const ejectGeometry = new THREE.BoxGeometry(.025,.012,.035)
+    const ejectBox = new THREE.Mesh(ejectGeometry,invisibleblue)
+    ejectBox.position.set(2.1,0.656,-0.57)
+    ejectBox.rotation.set(0,0.2639,0)
+
+    scene.add(ejectBox)
+
+    const pPauseGeometry = new THREE.BoxGeometry(.025,.012,.035)
+    const pPauseBox = new THREE.Mesh(pPauseGeometry,invisibleblue)
+    pPauseBox.position.set(2.1,0.6599,-0.525)
+    pPauseBox.rotation.set(0,0.2639,0)
+
+    scene.add(pPauseBox)
+    const pPlayGeometry = new THREE.BoxGeometry(.025,.012,.035)
+    const pPlayBox = new THREE.Mesh(pPlayGeometry,invisibleblue)
+    pPlayBox.position.set(2.1,0.663,-0.48300000000000004)
+    pPlayBox.rotation.set(0,0.2639,0)
+
+    scene.add(pPlayBox)
 
   
     const ntsBox = new THREE.Mesh(helloGeometry,invisibleblue)
@@ -291,9 +361,8 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     volumebuttonBox2.position.set(2.09,.645,-.62)
     volumebuttonBox2.rotation.set(0,.3,0)
     
-
-    
     scene.add(volumebuttonBox2)
+
     
     const wiiFitBox = new THREE.Mesh(helloGeometry,invisibleblue)
     wiiFitBox.position.set(2.22,.3,-.455)
@@ -309,9 +378,10 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     
     const cabBoxGeometry = new THREE.BoxGeometry(.7,.65,.13)
     const cabBox = new THREE.Mesh(cabBoxGeometry,invisibleRed)
-    cabBox.position.set(2.3,.35,-.61)
+    cabBox.position.set(2.327,0.306,-0.58)
     cabBox.rotation.set(0,-1.3,0)
     scene.add(cabBox)
+
     
     const doorBoxGeometry = new THREE.BoxGeometry(.80,2,.16)
     const doorBox = new THREE.Mesh(doorBoxGeometry,invisibleRed)
@@ -359,17 +429,60 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     barsBox.rotation.set(0,-.2,0)
     
     scene.add(barsBox)
+
+    function RESETCARTS(){
+        if(helloCart)helloCart.position.set(0.6845217347145081,-.20,0.5381841659545898)
+        if(helloCart)helloCart.rotation.set(0,-1.1,0)
+
+        if(ntsCart)ntsCart.position.set(0.4,-.20,0.6)
+        if(ntsCart)ntsCart.rotation.set(0,-1.1,0)
+
+        if(gtagCart)gtagCart.rotation.set(0,-1.1,3.14)
+        if(gtagCart)gtagCart.position.set(.15,-.20,0.6)
+        
+        if(cottonMouthCart)cottonMouthCart.rotation.set(0,-1.25,3.14)
+        if(cottonMouthCart)cottonMouthCart.position.set(0.657220184803009,-0.7026517987251282,0.718595027923584)
+        
+        if(wiiFitCart)wiiFitCart.rotation.set(0,-1.1,3.14)
+        if(wiiFitCart)wiiFitCart.position.set(-0.3143464922904968,-0.19119787216186523,0.5665731430053711)
+
+        if(thiccLikeMewTwoCart)thiccLikeMewTwoCart.rotation.set(0,-1.1,3.14)
+        if(thiccLikeMewTwoCart)thiccLikeMewTwoCart.position.set(-0.08537335693836212,-0.18832868337631226,0.5930662155151367)
+
+        if(familygamenightCart)familygamenightCart.rotation.set(0,-1.1,3.14)
+        if(familygamenightCart)familygamenightCart.position.set(-0.5208156704902649,-0.1916351318359375,0.5428767204284668)
+        
+        if(flipflopsintherainCart)flipflopsintherainCart.rotation.set(0,-1.1,3.14)
+        if(flipflopsintherainCart)flipflopsintherainCart.position.set(0.18647770583629608,-0.7092075347900391,0.708808422088623)
+
+        if(creativemodeCart)creativemodeCart.rotation.set(0,-1.2,3.14)
+        if(creativemodeCart)creativemodeCart.position.set(-0.7084792256355286,-0.19124191999435425,0.5211467742919922)
+        
+        if(hatersayCart)hatersayCart.rotation.set(0,-1.2,3.14)
+        if(hatersayCart)hatersayCart.position.set(-0.025738433003425598,-0.7035372257232666,0.7074694633483887)
+        
+        if(PhiliphoffminCart)PhiliphoffminCart.rotation.set(0,-1.2,3.14)
+        if(PhiliphoffminCart)PhiliphoffminCart.position.set(-0.22537000477313995,-0.7094168066978455,0.6649813652038574)
+        
+        if(barsCart)barsCart.rotation.set(0,-1.2,3.14)
+        if(barsCart)barsCart.position.set(-0.452989399433136,-0.7069311141967773,0.6877660751342773)
+
+        if(liverpoolCart)liverpoolCart.rotation.set(0,-1.2,3.14)
+        if(liverpoolCart)liverpoolCart.position.set(0.4148997664451599,-0.707334041595459,0.7095093727111816)
+        }
 //--------------------------------------------------------------------------------
 
     const windowBoxGeometry = new THREE.BoxGeometry(.85,.69,.1)
     const windowBox = new THREE.Mesh(windowBoxGeometry,invisibleRed)
     windowBox.position.set(2.30,1.35,-1)
+    
     windowBox.rotation.set(0,-1.25,0)
     scene.add(windowBox)
 
     const pictureBoxGeometry = new THREE.BoxGeometry(.60,1,.1)
     const pictureBox = new THREE.Mesh(pictureBoxGeometry,invisibleRed)
     pictureBox.position.set(-2.70,1.2,.59)
+    
     pictureBox.rotation.set(0,-1.8,0)
     scene.add(pictureBox)
 
@@ -522,7 +635,7 @@ gltfloader.load('./objects/roomofstuff.gltf', function(glb){
     outside = room.getObjectByName("Window");
 
     london = room.getObjectByName("london");
-    london.traverse((o) => {if (o.isMesh) o.material.roughness = 100})
+    london.traverse((o) => {if (o.isMesh) o.material.roughness = 30})
 
     blinds = room.getObjectByName("blinds");
     blindsopen = room.getObjectByName("blindsopen");
@@ -547,6 +660,7 @@ gltfloader.load('./objects/head.gltf', function(glb){
     //head.traverse((o) => {if (o.isMesh) o.material.o = glass;});
 
     groop1.add(head)
+
     
 });
 
@@ -585,8 +699,9 @@ scene.add(groop1)
     
 
 //LIGHTS
+let light3 = new THREE.DirectionalLight(0xffffff, 1.5)  
+let lightPoint  
 for(let i = 0; i< 3; i++){
-    const light3 = new THREE.DirectionalLight(0xffffff, .40)  
     const lightHelper = new THREE.PointLightHelper(light3);
     
     light3.position.x = (Math.random() - 0.5 * 1)
@@ -596,7 +711,7 @@ for(let i = 0; i< 3; i++){
 
     scene.add(light3)
 
-    const lightPoint = new THREE.DirectionalLight(0xffffff, .30)  
+    lightPoint = new THREE.DirectionalLight(0xffffff, .30)  
     const pointHelper = new THREE.DirectionalLightHelper(lightPoint);
     lightPoint.rotation.set(.2,0,0)
     lightPoint.position.set(0,5,0)
@@ -845,14 +960,28 @@ const mouse = new THREE.Vector2()
                 //console.log('cab clicked')
                 enableCode()
                 enableCode2()
+                RESETCARTS()
+                enableYeahCode = true
                 
-                //cab toggle on
+                
+
                 
                 if (cabON === 0) {
+
+                    
+                for (var i = 0; i < SongsVolume.length; i++) 
+                {
+
+                    goout.play()
+                    SongsVolume[i].pause()
+                    SongsVolume[i].currentTime = 0}
+                
+                //cab toggle on
+                    
                 if(backCab)backCab.visible = true
                 camera.position.set(1,.4,-.15)
                 camera.rotation.set(0,-1.27,0)
-                cabBox.position.set(2.05,.608,-.75)
+                cabBox.position.set(2.04,0.6,-0.76)
                 cabBox.scale.set(.1,.1,.1)               
                 cabON = 3;
 
@@ -1063,103 +1192,27 @@ const mouse = new THREE.Vector2()
                 
                 else {
                 //cab toogle off reset & carts reset
-                if(backCab)backCab.visible = false                       
-                goout.play()
 
-                goin.pause()
-                goin.currentTime = 0
-
-                hello.pause()
-                hello.currentTime = 0
-
-                nothingtosay.pause()
-                nothingtosay.currentTime = 0
-
-                gtag.pause()
-                gtag.currentTime = 0
-
-                cottonmouth.pause()
-                cottonmouth.currentTime = 0
-
-                wiiFit.pause()
-                wiiFit.currentTime = 0
-
-                thiccLikeMewTwo.pause()
-                thiccLikeMewTwo.currentTime = 0
-
-                familygamenight.pause()
-                familygamenight.currentTime = 0
-
-                flipflopsintherain.pause()
-                flipflopsintherain.currentTime = 0
-
-                liverpool.pause()
-                liverpool.currentTime = 0
-
-                creativemode.pause()
-                creativemode.currentTime = 0
-
-                hatersay.pause()
-                hatersay.currentTime = 0
-                
-                Philiphoffmin.pause()
-                Philiphoffmin.currentTime = 0
-
-                bars.pause()
-                bars.currentTime = 0
-
+                if(backCab)backCab.visible = false
                 DisableHoverCode()
                 disableSelectButtonCode()
+                DisableYeahCode()
+                
 
                 //reset cart positions
-                if(helloCart)helloCart.position.set(0.6845217347145081,-.20,0.5381841659545898)
-                if(helloCart)helloCart.rotation.set(0,-1.1,0)
 
-                if(ntsCart)ntsCart.position.set(0.4,-.20,0.6)
-                if(ntsCart)ntsCart.rotation.set(0,-1.1,0)
-
-                if(gtagCart)gtagCart.rotation.set(0,-1.1,3.14)
-                if(gtagCart)gtagCart.position.set(.15,-.20,0.6)
-                
-                if(cottonMouthCart)cottonMouthCart.rotation.set(0,-1.25,3.14)
-                if(cottonMouthCart)cottonMouthCart.position.set(0.657220184803009,-0.7026517987251282,0.718595027923584)
-                
-                if(wiiFitCart)wiiFitCart.rotation.set(0,-1.1,3.14)
-                if(wiiFitCart)wiiFitCart.position.set(-0.3143464922904968,-0.19119787216186523,0.5665731430053711)
-
-                if(thiccLikeMewTwoCart)thiccLikeMewTwoCart.rotation.set(0,-1.1,3.14)
-                if(thiccLikeMewTwoCart)thiccLikeMewTwoCart.position.set(-0.08537335693836212,-0.18832868337631226,0.5930662155151367)
-
-                if(familygamenightCart)familygamenightCart.rotation.set(0,-1.1,3.14)
-                if(familygamenightCart)familygamenightCart.position.set(-0.5208156704902649,-0.1916351318359375,0.5428767204284668)
-                
-                if(flipflopsintherainCart)flipflopsintherainCart.rotation.set(0,-1.1,3.14)
-                if(flipflopsintherainCart)flipflopsintherainCart.position.set(0.18647770583629608,-0.7092075347900391,0.708808422088623)
-
-                if(creativemodeCart)creativemodeCart.rotation.set(0,-1.2,3.14)
-                if(creativemodeCart)creativemodeCart.position.set(-0.7084792256355286,-0.19124191999435425,0.5211467742919922)
-                
-                if(hatersayCart)hatersayCart.rotation.set(0,-1.2,3.14)
-                if(hatersayCart)hatersayCart.position.set(-0.025738433003425598,-0.7035372257232666,0.7074694633483887)
-                
-                if(PhiliphoffminCart)PhiliphoffminCart.rotation.set(0,-1.2,3.14)
-                if(PhiliphoffminCart)PhiliphoffminCart.position.set(-0.22537000477313995,-0.7094168066978455,0.6649813652038574)
-                
-                if(barsCart)barsCart.rotation.set(0,-1.2,3.14)
-                if(barsCart)barsCart.position.set(-0.452989399433136,-0.7069311141967773,0.6877660751342773)
-
-                if(liverpoolCart)liverpoolCart.rotation.set(0,-1.2,3.14)
-                if(liverpoolCart)liverpoolCart.position.set(0.4148997664451599,-0.707334041595459,0.7095093727111816)
-
-                cabBox.position.set(2.15,0.3,-0.76)
+                cabBox.position.set(2.327,0.306,-0.58)
                 cabBox.scale.set(1,1,1)
 
                 camera.fov = 35
                 camera.updateProjectionMatrix();
                 camera.position.set(0,2.45,4)
                 camera.rotation.set(-.4,0,0)
+                
+
 
                 cabON = 0;
+                
                 }
             }
         }
@@ -1252,7 +1305,7 @@ function tvButtons(){
 }
 
 function backcolor(){
-    const sbuttons = [backCab,backTV]                  
+    const sbuttons = [backCab,backTV,]                  
     const selectedback = raycaster.intersectObjects(sbuttons)
 
     for(const object of sbuttons)
@@ -1285,6 +1338,7 @@ function backcolor(){
 
 function hover(){
     let on = 0
+
     
     const ntsintersections = raycaster.intersectObject(ntsBox);
     if (ntsintersections.length > 0) 
@@ -1431,23 +1485,7 @@ function hover(){
     }
 
 }
-let SongsVolume = 
 
-    [
-    gtag,
-    liverpool,
-    familygamenight,
-    creativemode,
-    bars,
-    wiiFit,
-    thiccLikeMewTwo,
-    hello,
-    nothingtosay,
-    flipflopsintherain,
-    cottonmouth,
-    hatersay
-    ,Philiphoffmin
-    ];
 
     
 for (var i = 0; i < SongsVolume.length; i++) {
@@ -1455,23 +1493,122 @@ for (var i = 0; i < SongsVolume.length; i++) {
 //------------------button stuff-------------------------------------------------
 
 
-    function setVolumeBasedOnDistance() {
+    
         
 
-        addEventListener('mousedown',(o)=>{
+const Tcart = [ntsBox,
+    helloBox,gtagBox,
+    cottonMouthBox,
+    thiccLikeMewBox,
+    wiiFitBox,
+    familygamenightBox,
+    flipflopsintherainBox,
+    liverpoolbox,
+    creativemodeBox,
+    hatersayBox,barsBox,
+    PhiliphoffminBox]
+
+   function YeahButtons(){
+    document.addEventListener('click',(o)=>{
+
+})
+   } 
+  let lightOon = true
+addEventListener('click',(o)=>{
+
+    const switchcast= raycaster.intersectObject(SwitchBox);
+    if (switchcast.length > 0 && lightOon === true) {
+        lightOn.pause()
+        lightOn.currentTime = 0
+        lightOff.play()
+
+        light3.position.z = -40
+        light3.position.x = 40
+        light3.intensity = 0
+        lightPoint.position.z = -90
+        console.log("off")
+        lightOon = false
+        } 
+        
+        else if (switchcast.length > 0 && lightOon === false) {
+        lightOff.pause()
+        lightOff.currentTime = 0
+        lightOn.play()
+
+        light3.position.x = (Math.random() - 0.5 * 1)
+        light3.position.z = 3.5
+        light3.position.y = 2
+        light3.intensity = 1.5
+        lightPoint.position.set(0,5,0)
+console.log("on")
+lightOon = true
+        }
     
             raycaster.setFromCamera(mouse,camera)
-              
+
+        const ejectcast= raycaster.intersectObject(ejectBox);
+            
+            if (ejectcast.length > 0) {
+                enableHoverCode = true
+                RESETCARTS()
+
+                for (var i = 0; i < SongsVolume.length; i++) 
+                {
+
+                        camera.position.set(1,.4,-.15)
+                        camera.rotation.set(0,-1.27,0)
+                        camera.fov = 35
+                        camera.updateProjectionMatrix();
+
+                    goout.play()
+                    SongsVolume[i].pause()
+                    SongsVolume[i].currentTime = 0
+                }
+
+
+
+                
+   
+            }
+
+            const pplaycast= raycaster.intersectObject(pPlayBox);
+            if (pplaycast.length > 0) {
+                for (var i = 0; i < SongsVolume.length; i++) 
+                {
+
+
+                    UP.play()
+                    if(SongsVolume[i].currentTime > 0){
+                        SongsVolume[i].play() 
+                    }
+                }
+            }
+            
+            const pppausecast= raycaster.intersectObject(pPauseBox);
+            if (pppausecast.length > 0) {
+                for (var i = 0; i < SongsVolume.length; i++) 
+                {
+                    
+                    
+                    UP.play()
+                    
+                    
+                        SongsVolume[i].pause() 
+                    
+                    } 
+            } 
+            
+            
             const poop = raycaster.intersectObject(volumebuttonBox);
-              
            if (poop.length > 0) {
+
             
 
             
             
             if(volumebutton && volumebutton.position.z < 0.6){
                 
-                volumebutton.position.z += 0.0002
+                volumebutton.position.z += 0.15
             //console.log(volumebutton.position.z)
         }
             
@@ -1480,8 +1617,12 @@ for (var i = 0; i < SongsVolume.length; i++) {
             for (var i = 0; i < SongsVolume.length; i++) 
             
                 {
-                    if (SongsVolume[i].volume < 0.99){
-                        SongsVolume[i].volume += 0.0001;
+                    
+                    if (SongsVolume[i].volume < 0.9){
+                        UP.pause
+                        UP.currentTime=0
+                        UP.play()
+                        SongsVolume[i].volume += 0.1;
                     }
 
 
@@ -1501,17 +1642,19 @@ for (var i = 0; i < SongsVolume.length; i++) {
 
             
             if(volumebutton && volumebutton.position.z > -.6){
-                volumebutton.position.z -= 0.0002
+                volumebutton.position.z -= 0.15
             }
             
 
             for (var i = 0; i < SongsVolume.length; i++) 
             
                 {
-                    if (SongsVolume[i].volume > 0.05){
+                    if (SongsVolume[i].volume > 0.1){
+                        DOWN.pause
+                        DOWN.currentTime=0
+                        DOWN.play()  
                         
-                        
-                        SongsVolume[i].volume -= 0.0001;
+                        SongsVolume[i].volume -= 0.1;
                     }
 
 
@@ -1529,7 +1672,7 @@ for (var i = 0; i < SongsVolume.length; i++) {
                 })
                 
 
-      }
+      
 
 //----------------------head stuff----------------------------------------------
 document.addEventListener('wheel', function(event) {
@@ -1574,12 +1717,14 @@ document.addEventListener('mouseup', function(event) {
 
 
 //----------------------head stuff----------------------------------------------
-let time = Date.now()
+
+if(enableYeahCode){
+
+    YeahButtons()
+}
 //--------------------------------------------------------------------
 function animate(){
     
-    
-
 
     headspin()
     if(enableSelectButtonCode){
@@ -1594,9 +1739,7 @@ function animate(){
     }
     
     window.requestAnimationFrame(animate)
-    const currentTime = Date.now()
-    const deltatime = currentTime - time
-    time = currentTime
+
 
 
 
@@ -1629,7 +1772,7 @@ function animate(){
 
     raycaster.setFromCamera(mouse,camera)
 
-    setVolumeBasedOnDistance()
+
 
     const objectToTests = [headBox, tvBox, windowBox,doorBox,cabBox,pictureBox,mapBox]
     const intersects = raycaster.intersectObjects(objectToTests)
@@ -1639,7 +1782,8 @@ function animate(){
     }
 
     for(const intersect of intersects){
-
+        if(backCab)backCab.material.color.set('green')
+        if(backCab)backCab.material.color.set('green')
       intersect.object.material.color.set('green')
       //constole.log('INTERSECTING')
     }
