@@ -1,10 +1,13 @@
 
-//import * as CANNON from 'cannon';
+
 
 //import {GUI} from "./dat.gui.module.js"
 import {GLTFLoader } from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/GLTFLoader.js'
 import * as THREE from 'https://unpkg.com/three@0.126.1/build/three.module.js'
 
+
+
+let BBODY = document.querySelector('body')
 
 
 
@@ -960,14 +963,14 @@ const mouse = new THREE.Vector2()
                 //console.log('cab clicked')
                 enableCode()
                 enableCode2()
-                RESETCARTS()
+        
                 enableYeahCode = true
                 
                 
 
                 
                 if (cabON === 0) {
-
+                    RESETCARTS()
                     
                 for (var i = 0; i < SongsVolume.length; i++) 
                 {
@@ -1273,19 +1276,23 @@ function tvButtons(){
     if(glassheadborder)glassheadborder.material.color.set('red')
     if (shirt)shirt.material.color.set('green')
     //console.log('not Hovering Tv Buttons')
-    }
+}
 
-    for(const intersect of mouseOn)
-    {
-        if (shirt)shirt.material.color.set('yellow')
-        if(glassheadborder)glassheadborder.material.color.set('green')
-        
-        intersect.object.material.color.set('green')
-      //console.log('Hovering Tv Buttons')
-    }
 
-    if(mouseOn.length){
+for(const intersect of mouseOn)
+{
+
+    if (shirt)shirt.material.color.set('yellow')
+    if(glassheadborder)glassheadborder.material.color.set('green')
+    
+    intersect.object.material.color.set('green')
+    //console.log('Hovering Tv Buttons')
+}
+
+if(mouseOn.length){
     if(PurrentIntersect === 0){
+        BBODY.style.cursor = 'url("./imges/mouse1.png"), auto ';
+
     on.play();
     //console.log('mouse enter event')
         }
@@ -1294,6 +1301,7 @@ function tvButtons(){
 }   else {
     
     if(PurrentIntersect){
+
         on.pause();
         on.currentTime = 0;
         //console.log('mouse exit event')
@@ -1779,9 +1787,11 @@ function animate(){
 
     for(const object of objectToTests){
         object.material.color.set('red')
+        BBODY.style.cursor = 'url("./imges/mousemain.png"), auto ';
     }
 
     for(const intersect of intersects){
+        BBODY.style.cursor = 'url("./imges/mouse1.png"), auto ';
         if(backCab)backCab.material.color.set('green')
         if(backCab)backCab.material.color.set('green')
       intersect.object.material.color.set('green')

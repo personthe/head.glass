@@ -19,7 +19,8 @@ body
     height: 100vh;
     font-family: 'Poppins';
     background: rgb(0, 0, 0);
-    cursor: url('/imges/mouse1.png'), auto;
+    cursor: url('/imges/mousemain.png'), auto;
+    
     
 }
 
@@ -34,7 +35,7 @@ body
 
 .webgl:active
 {
-    cursor: url('/imges/mouse2.png'), auto;
+    cursor: url('/imges/mouse2.png'), auto; 
 }
 
 nobr {
