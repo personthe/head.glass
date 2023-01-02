@@ -2,10 +2,12 @@
 
 
 {
+
+    
     margin: 0;
     padding: 0;
  
-filter:saturate(1.05);
+
 overflow: hidden;
 
 display: flex;
@@ -54,8 +56,8 @@ body
 .yes{
     position: fixed; z-index: 2;
     vertical-align: baseline;
-    height: 1000px;
-    width: 1910px;
+    height: 3000px;
+    width: 3000px;
     background-color: black;
     opacity: 1;
     transition: all 1s;
@@ -119,10 +121,10 @@ transition: all 1s;
     justify-self: left;
 
 
-    background-color: azure;
+    background-color: rgb(255, 251, 44);
     width: 0%;
     position: absolute; z-index: 40;
-    color: rgb(240, 248, 255);
+    color: rgb(0, 0, 0);
     border-bottom: dashed 10px rgb(0, 0, 0);
     border-top: dashed 10px rgb(0, 0, 0);
     transition: all .4s ease-in-out
