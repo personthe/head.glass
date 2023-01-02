@@ -18,6 +18,141 @@
 
 <body> 
 
+<style>*
+
+
+    {
+        margin: 0;
+        padding: 0;
+     
+    filter:saturate(1.05);
+    overflow: hidden;
+    
+    display: flex;
+    
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+        
+    }
+    
+    
+    
+    html,
+    body
+    { 
+    
+    
+        margin: 0;
+        height: 100vh;
+        font-family: 'Poppins';
+        background: rgb(0, 0, 0);
+        cursor: url('/imges/mousemain.png'), auto;
+        
+        
+    }
+    
+    .webgl
+    {
+        position: fixed;z-index: 1;
+        top: 0;
+        left: 0;
+        outline: none;
+    
+    
+    }
+    
+    .webgl:active
+    {
+        cursor: url('/imges/mouse2.png'), auto; 
+    }
+    
+    
+    
+    
+    
+    .yes{
+        position: fixed; z-index: 2;
+        vertical-align: baseline;
+        height: 3000px;
+        width: 3950px;
+        background-color: black;
+        opacity: 1;
+        transition: all 1s;
+    }
+    
+    img{
+        position: absolute; z-index: 20;
+    
+    
+        image-rendering: optimizeSpeed;
+        image-resolution: 1%;
+        opacity: 1;
+        transition: all 1s;  
+    }
+    
+    h2{
+        color: blue;
+        position: absolute;z-index: 3;
+        cursor: url('/imges/copy.png'),auto;
+        position: absolute;z-index: 0;
+    }
+    
+    h3{
+        color: rgb(255, 125, 175);
+        position: absolute; z-index: 50;
+    
+    
+    opacity: 1;
+    transition: all 1s;
+    }
+    
+    .loader{
+    
+        justify-self: left;
+        margin-left: 1000px;
+        margin-right: 1000px;
+        background-color: azure;
+        width: 0px;
+        position: absolute; z-index: 40;
+        color: rgb(240, 248, 255);
+        border-bottom: dashed 3px rgb(0, 0, 0);
+        border-top: dashed 3px rgb(0, 0, 0);
+        transition: all 5s;
+    }
+    
+    .loader-done{
+    
+        justify-self: left;
+    
+        background-color: azure;
+        width: 100%;
+        position: absolute; z-index: 40;
+        color: rgb(240, 248, 255);
+        border-bottom: dashed 5px rgb(0, 0, 0);
+        border-top: dashed 5px rgb(0, 0, 0);
+        transition: all 5s;
+        opacity: 1;
+    }
+    
+    .new-class{
+        justify-self: left;
+    
+        margin-top: 3000px;
+        background-color: azure;
+        width: 100%;
+        position: absolute; z-index: 40;
+        color: rgb(240, 248, 255);
+        border-bottom: dashed 10px rgb(0, 0, 0);
+        border-top: dashed 10px rgb(0, 0, 0);
+        transition: all 1s
+    
+    }
+    
+    
+    
+    </style>
+
     <div class="yes" ></div> 
     <h3>loading head.glass</h3>
     <div class="loader" id="loader">text</div>
