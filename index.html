@@ -74,12 +74,13 @@
         
         var script = document.createElement("script");
         script.src = "mobileScript.js";
-        script.type="text/javascript"
+        script.type="module"
         document.body.appendChild(script);
+        
     } else {
        var script = document.createElement("script");
-        script.src = "script";
-        script.type="text/javascript"
+        script.src = "script.js";
+        script.type="module"
         document.body.appendChild(script);
     }
 </script>
