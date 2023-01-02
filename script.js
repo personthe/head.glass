@@ -33,7 +33,7 @@ document.addEventListener('mousedown', function(event) {
     }
   });
 
-  let element = document.getElementById('loader');
+  let element = document.querySelector('.loader');
  
 
 
@@ -41,7 +41,7 @@ document.addEventListener('mousedown', function(event) {
 
 
 
-window.addEventListener('load', function() {
+
 
 
 
@@ -67,8 +67,6 @@ window.addEventListener('load', function() {
       }, 4000);
     // Your code here.
 
-
-  });
 
   
 
