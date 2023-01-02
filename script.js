@@ -2,9 +2,9 @@
 
 
 
-import {GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import * as THREE from 'three'
-import $ from 'jquery'
+import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js'
+import {GLTFLoader} from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader.js'
+
 
 
 
