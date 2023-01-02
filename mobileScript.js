@@ -39,16 +39,17 @@ document.addEventListener('mousedown', function(event) {
     }
   });
 
-  let element = document.getElementById('loader');
+  let element = document.querySelector('.loader');
  
+
 
   element.classList.add('loader-done');
 
 
 
-window.addEventListener('load', function() {
 
-    window.addEventListener('click', function(o) {o.preventDefault()})
+
+
 
     setTimeout(function() {
 
@@ -62,10 +63,7 @@ window.addEventListener('load', function() {
         div.style.opacity = 0
 
 
-        element.addEventListener('transitionend', function() {
-            this.classList.add('new-class');
-
-        })
+        element.classList.add('new-class');
         
 
 
@@ -73,10 +71,6 @@ window.addEventListener('load', function() {
 
 
       }, 4000);
-    // Your code here.
-
-
-  });
 
 
 
