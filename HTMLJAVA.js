@@ -2,7 +2,7 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 
 
 
-const minecraftServer = document.createElement('nobr');
+const minecraftServer = document.createElement('h2');
 minecraftServer.innerHTML = '<b>MINECRAFT SERVER IP: 135.148.29.252:25569<b>';
 minecraftServer.style.position = 'absolute';
 minecraftServer.style.bottom = '10px';
@@ -13,6 +13,17 @@ minecraftServer.style.fontSize = '11px';
 minecraftServer.style.fontFamily = 'Arial';
 minecraftServer.style.padding = 0;
 document.body.appendChild(minecraftServer);
+
+window.addEventListener('touchend', (event) =>
+
+{        
+event.preventDefault(); // prevent the default touch behavior
+
+
+setTimeout(function() {
+    window.dispatchEvent(clickEvent);
+  }, 50)
+})
 
 minecraftServer.addEventListener('click', function() {
 
@@ -31,6 +42,7 @@ minecraftServer.addEventListener('click', function() {
 
 const sheep = new Audio('https://www.myinstants.com/media/sounds/minecraft-sheep2.mp3');
 const copy = new Audio('/audio/copySound.mp3');
+
 minecraftServer.addEventListener('click', function() {
   sheep.play();
   copy.play();
