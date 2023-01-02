@@ -1,13 +1,19 @@
 
 
 
-//import {GUI} from "./dat.gui.module.js"
-import {GLTFLoader } from 'https://unpkg.com/three@0.126.1/examples/jsm/loaders/GLTFLoader.js'
-import * as THREE from 'https://unpkg.com/three@0.126.1/build/three.module.js'
+
+import {GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import * as THREE from 'three'
+import $ from 'jquery'
+
+
+
+
 
 
 
 let BBODY = document.querySelector('body')
+
 
 
 
@@ -30,13 +36,14 @@ document.addEventListener('mousedown', function(event) {
   let element = document.getElementById('loader');
  
 
+
   element.classList.add('loader-done');
 
 
 
 window.addEventListener('load', function() {
 
-    window.addEventListener('click', function(o) {o.preventDefault()})
+
 
     setTimeout(function() {
 
@@ -50,10 +57,7 @@ window.addEventListener('load', function() {
         div.style.opacity = 0
 
 
-        element.addEventListener('transitionend', function() {
-            this.classList.add('new-class');
-
-        })
+        element.classList.add('new-class');
         
 
 

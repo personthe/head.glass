@@ -22,9 +22,13 @@
 
     
     <div class="yes" ></div> 
-    <h3>loading head.glass</h3>
-    <div class="loader" id="loader">Load Complete!</div>
-    <img src="./imges/memeload.gif" alt="">
+    <div class="tits">
+        
+        <h3>loading head.glass</h3>
+        <div class="loader" id="loader">Load Complete!</div>
+        <img src="./imges/memeload.gif" alt="">
+
+    </div>
 
     <style type="text/css">
         *:not(input):not(textarea) {
@@ -45,32 +49,34 @@
 
     <canvas id="cum" class="webgl"></canvas>
     
-    <script src="HTMLJAVA.js"></script>
+    <script type="text/javascript" src="/HTMLJAVA.js"></script>
 
 
    
 </body>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-
     
-        
     
-
+    
+    
+    
     var userAgent = navigator.userAgent;
+    
 
-
-
-
+    
+    
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
-
+        
         var script = document.createElement("script");
-        script.src = "mobileScript.js";
+        script.src = "/mobileScript.js";
         script.type="module"
         document.body.appendChild(script);
     } else {
-        var script = document.createElement("script");
-        script.src = "script.js";
+       var script = document.createElement("script");
+        script.src = "index.js";
         script.type="module"
         document.body.appendChild(script);
     }
