@@ -42,8 +42,8 @@ document.addEventListener('mousedown', function(event) {
   let element = document.getElementById('loader');
  
 
-  element.classList.remove('loader');
   element.classList.add('loader-done');
+
 
 
 window.addEventListener('load', function() {
