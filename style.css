@@ -1,4 +1,4 @@
-/* *
+*
 
 
 {
@@ -118,16 +118,16 @@ transition: all 1s;
 .new-class{
     justify-self: left;
 
-    margin-top: 3000px;
+
     background-color: azure;
-    width: 100%;
+    width: 0%;
     position: absolute; z-index: 40;
     color: rgb(240, 248, 255);
     border-bottom: dashed 10px rgb(0, 0, 0);
     border-top: dashed 10px rgb(0, 0, 0);
-    transition: all 1s
+    transition: all .4s ease-in-out
 
 }
 
 
- */
+
