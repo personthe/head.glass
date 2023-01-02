@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/x-icon" href="/head.ico">
+    
+</head>
+
+
+
+
+<body> 
+
+    <meta name="viewport" 
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    
+    <div class="yes" ></div> 
+    <div class="tits">
+        
+        <h3>loading head.glass</h3>
+        <div class="loader" id="loader">Load Complete!</div>
+        <img src="./imges/memeload.gif" alt="">
+
+    </div>
+
+    <style type="text/css">
+        *:not(input):not(textarea) {
+    -webkit-user-select: none; 
+    user-select: none; 
+    -webkit-touch-callout: none; 
+    -webkit-text-size-adjust: none;
+    -webkit-padding-start: 0%;
+     
+} 
+
+
+
+    </style>
+    
+
+    
+
+    <canvas id="cum" class="webgl"></canvas>
+    
+    <script type="text/javascript" src="/HTMLJAVA.js"></script>
+
+
+   
+</body>
+
+
+
+<script>
+    
+    
+    
+    
+    
+    var userAgent = navigator.userAgent;
+    
+
+    
+    
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
+        
+        var script = document.createElement("script");
+        script.src = "/mobileScript.js";
+        script.type="module"
+        document.body.appendChild(script);
+    } else {
+       var script = document.createElement("script");
+        script.src = "/script";
+        script.type="module"
+        document.body.appendChild(script);
+    }
+</script>
+
+</html>
