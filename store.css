@@ -3,7 +3,7 @@
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* Internet Explorer */
     user-select: none; /* Standard */
-    
+    user-select: none; /* Standard */
 }
 html{
 
