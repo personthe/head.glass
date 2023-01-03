@@ -51,7 +51,7 @@ html
 
 
 .yes{
-    position: absolute; z-index: 2;
+    position: absolute; z-index: 4;
 
     height: 3000px;
     width: 3000px;
@@ -62,7 +62,9 @@ html
 
 img{
 
-    position: absolute; z-index: 20;
+    position: absolute; z-index: 4;
+width: 15%;
+height: 100%;
 
 
 
@@ -72,7 +74,7 @@ img{
 
 h2{
     color: blue;
-    position: absolute;z-index: 3;
+    position: absolute;z-index: 5;
     cursor: url('/imges/copy.png'),auto;
     position: absolute;z-index: 0;
 
@@ -81,7 +83,7 @@ h2{
 
 h3{
     color: rgb(255, 125, 175);
-    position: absolute; z-index: 50;
+    position: absolute; z-index: 6;
     height: 30ps;
 
 
@@ -95,7 +97,7 @@ position: absolute;
 
     background-color: azure;
     width: 0px;
-    position: absolute; z-index: 40;
+    position: absolute; z-index: 5;
     color: rgb(240, 248, 255);
     border-bottom: dashed 3px rgb(0, 0, 0);
     border-top: dashed 3px rgb(0, 0, 0);
@@ -108,7 +110,7 @@ position: absolute;
 
     background-color: azure;
     width: 100%;
-    position: absolute; z-index: 40;
+    position: absolute; z-index: 5;
     color: rgb(240, 248, 255);
     border-bottom: dashed 5px rgb(0, 0, 0);
     border-top: dashed 5px rgb(0, 0, 0);
@@ -122,14 +124,14 @@ position: absolute;
 
     background-color: rgb(255, 255, 255);
     width: 0%;
-    position: absolute; z-index: 40;
+    position: absolute; z-index: 5;
     color: rgb(0, 0, 0);
     border-bottom: dashed 10px rgb(0, 0, 0);
     border-top: dashed 10px rgb(0, 0, 0);
-    transition: all 1.6s cubic-bezier(.2, .22, 1, 6);
+    transition: all 1.6s cubic-bezier(.2, .62, 2, 6);
     flex-wrap: nowrap;
     line-break: strict;
-    opacity: 0;
+
 
 }
 
@@ -139,5 +141,14 @@ position: absolute;
     position: absolute; top: 350px;
 }
 
+.minecraft{
+    white-space: nowrap;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+   font-size: 15px;
+    position: absolute;z-index: 3;
+
+}
 
 

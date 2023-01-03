@@ -2,16 +2,17 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 
 
 
-const minecraftServer = document.createElement('h2');
-minecraftServer.innerHTML = '<b>MINECRAFT SERVER IP: 135.148.29.252:25569<b>';
+const minecraftServer = document.createElement('div');
+minecraftServer.innerHTML = 'MINECRAFT SERVER IP: 135.148.29.252:25569';
 minecraftServer.style.position = 'absolute';
 minecraftServer.style.bottom = '10px';
 minecraftServer.style.left = '50%';
 minecraftServer.style.transform = 'translateX(-50%)';
 minecraftServer.style.color = 'white';
-minecraftServer.style.fontSize = '11px';
-minecraftServer.style.fontFamily = 'Arial';
+
 minecraftServer.style.padding = 0;
+minecraftServer.className = 'minecraft'
+
 document.body.appendChild(minecraftServer);
 
 window.addEventListener('touchend', (event) =>
