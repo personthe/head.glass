@@ -2,6 +2,7 @@
     -moz-user-select: none;  /* Firefox */
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* Internet Explorer */
+    overflow:hidden;
     user-select: none; /* Standard */
 }
 html{
@@ -31,6 +32,10 @@ html{
 
 
 }
+
+body {
+    touch-action: none;
+  }
 
 
 
