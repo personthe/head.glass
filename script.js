@@ -1840,10 +1840,10 @@ document.addEventListener('mousedown', function(event) {
 document.addEventListener('mouseup', function(event) {
     if (event.button === 1) {
 
-        glassLand.play()
+        
         if(head)head.position.set(0,1.175,0);
-    } else         glassLand.pause
-    glassLand.currentTime = 0
+    }        
+
   });
 
 
