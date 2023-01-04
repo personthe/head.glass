@@ -40,13 +40,17 @@ document.addEventListener('mousedown', function(event) {
   });
 
   let element = document.querySelector('.loader');
+  $('.tits').css({
+    'position': 'fixed',
+    'top': '350px'
+  });
  
 
 
   element.classList.add('loader-done');
 
 
-  $('tits')
+
 
 
 
@@ -78,7 +82,7 @@ document.addEventListener('contextmenu', function(e) {
     
     bCounter++;
     
-    var dontDoThat = document.createElement('div');
+    var dontDoThat = document.createElement('nobr');
     
     dontDoThat.innerHTML = 'please dont press and hold';
     dontDoThat.style.color = 'white'

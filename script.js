@@ -2,8 +2,22 @@
 
 
 
+
 import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js'
 import {GLTFLoader} from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader.js'
+
+
+
+import GUI from 'https://cdn.jsdelivr.net/npm/lil-gui@0.17/+esm';
+
+let gui = new GUI({ injectStyles: false })
+$('.lil-gui').hide();
+
+
+
+
+
+
 
 
 
@@ -25,6 +39,38 @@ let BBODY = document.querySelector('body')
 
 
 //const gui = new GUI()
+
+//!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++GUI+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
+let OOO = new Audio('audio/onOOO.mp3')
+gui.add( document, 'title' );
+$('.lil-gui').append('<img src="imges/bf.jpg" class="MIGDE">');
+
+
+
+
+
+
+$(document).on('keydown', function(event) {
+    if (event.key == ',') { // 191 is the code for the '?' key
+        $('.lil-gui').show();
+        OOO.currentTime = 0
+        OOO.play()
+    }
+  });
+  
+$(document).on('keydown', function(event) {
+    if (event.key == '.') { // 191 is the code for the '?' key
+        OOO.currentTime = 0
+        OOO.play()
+        $('.lil-gui').hide();
+    }
+  });
+
+//!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++GUI+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
+
+
 
 
 document.addEventListener('mousedown', function(event) {
@@ -65,7 +111,7 @@ document.addEventListener('mousedown', function(event) {
         
         },1000);
 
-      }, 4000);
+      }, 2000);
 
 
 
@@ -80,7 +126,7 @@ document.addEventListener('contextmenu', function(e) {
     
     bCounter++;
     
-    var dontDoThat = document.createElement('div');
+    var dontDoThat = document.createElement('nobr');
     
     dontDoThat.innerHTML = 'right clicking is for loosers';
     dontDoThat.style.color = 'white'
@@ -199,6 +245,8 @@ var DOWN = new Audio('./audio/DOWN.mp3')
 
 var bars = new Audio('./audio/bars.mp3')
 
+var zoom = new Audio('./audio/zoom.mp3')
+
 let SongsVolume = 
 
     [
@@ -254,6 +302,9 @@ function DisableYeahCode() {
 
 function enableYeahCode() {
   enableYeahCode = true;
+}
+function enableDoor() {
+  enableDoor = true;
 }
 
 
@@ -316,7 +367,7 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     invisibleRed.opacity = .5
     
     invisibleRed.visible = false
-    //gui.add(invisibleRed,'visible',0,1,1).name('Red Debug')
+    gui.add(invisibleRed,'visible',0,1,1).name('Red Debug')
     const headBox = new THREE.Mesh(headBoxGeometry,invisibleRed)
     headBox.position.set(0,1.5,)
     scene.add(headBox)
@@ -441,7 +492,15 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     const doorBoxGeometry = new THREE.BoxGeometry(.80,2,.16)
     const doorBox = new THREE.Mesh(doorBoxGeometry,invisibleRed)
     doorBox.position.set(-1.1,.9,-1.8)
+    gui.add(doorBox.position, 'y', -2, Math.PI).name('doory')
     scene.add(doorBox)
+
+    const doorBox2 = new THREE.Mesh(doorBoxGeometry,invisibleRed)
+    doorBox2.position.set(-1.1,.9,-1.8)
+    gui.add(doorBox2.position, 'y', -2, Math.PI).name('door2y')
+    scene.add(doorBox2)
+
+    
     
     const cottonMouthBox = new THREE.Mesh(helloGeometry,invisibleblue)
     cottonMouthBox.position.set(2.1,.15,-.73)
@@ -827,6 +886,18 @@ const mouse = new THREE.Vector2()
     let picturereset = 0
 
     window.addEventListener('click', (event) =>{
+        if(PurrentIntersect.object === shirtBox)
+        {       
+            zoom.play()      
+            gsap.to(camera.position,{ duration:.4, delay: 0, x:-1.5596902001295,y:1.5, z:1})
+            gsap.to(camera.position,{ duration:.4, delay: 0.1, x:-1,y:1, z:-3})
+                    gsap.to(camera.rotation,{ duration:.4, delay: 0, x:-.3,y:.5, z:0})
+                    setTimeout(function() {
+                        window.location.assign('store');
+                      }, 500); // 1000 milliseconds = 1 second							
+            
+        
+        }
         if(currentIntersect){
             //constole.log(currentIntersect)
 
@@ -910,11 +981,10 @@ const mouse = new THREE.Vector2()
             else if(currentIntersect.object === doorBox){
                 //constole.log('door clicked')
                 doyouwannabuy.play()
-                if(PurrentIntersect.object === shirtBox)
-                {                 
-                    window.location.assign('store');
-                
-                }
+				
+				        doorBox.position.y = -0.149106186954104
+                        doorBox2.position.y = 2.48338925168387
+
                 if(door){
                     if (doorRotation === 0) {
                         enableSelectButtonCode = true;
@@ -927,6 +997,8 @@ const mouse = new THREE.Vector2()
                         door.rotation.set(0, 3.3, 0);
                         doorRotation = 3;
                     } else {
+						doorBox.position.set(-1.1,.9,-1.8)
+                        doorBox2.position.set(-1.1,.9,-1.8)
                         doyouwannabuy.pause()
                         doyouwannabuy.currentTime = 0
                         enableSelectButtonCode = false;
@@ -1345,7 +1417,12 @@ if(mouseOn.length){
     if(PurrentIntersect === 0){
         BBODY.style.cursor = 'url("./imges/mouse1.png"), auto ';
 
-    on.play();
+        var audio = $(on).get(0);
+
+      var audioClone = audio.cloneNode();
+      audioClone.volume = .2
+      audioClone.play();
+
     //console.log('mouse enter event')
         }
     PurrentIntersect = mouseOn[0]
@@ -1354,8 +1431,7 @@ if(mouseOn.length){
     
     if(PurrentIntersect){
 
-        on.pause();
-        on.currentTime = 0;
+
         //console.log('mouse exit event')
         }
     PurrentIntersect = 0
@@ -1778,6 +1854,17 @@ document.addEventListener('mouseup', function(event) {
 
 //----------------------head stuff----------------------------------------------
 
+
+
+
+
+//!animations---------------------------------------------------------------
+gui.add(camera.position, 'x', -2, Math.PI).name('cameraX')
+gui.add(camera.position, 'y', -2, Math.PI).name('cameraY')
+gui.add(camera.position, 'z', -2, Math.PI).name('cameraZ')
+
+//!animations---------------------------------------------------------------
+
 if(enableYeahCode){
 
     YeahButtons()
@@ -1800,6 +1887,9 @@ function animate(){
     
     window.requestAnimationFrame(animate)
 
+    if(enableDoor){
+        
+    }
 
 
 
@@ -1834,7 +1924,7 @@ function animate(){
 
 
 
-    const objectToTests = [headBox, tvBox, windowBox,doorBox,cabBox,pictureBox,mapBox]
+    const objectToTests = [headBox, tvBox, windowBox,doorBox,cabBox,pictureBox,mapBox,doorBox2]
     const intersects = raycaster.intersectObjects(objectToTests)
 
     for(const object of objectToTests){

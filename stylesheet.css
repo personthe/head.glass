@@ -51,6 +51,7 @@ html
 
 
 .yes{
+
     position: absolute; z-index: 4;
 
     height: 3000px;
@@ -63,7 +64,7 @@ html
 img{
 
     position: absolute; z-index: 4;
-width: 15%;
+width: 16%;
 height: 100%;
 
 
@@ -95,13 +96,14 @@ transition: all 1s;
 
 position: absolute;
 
+
     background-color: azure;
     width: 0px;
     position: absolute; z-index: 5;
     color: rgb(240, 248, 255);
     border-bottom: dashed 3px rgb(0, 0, 0);
     border-top: dashed 3px rgb(0, 0, 0);
-    transition: all 4.8s;
+    transition: all .8s;
 }
 
 .loader-done{
@@ -114,7 +116,7 @@ position: absolute;
     color: rgb(240, 248, 255);
     border-bottom: dashed 5px rgb(0, 0, 0);
     border-top: dashed 5px rgb(0, 0, 0);
-    transition: all 1;
+    transition: all .3;
     opacity: 1;
 }
 
@@ -128,17 +130,20 @@ position: absolute;
     color: rgb(0, 0, 0);
     border-bottom: dashed 10px rgb(0, 0, 0);
     border-top: dashed 10px rgb(0, 0, 0);
-    transition: all 1.6s cubic-bezier(.2, .62, 2, 6);
+    transition: all .2s cubic-bezier(.1, .01, 20, 1);
     flex-wrap: nowrap;
     line-break: strict;
+    white-space: nowrap;
 
 
 }
 
 .tits{
+
     width: 1900px;
     height: 300px;
-    position: absolute; top: 350px;
+    position: fixed; top: 420px; z-index: 50;
+
 }
 
 .minecraft{
@@ -152,3 +157,27 @@ position: absolute;
 }
 
 
+.lil-gui { 
+    color: rgb(255, 187, 0);
+    background-color: black;
+    margin-left: 1768PX;
+    display: inline-flex;
+	position: relative; z-index: 20;
+    width: 150px;
+    padding: 5px;
+    font-family: cursive;
+
+
+
+}
+
+.MIGDE{
+    margin-top:  5px;
+    position: relative;
+    width: 100%;
+    height: 50%;
+}
+
+nobr{
+position: fixed; z-index: 99;
+}

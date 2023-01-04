@@ -1,3 +1,7 @@
+const sheep = new Audio('https://www.myinstants.com/media/sounds/minecraft-sheep2.mp3');
+const copy = new Audio('/audio/copySound.mp3');
+
+
 document.addEventListener('contextmenu', event => event.preventDefault());
 
 
@@ -20,10 +24,22 @@ window.addEventListener('touchend', (event) =>
 {        
 event.preventDefault(); // prevent the default touch behavior
 
+sheep.play();
+copy.play();
 
+const textArea = document.createElement('textarea');
+textArea.value = '135.148.29.252:25569';
+document.body.appendChild(textArea);
+textArea.select();
+document.execCommand('copy');
+document.body.removeChild(textArea);
+minecraftServer.innerHTML = '<strong>SERVER IP COPIED TO CLIPBOARD!<strong>';
 setTimeout(function() {
-    window.dispatchEvent(clickEvent);
-  }, 50)
+  minecraftServer.innerHTML = '<b>MINECRAFT SERVER IP: 135.148.29.252:25569<b>';
+  }, 2000);
+
+
+
 })
 
 minecraftServer.addEventListener('click', function() {
@@ -41,8 +57,7 @@ minecraftServer.addEventListener('click', function() {
 
   });
 
-const sheep = new Audio('https://www.myinstants.com/media/sounds/minecraft-sheep2.mp3');
-const copy = new Audio('/audio/copySound.mp3');
+
 
 minecraftServer.addEventListener('click', function() {
   sheep.play();
