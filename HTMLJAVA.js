@@ -19,7 +19,7 @@ minecraftServer.className = 'minecraft'
 
 document.body.appendChild(minecraftServer);
 
-window.addEventListener('touchend', (event) =>
+minecraftServer.addEventListener('touchend', (event) =>
 
 {        
 event.preventDefault(); // prevent the default touch behavior
