@@ -638,7 +638,7 @@ window.addEventListener('mousemove', (event) =>{
 
                 if(PurrentIntersect.object === shirtBox)
                 {                 
-                    window.location.assign('/store');
+                    window.location.assign('https://glasshead.bigcartel.com');
                     doyouwannabuy.pause()
                     setTimeout(function() {
                         disableCode()

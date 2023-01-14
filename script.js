@@ -893,7 +893,7 @@ const mouse = new THREE.Vector2()
             gsap.to(camera.position,{ duration:.4, delay: 0.1, x:-1,y:1, z:-3})
                     gsap.to(camera.rotation,{ duration:.4, delay: 0, x:-.3,y:.5, z:0})
                     setTimeout(function() {
-                        window.location.assign('store');
+                        window.location.assign('https://glasshead.bigcartel.com');
                       }, 500); // 1000 milliseconds = 1 second							
             
         
@@ -978,7 +978,7 @@ const mouse = new THREE.Vector2()
                 
             }
             
-            else if(currentIntersect.object === doorBox){
+            else if(currentIntersect.object === doorBox || currentIntersect.object === doorBox2){
                 //constole.log('door clicked')
                 doyouwannabuy.play()
 				
