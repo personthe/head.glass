@@ -4,6 +4,9 @@ import {GLTFLoader} from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/G
 //import { DAT } from 'https://unpkg.com/dat.gui@0.7.9/build/dat.gui.js'
 //import {OrbitControls} from 'https://unpkg.com/three@0.126.1/examples/jsm/controls/OrbitControls.js'
 //----------------------------------------------------------------------------------------------------
+import GUI from 'https://cdn.jsdelivr.net/npm/lil-gui@0.17/+esm';
+
+let gui = new GUI({ injectStyles: false })
 
 
 
@@ -286,10 +289,18 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     windowBox.rotation.set(0,-1.25,0)
     scene.add(windowBox)
 
-    const mapGeometry = new THREE.BoxGeometry(.65,.5,.1)
+    const mapGeometry = new THREE.BoxGeometry(.55,.5,.1)
     const mapBox = new THREE.Mesh(mapGeometry,invisibleRed)
-    mapBox.position.set(0,2.345,-1)
+    mapBox.position.set(-.02,2.337,-1)
     scene.add(mapBox)
+
+    const discordBoxGeometry = new THREE.BoxGeometry(.23,.23,.16)
+    const discordBox = new THREE.Mesh(discordBoxGeometry,invisibleRed)
+    discordBox.position.set(0.42,2.18,-1.79)
+    gui.add(discordBox.position, 'y', -2, Math.PI).name('DISCORDY')
+    gui.add(discordBox.position, 'x', -2, Math.PI).name('DISCORDX')
+    gui.add(discordBox.position, 'z', -5, Math.PI).name('DISCORDZ')
+    scene.add(discordBox)
 
     const textArray = ["GLASSHEAD","GLASSHEAD","GLASSHEAD","GLASSHEAD","GLASSHEAD","GLASSHEAD","head.glass","I love GLASSHEAD","head.glass","head.glass","head.glass","head.glass","head.glass","head.glass","head.glass","head.glass","head.glass","head.glass","head.glass","head.glass","head.glass"];
     const textString = textArray[Math.floor(Math.random() * textArray.length)];
@@ -500,7 +511,7 @@ window.addEventListener('mousemove', (event) =>{
     let tvON = 0;
     let headreset = 0
     let picturereset = 0
-
+    let dis = new Audio('https://www.myinstants.com/media/sounds/discord-notification.mp3')
 
 
 
@@ -565,6 +576,19 @@ window.addEventListener('mousemove', (event) =>{
                     }, 2000);
                    
             }
+
+            else if(currentIntersect.object === discordBox)
+        {  
+                 
+            dis.volume = .5
+            dis.play()      
+
+                    setTimeout(function() {
+                        window.location.assign('https://discord.com/invite/HQgdh3wzBT');
+                      }, 500); // 1000 milliseconds = 1 second							
+            
+        
+        }
             
             else if(currentIntersect.object === pictureBox && picturereset === 0 ){
                 
@@ -909,7 +933,7 @@ if (shirt)shirt.rotation.y += .005;
 
     raycaster.setFromCamera(mouse,camera)
 
-    const objectToTests = [headBox, tvBox, windowBox,doorBox,pictureBox,mapBox]
+    const objectToTests = [headBox, tvBox, windowBox,doorBox,pictureBox,mapBox,discordBox]
     const intersects = raycaster.intersectObjects(objectToTests)
 
     for(const object of objectToTests){
@@ -943,3 +967,35 @@ if (shirt)shirt.rotation.y += .005;
     renderer.render(scene, camera)
 }
 animate()
+
+//!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++GUI+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
+// gui.add(invisibleRed,'visible',0,1,1).name('Red Debug')
+// //==============================================================
+
+// let OOO = new Audio('audio/onOOO.mp3')
+// gui.add( document, 'title' );
+// $('.lil-gui').append('<img src="imges/bf.jpg" class="MIGDE">');
+
+
+
+
+
+
+// $(document).on('keydown', function(event) {
+//     if (event.key == ',') { // 191 is the code for the '?' key
+//         $('.lil-gui').show();
+//         OOO.currentTime = 0
+//         OOO.play()
+//     }
+//   });
+  
+// $(document).on('keydown', function(event) {
+//     if (event.key == '.') { // 191 is the code for the '?' key
+//         OOO.currentTime = 0
+//         OOO.play()
+         $('.lil-gui').hide();
+//     }
+//   });
+
+//!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++GUI+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//

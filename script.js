@@ -500,6 +500,14 @@ const textMat = new THREE.MeshBasicMaterial({color: 'white', wireframe: true})
     gui.add(doorBox2.position, 'y', -2, Math.PI).name('door2y')
     scene.add(doorBox2)
 
+    const discordBoxGeometry = new THREE.BoxGeometry(.23,.23,.16)
+    const discordBox = new THREE.Mesh(discordBoxGeometry,invisibleRed)
+    discordBox.position.set(-1.74814150222053,1.04888490133232,-1.79115038378975)
+    gui.add(discordBox.position, 'y', -2, Math.PI).name('DISCORDY')
+    gui.add(discordBox.position, 'x', -2, Math.PI).name('DISCORDX')
+    gui.add(discordBox.position, 'z', -5, Math.PI).name('DISCORDZ')
+    scene.add(discordBox)
+
     
     
     const cottonMouthBox = new THREE.Mesh(helloGeometry,invisibleblue)
@@ -884,6 +892,7 @@ const mouse = new THREE.Vector2()
     let cabON = 0;
     let headreset = 0
     let picturereset = 0
+    let dis = new Audio('https://www.myinstants.com/media/sounds/discord-notification.mp3')
 
     window.addEventListener('click', (event) =>{
         if(PurrentIntersect.object === shirtBox)
@@ -894,6 +903,19 @@ const mouse = new THREE.Vector2()
                     gsap.to(camera.rotation,{ duration:.4, delay: 0, x:-.3,y:.5, z:0})
                     setTimeout(function() {
                         window.location.assign('https://glasshead.bigcartel.com');
+                      }, 500); // 1000 milliseconds = 1 second							
+            
+        
+        }
+        
+       else if(currentIntersect.object === discordBox)
+        {  
+                 
+            dis.volume = .5
+            dis.play()      
+
+                    setTimeout(function() {
+                        window.location.assign('https://discord.com/invite/HQgdh3wzBT');
                       }, 500); // 1000 milliseconds = 1 second							
             
         
@@ -1924,7 +1946,7 @@ function animate(){
 
 
 
-    const objectToTests = [headBox, tvBox, windowBox,doorBox,cabBox,pictureBox,mapBox,doorBox2]
+    const objectToTests = [headBox, tvBox, windowBox,doorBox,cabBox,pictureBox,mapBox,doorBox2,discordBox]
     const intersects = raycaster.intersectObjects(objectToTests)
 
     for(const object of objectToTests){
