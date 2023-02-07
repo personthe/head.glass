@@ -1101,7 +1101,7 @@ const mouse = new THREE.Vector2()
                 pig.pause()  
                 pig.currentTime = 0
                 pig.play()                          
-            window.open('http://135.148.29.252:7341/#world:-121:0:291:1500:0:0:0:0:perspective');
+            window.open('http://135.148.29.252:3373');
             } 
 
             // click cab //musiccab logic
