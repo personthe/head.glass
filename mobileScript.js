@@ -584,7 +584,7 @@ window.addEventListener('mousemove', (event) =>{
             dis.play()      
 
                     setTimeout(function() {
-                        window.location.assign('https://discord.com/invite/HQgdh3wzBT');
+                        window.location.assign('https://discord.com/invite/WAUQ4aG7B2');
                       }, 500); // 1000 milliseconds = 1 second							
             
         
