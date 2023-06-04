@@ -1100,8 +1100,9 @@ const mouse = new THREE.Vector2()
             {   
                 pig.pause()  
                 pig.currentTime = 0
-                pig.play()                          
-            window.open('http://customer-replace.at.ply.gg:59208');
+                pig.play() 
+                alert('Minecraft map currently down')                         
+            //window.open('http://customer-replace.at.ply.gg:59208');
             } 
 
             // click cab //musiccab logic
@@ -1375,9 +1376,10 @@ camera.rotation.x = -.4
 scene.add(camera)
 
 
-const renderer = new THREE.WebGL1Renderer({
-    canvas: canvas})
-//const controls = new OrbitControls(camera, renderer.domElement)
+const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+
+});
 
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio (Math.min (window.devicePixelRatio, 1))

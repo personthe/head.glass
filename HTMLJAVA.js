@@ -7,7 +7,7 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 
 
 const minecraftServer = document.createElement('div');
-minecraftServer.innerHTML = 'MINECRAFT SERVER IP: rather-surrey.craft.ply.gg';
+minecraftServer.innerHTML = 'MINECRAFT SERVER IP: mine.head.glass';
 minecraftServer.style.position = 'absolute';
 minecraftServer.style.bottom = '10px';
 minecraftServer.style.left = '50%';
@@ -28,14 +28,14 @@ sheep.play();
 copy.play();
 
 const textArea = document.createElement('textarea');
-textArea.value = 'rather-surrey.craft.ply.gg';
+textArea.value = 'mine.head.glass';
 document.body.appendChild(textArea);
 textArea.select();
 document.execCommand('copy');
 document.body.removeChild(textArea);
 minecraftServer.innerHTML = '<strong>SERVER IP COPIED TO CLIPBOARD!<strong>';
 setTimeout(function() {
-  minecraftServer.innerHTML = '<b>MINECRAFT SERVER IP: rather-surrey.craft.ply.gg<b>';
+  minecraftServer.innerHTML = '<b>MINECRAFT SERVER IP: mine.head.glass<b>';
   }, 2000);
 
 
@@ -45,14 +45,14 @@ setTimeout(function() {
 minecraftServer.addEventListener('click', function() {
 
   const textArea = document.createElement('textarea');
-  textArea.value = 'rather-surrey.craft.ply.gg';
+  textArea.value = 'mine.head.glass';
   document.body.appendChild(textArea);
   textArea.select();
   document.execCommand('copy');
   document.body.removeChild(textArea);
   minecraftServer.innerHTML = '<strong>SERVER IP COPIED TO CLIPBOARD!<strong>';
   setTimeout(function() {
-    minecraftServer.innerHTML = '<b>MINECRAFT SERVER IP: rather-surrey.craft.ply.gg<b>';
+    minecraftServer.innerHTML = '<b>MINECRAFT SERVER IP: mine.head.glass<b>';
     }, 2000);
 
   });

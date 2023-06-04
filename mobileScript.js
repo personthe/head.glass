@@ -618,8 +618,9 @@ window.addEventListener('mousemove', (event) =>{
             {   
                 pig.pause()  
                 pig.currentTime = 0
-                pig.play()                          
-            window.open('http://customer-replace.at.ply.gg:59208');
+                pig.play()
+                alert('Minecraft map currently down')                           
+            //window.open('http://customer-replace.at.ply.gg:59208');
             } 
 
             else if(currentIntersect.object === windowBox){
