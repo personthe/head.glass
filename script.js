@@ -902,7 +902,7 @@ const mouse = new THREE.Vector2()
             gsap.to(camera.position,{ duration:.4, delay: 0.1, x:-1,y:1, z:-3})
                     gsap.to(camera.rotation,{ duration:.4, delay: 0, x:-.3,y:.5, z:0})
                     setTimeout(function() {
-                        window.location.assign('https://glasshead.bigcartel.com');
+                        window.location.assign('./closet');
                       }, 500); // 1000 milliseconds = 1 second							
             
         

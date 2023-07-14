@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image" href="shirt.ico" />
+    <meta name="viewport" content="width=506; user-scalable=no;" />
+    <title>GLASSHEAD STORE</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+    <script type="module" src="closet.js" async></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+
+    
+  
+
+
+</head>
+
+  <body>
+
+    <div id="chat-box" style="display:none;position:absolute;background:rgb(252, 156, 156);color:black;border:1px solid black;padding:5px;">
+      Instrumental by Vic Zinner
+  </div>
+    <embed src="audio/on.mp3">
+    <div id="cum" class="cum">....</div>
+
+    <div class="GUIWIN">
+
+
+    <div class="menustuff">
+
+      <div id="music" class="music"><strong>MUSIC</strong></div>
+  
+      <button class="play-button" id="play-button">Welcome to the glasshouse closet!<br>PRESS TO CONTINUE</button>
+  
+      <div class="back" id="back"><strong>BACK HOME</strong></div>
+  
+
+
+
+    </div>
+    <!-- =======================================main================================================ -->
+ 
+ 
+    <div class="mainGUI" id="mainGUI">
+
+<div id='collection-component-1687254827412'></div>
+<script type="text/javascript">
+
+
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
+    } else {
+      loadScript();
+    }
+  } else {
+    loadScript();
+  }
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: '429304.myshopify.com',
+      storefrontAccessToken: '15398241e154b6070c382b52868c82de',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('collection', {
+        id: '449048281396',
+        node: document.getElementById('collection-component-1687254827412'),
+        moneyFormat: '%24%7B%7Bamount%7D%7D',
+        options: {
+  "product": {
+    "styles": {
+      
+      "product": {
+        "background-color": "rgba(255, 255, 255, 0.466)",
+        "border": "2px solid black",
+        "padding": "5px",
+        "@media (min-width: 601px)": {
+          "max-width": "calc(25% - 20px)",
+          "margin-left": "20px",
+          "margin-bottom": "50px",
+          "width": "calc(25% - 20px)",
+          "border": "1px dashed black" // Add this line to include the dashed black border
+        
+        }
+      },
+      "button": {
+        "color": "#000000",
+        "font-family": "Gill Sans, sans-serif",
+        "font-size": "16px",
+        "padding-top": "16px",
+        "padding-bottom": "16px",
+        ":hover": {
+          "background-color": "#e583e6"
+        },
+        "background-color": "#fe91ff",
+        ":focus": {
+          "background-color": "#e583e6"
+        }
+      },
+      "quantityInput": {
+        "color": "#000000",
+        "font-size": "16px",
+        "padding-top": "16px",
+        "padding-bottom": "16px"
+      }
+    },
+    "buttonDestination": "modal",
+    "contents": {
+      "options": false
+    },
+    "width": "380px",
+    "text": {
+      "button": "View Swagger"
+    }
+  },
+  "productSet": {
+
+    "styles": {
+      "products": {
+        "@media (min-width: 601px)": {
+          "margin-left": "-20px"
+        }
+      }
+    }
+  },
+  "modalProduct": {
+    
+    "contents": {
+      "img": false,
+      "imgWithCarousel": true,
+      "button": false,
+      "buttonWithQuantity": true
+    },
+    "styles": {
+      "product": {
+        
+        "@media (min-width: 601px)": {
+          "max-width": "100%",
+          "margin-left": "0px",
+          "margin-bottom": "0px"
+        }
+      },
+      "button": {
+        "font-family": "Gill Sans, sans-serif",
+        "font-size": "16px",
+        "padding-top": "16px",
+        "padding-bottom": "16px",
+        ":hover": {
+          "background-color": "#e583e6"
+        },
+        "background-color": "#fe91ff",
+        ":focus": {
+          "background-color": "#e583e6"
+        }
+      },
+      "quantityInput": {
+        "font-size": "16px",
+        "padding-top": "16px",
+        "padding-bottom": "16px"
+      },
+      "title": {
+        "color": "#000000"
+      },
+      "price": {
+        "color": "#000000"
+      },
+      "compareAt": {
+        "color": "#000000"
+      },
+      "unitPrice": {
+        "color": "#000000"
+      },
+      "description": {
+        "color": "#000000"
+      }
+    },
+    "text": {
+      "button": "Add to cart"
+    }
+  },
+  "modal": {
+    "styles": {
+      "modal": {
+        "background-color": "#fffad6"
+        
+      }
+    }
+  },
+  "option": {
+    "styles": {
+      "label": {
+        "color": "#000000"
+        
+      }
+    }
+  },
+  "cart": {
+    "styles": {
+      "button": {
+        "font-family": "Gill Sans, sans-serif",
+        "font-size": "16px",
+        "padding-top": "16px",
+        "padding-bottom": "16px",
+        ":hover": {
+          "background-color": "#e583e6"
+        },
+        "background-color": "#fe91ff",
+        ":focus": {
+          "background-color": "#e583e6"
+        }
+      },
+      "title": {
+        "color": "#000000"
+      },
+      "header": {
+        "color": "#000000"
+      },
+      "lineItems": {
+        "color": "#000000"
+      },
+      "subtotalText": {
+        "color": "#000000"
+      },
+      "subtotal": {
+        "color": "#000000"
+      },
+      "notice": {
+        "color": "#000000"
+      },
+      "currency": {
+        "color": "#000000"
+      },
+      "close": {
+        "color": "#000000",
+        ":hover": {
+          "color": "#000000"
+        }
+      },
+      "empty": {
+        "color": "#000000"
+      },
+      "noteDescription": {
+        "color": "#000000"
+      },
+      "discountText": {
+        "color": "#000000"
+      },
+      "discountIcon": {
+        "fill": "#000000"
+      },
+      "discountAmount": {
+        "color": "#000000"
+      },
+      "cart": {
+        "background-color": "#feffde"
+      },
+      "footer": {
+        "background-color": "#feffde"
+      }
+    },
+    "text": {
+      "title": "CART",
+      "notice": "Shipping is added at checkout.",
+      "button": "Finish & Pay",
+      "noteDescription": "Special instructions and or personal message to GLASSHEAD"
+    },
+    "contents": {
+      "note": true
+    }
+  },
+  "toggle": {
+    "styles": {
+      "toggle": {
+        "font-family": "Gill Sans, sans-serif",
+        "background-color": "#fe91ff",
+        ":hover": {
+          "background-color": "#e583e6"
+        },
+        ":focus": {
+          "background-color": "#e583e6"
+        }
+      },
+      "count": {
+        "font-size": "16px"
+      }
+    }
+  },
+  "lineItem": {
+    "styles": {
+      "variantTitle": {
+        "color": "#000000"
+      },
+      "title": {
+        "color": "#000000"
+      },
+      "price": {
+        "color": "#000000"
+      },
+      "fullPrice": {
+        "color": "#000000"
+      },
+      "discount": {
+        "color": "#000000"
+      },
+      "discountIcon": {
+        "fill": "#000000"
+      },
+      "quantity": {
+        "color": "#000000"
+      },
+      "quantityIncrement": {
+        "color": "#000000",
+        "border-color": "#000000"
+      },
+      "quantityDecrement": {
+        "color": "#000000",
+        "border-color": "#000000"
+      },
+      "quantityInput": {
+        "color": "#000000",
+        "border-color": "#000000"
+        
+      }
+    }
+  }
+},
+      });
+    });
+  }
+})();
+
+</script>
+
+      
+    </div>
+
+    </div>  
+  </div>
+      <div class="manbox">
+      <img class="manmouth" id="manmouth" src="images/manMouth.png" alt="">
+      <img class="manimage" id="manimage" src="images/storemanMAIN.png" alt="">
+      </div>
+
+    <div class="roombox" >
+        <img src="images/room.png" id="roombox" alt="">
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,1300 @@
+*{
+  -webkit-text-size-adjust: none;
+}
+:root {
+  cursor: url('/mouse/mousemain.png'), auto;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: bisque;
+
+
+
+  padding: 0;
+  margin: 0;
+  margin-left: 44px;
+  overflow: hidden;
+  display: inline-flex;
+  flex-direction: column;
+
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+}
+
+embed{
+display: none;
+}
+
+img{
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}
+
+
+.play-button{
+
+position: fixed; top: 45%; left: 48%; z-index: 8;
+padding-left: 20px;
+padding-right: 20px;
+border: 0;
+transition: all 1000ms;
+}
+.play-button:active{
+
+
+padding-left: 20px;
+padding-right: 20px;
+border: 20px;
+}
+
+.cum{
+  background-color: black;
+  position: absolute;z-index: 5;
+  opacity: 80%;
+  padding: 10000%;
+  transform: scale(200%);
+}
+
+div{
+  display: inline-block;
+  vertical-align: middle;
+  
+}
+
+button {
+  cursor: url('/mouse/mouse2.png'), auto;
+  background-color: #bebebe;
+  border: 0;
+}
+button:hover {
+  background-color: #888888;
+  border: 0;
+}
+
+.roombox{
+
+  background-color: rgb(0, 0, 0);
+  position: fixed;top: 0px; left: 0px; z-index:-2;
+  display: inline-flex;
+  
+  height: 1200px;
+  width: 12000px;
+
+  
+
+  
+
+}
+
+.showback{
+  transform: translateX(-800px);
+  transition: transform 1.7s;
+  text-align: center;
+  display: block;bottom: 50%; 
+  position: relative; 
+  white-space: nowrap;
+
+min-height: 5px;
+  min-width: 200px;
+max-height: 0%;
+  max-width: 0%;
+  text-align: center;
+
+}
+
+ .manbox{
+  position: absolute;
+margin-left: 20%;
+transform: translateY(270px);
+   display: inline-block;
+width: 100px;
+height: 100px;
+transition: all 1000ms;
+} 
+
+
+.manimage{
+  width: 700px;
+  height: 700px;
+  position: absolute;
+  
+  
+} 
+.manmouth{
+  width: 700px;
+  height: 700px;
+  position: absolute;
+  z-index: 900;
+  display: none;
+  
+  
+} 
+.manshirt{
+  width: 700px;
+  height: 700px;
+  position: absolute;
+  
+  
+} 
+.back {
+  z-index: 900;
+  cursor: url('/mouse/mouse2.png'), auto;
+
+  transform: translateX(-800px);
+  transition: transform 2s;
+  position: relative;z-index:4;
+  padding-bottom: 3px;
+  display: block;
+  text-align: center;
+  background-color: #ff0000;
+  color: rgb(0, 0, 0);
+  width: 120px;
+  height: 40px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  align-items: center;
+  
+  
+}
+
+
+
+@media (max-width: 1350px) {
+  .mainGUI {
+    margin-left: -18px;
+  }
+  .manbox {
+    position: absolute; right: 570px;
+    transition: all 1000ms;
+    transform: translateY(280px);
+  }
+
+  .play-button{
+
+    position: fixed; top: 45%; left: 49.5%; z-index: 8;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 0;
+    }
+}
+@media (max-width: 1200px) {
+  .manbox {
+    position: absolute; right: 700px;
+    transition: all 1000ms;
+  }
+
+  .play-button{
+
+    position: fixed; top: 45%; left: 44.5%; z-index: 8;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 0;
+    }
+}
+
+@media (max-width: 900px) {
+  .manbox {
+    position: absolute; right: 475px; top: 250px;
+    transition: all 1000ms;
+    transform: translateY(180px);
+  }
+  .play-button{
+
+    position: fixed; top: 45%; left: 32.5%; z-index: 8;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 0;
+    }
+
+
+}
+
+
+
+/* ======================================other=============================================== */
+
+
+        /* . -------------------------------------------------------------------.        
+          | [Esc] [F1][F2][F3][F4][F5][F6][F7][F8][F9][F0][F10][F11][F12] o o o|        
+          |                                                                    |        
+          | [`][1][2][3][4][5][6][7][8][9][0][-][=][_<_] [I][H][U] [N][/][*][-]|        
+          | [|-][Q][W][E][R][T][Y][U][I][O][P][{][}] | | [D][E][D] [7][8][9]|+||        
+          | [CAP][A][S][D][F][G][H][J][K][L][;]['][#]|_|           [4][5][6]|_||        
+          | [^][\][Z][X][C][V][B][N][M][,][.][/] [__^__]    [^]    [1][2][3]| ||        
+          | [c]   [a][________________________][a]   [c] [<][V][>] [ 0  ][.]|_||        
+          `--------------------------------------------------------------------'         */
+
+
+/* ======================================MAIN GUI=============================================== */
+.menustuff {
+  margin-top: 50px; 
+  display: flex; 
+  flex-direction: column;  /* Stack items vertically */
+  justify-content: center;  /* Align vertically */
+  align-items: center;  /* Align horizontally */
+  gap: 3px;  /* Creates space around items */
+  padding: 3px;  /* Creates some space around the container itself */
+  box-sizing: border-box;  /* This makes sure padding doesn't affect your layout size */
+
+}
+
+
+.show-image{
+  
+  display: inline-flex;
+  position: absolute;z-index: 5;bottom: 810px;left: 20px;
+  
+
+  
+}
+.show-image img{
+  position: fixed;
+height: 700px;
+width: 700px;
+  
+}
+
+.mainGUI {
+
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+  position: relative;z-index:4;
+  text-align: center;
+  background-color: #ffa9a9ab;
+  color: rgb(0, 0, 0);
+  width: 350px;
+  height: 650px;
+
+  box-shadow: #34ce1f;
+  transform: translateX(-500px);
+  transition: transform 1.5s;
+  transition: all .1s;
+
+    overflow-y: auto;
+    max-height: 600px; /* Adjust the max-height value as needed */
+    border: 3px solid rgb(255, 138, 216);
+  
+}
+
+.MIN{
+  position: absolute;right: 0px;
+ 
+  padding-bottom: 6px;
+  padding-top: 6px;
+  
+}
+
+/* ======================================menu1=============================================== */
+
+.dropdownbox{
+  cursor: url('/mouse/mouse2.png'), auto;
+  
+  position: relative;
+  margin: 5px;
+  margin-top: 33px;
+  margin-left: 30px;
+  margin-right: 30px;
+  display: block;
+}
+.dropdownbox * {
+  display: block;
+  
+box-sizing: content-box;
+
+}
+
+.select{
+
+  width: 250px;
+  background-color: #d4d4d4;
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content:center;
+  padding: 1em 1em;
+  
+  transition:all 0.3;
+  box-shadow: -0px 5px 20px rgb(124, 124, 124);
+  
+
+}
+
+.select * {
+
+  
+  font-size: 25px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  transition:all 0.3;
+
+  margin: 0;
+  
+}
+
+.selected{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  transition:all 0.3;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: rgba(0, 0, 0, 0);
+  }
+
+.select:hover {
+
+  
+  background-color: #bebebe;
+
+
+  transition:all 0.3;
+}
+.select:hover * {
+  
+
+  transition:all 0.3;
+}
+
+
+.caret{
+
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right:20px solid transparent;
+  border-top: 5px solid transparent;
+  transition: 0.3;
+  background-color: rgba(0, 0, 0, 0);
+
+}
+
+.caret-rotate{
+  visibility: hidden;
+
+}
+
+.menu{
+  
+  padding: 4px 15px;
+  background: #bdbdbd;
+  color: #000;
+  position: absolute;
+  top: 3.5em;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+  opacity: 0;
+  display: none;
+  transition: all 0.3;
+  z-index: 5;
+}
+
+.menu li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+  margin: 0.3em 0;
+  cursor: url(mouse/mouse1.png);
+  background-color: #f5f5f5;
+  transition: all 0.3;
+}
+
+.menu li:hover {
+
+background-color: #e6ff8b;
+
+}
+
+.menu-open {
+  display: inline-block;
+  opacity: 1;
+  transition: all 0.3;
+
+}
+
+.active{
+  background-color: #ffffff;
+}
+
+.Icon{
+  
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+
+/* =============================================menu2========================================== */
+
+
+.dropdownbox2{
+  top: 5px;
+  margin-bottom: 10px;
+  display: inline-flex;
+  justify-content: center;
+  cursor: url('/mouse/mouse2.png'), auto;
+  min-width: 173px;
+  position: relative;
+
+}
+
+
+
+.select2{
+
+  
+  background-color: #d4d4d4;
+  color: rgb(0, 0, 0);
+
+  
+  min-width: 100px;
+  transition:all 0.3;
+  box-shadow: -0px 5px 20px rgb(124, 124, 124);
+  font-size: 15px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.select2 * {
+
+  display: flex;
+  justify-content:center;
+  font-size: 15px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  transition:all 0.3;
+  font-weight: bold;
+  margin: 0;
+  
+}
+
+.select2:hover {
+
+  
+  background-color: #afafaf;
+
+
+  transition:all 0.3;
+}
+.select2:hover * {
+  
+
+  transition:all 0.3;
+}
+
+.selected2{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 15px;
+  background-color: rgba(0, 0, 0, 0);
+  }
+
+.menu2{
+  
+  padding: 4px 15px;
+  background: #bdbdbd;
+  color: #000;
+  position: absolute;
+  top: 1.1em;
+  left: 50%;
+  width: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  display: none;
+  transition: all 0.3;
+  z-index: 1;
+}
+
+.menu2 li {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+  margin: 0.3em 0;
+  cursor: url(mouse/mouse1.png);
+  background-color: #f5f5f5;
+  transition: all 0.3;
+}
+
+.menu2 li:hover {
+
+background-color: #e6ff8b;
+
+}
+
+.menu-open2 {
+  display: inline-block;
+  opacity: 1;
+  transition: all 0.3;
+
+}
+
+.active2{
+  background-color: #ffffff;
+}
+
+.Icon2{
+  
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.caret2{
+
+  
+
+  border-top: 5px solid transparent;
+  transition: 0.3;
+  background-color: rgba(0, 0, 0, 0);
+
+}
+
+.caret-rotate2{
+  visibility: hidden;
+
+}
+
+/* =============================================item boxes========================================== */
+
+.shirtbox{
+  
+  margin-left: 9px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  border: 1px solid black;
+  display: none;
+ 
+  height: 200px;
+  width: 330px;
+  background-color: rgb(212, 212, 212);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  
+}
+.hoodiebox{
+  
+  margin-left: 9px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  border: 1px solid black;
+  display: none;
+ 
+  height: 200px;
+  width: 330px;
+  background-color: rgb(212, 212, 212);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  
+}
+.sockbox{
+  
+  margin-left: 9px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  border: 1px solid black;
+  display: none;
+ 
+  height: 200px;
+  width: 330px;
+  background-color: rgb(212, 212, 212);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  
+}
+.pantbox{
+  
+  margin-left: 9px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  border: 1px solid black;
+  display: none;
+ 
+  height: 200px;
+  width: 330px;
+  background-color: rgb(212, 212, 212);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  
+}
+.underwearbox{
+  
+  margin-left: 9px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  border: 1px solid black;
+  display: none;
+ 
+  height: 200px;
+  width: 330px;
+  background-color: rgb(212, 212, 212);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  
+}
+.stuffbox{
+  
+  margin-left: 9px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  border: 1px solid black;
+  display: none;
+ 
+  height: 200px;
+  width: 330px;
+  background-color: rgb(212, 212, 212);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  
+}
+
+.item{
+  margin-bottom: 10px;
+  margin-top: 15px;
+  
+
+  font-size: 12px;
+  
+position: relative;left: 0px;
+display:inline-flex;
+text-align: center;
+justify-content: center;
+flex-direction:column;
+
+
+background-color: #cfb62900;
+width: 85px;
+max-width: 85px;
+height: 120px;
+text-align: center;
+
+align-items: center;
+overflow: hidden;
+border: 2px solid #ffffff;
+
+
+}
+.item-selected{
+  border: 2px dashed black;
+
+}
+.item-selected .itemHeaderBox{
+  background-color: #fffb1f;
+
+}
+.item:hover{
+
+  border: 2px dashed #9061ff;
+
+}
+.item:hover .itemHeaderBox{
+
+background-color: #fffb1f;
+
+}
+
+.item img{
+
+display: inline-flex;
+
+width: 85px;
+height: 85px;
+}
+
+.item h1{
+font-size: 10px;
+margin: 0;
+
+padding-top: 2px;
+padding-bottom: 2px;
+padding-left: 2px;
+padding-right: 2px;
+
+
+}
+
+.item p{
+  position: relative; top: -10px;
+font-size: 10.5px;
+padding-left: 10px;
+padding-right: 10px;
+
+
+
+}
+
+
+.itemHeaderBox{
+
+ width: 85px;
+
+background-color: #a8a8a8;
+}
+
+.priceofitem{
+  flex-direction: row;
+
+  display: inline-flex;
+  justify-content:center;
+  position: relative;bottom: 1px;
+font-size: 10px;
+width:80px;
+height: 20px;
+  background-color: #00000000;
+  border-top: 1.5px dashed black;
+color: #000;
+}
+
+.priceofitem h2{
+  font-size: 15px; 
+  
+margin: 0;
+  
+}
+.priceofitem h3{
+  font-size: 15px;
+  
+margin: 0;
+  
+}
+
+
+.itemInfoBox{
+
+  background-color: #34ce1f;
+}
+
+
+/* =============================================Cart========================================== */
+.carttitle{
+  text-align: center;
+  display: block;
+  margin: 0px;
+
+  position: relative; z-index: -2; top: 2px;
+text-decoration-line: overline;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+font-weight: bold;
+font-size: 10px;
+
+
+
+}
+
+.canbox{
+  display: inline-flex;
+  position: absolute; left: 320px; bottom: 5px;
+
+
+}
+.can{
+  display: inline-flex;
+
+  width: 25px;
+  
+  height: 35px;
+  
+}
+
+.canbox h2{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  position: absolute;right: -27px;top: 0px;z-index: 22;
+  transform: scale(0%);
+  white-space: nowrap;
+  background-color: rgba(255, 36, 36, 0);
+color: #000;
+  
+  transition: all  100.3ms;
+}
+.canbox:hover h2{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  position: absolute;top: -35px;z-index: 22;
+  white-space: nowrap;
+
+  display: inline-flex;
+  background-color: rgb(255, 36, 36);
+  border-radius: 15px;
+  transform: scale(100%);
+  transition: all  100.3ms;
+
+}
+
+.canbox:hover .can {
+  content: url(/images/canO.png);
+  display: inline-block;
+}
+.canbox:hover  {
+    background-color: rgba(255, 0, 0, 0.26);
+  }
+
+
+
+.maincartdiv{
+  
+  text-align: center;
+
+  width: 107px;
+  font-size: 13px;
+  margin-left: 5px;
+margin-right: 5px;
+margin-top: 5.5px;
+margin-bottom: 1px;
+justify-items: center;
+height: 107px;
+flex-direction: column;
+outline: solid;
+outline-color: rgb(255, 115, 145);
+background-color: rgb(255, 255, 255);
+  
+}
+.subcartdiv{
+ display: inline-flex; 
+
+  width: 107px;
+
+
+
+
+margin: 0;
+padding: 0;
+
+
+flex-direction: column;
+align-items: center;
+
+  
+}
+.pricecartdiv{
+ display: inline-flex; 
+
+  width: 107px;
+height: 11px;
+
+
+
+margin: 0;
+padding: 0;
+
+
+flex-direction: row;
+align-items: center;
+justify-content: center;
+background-color: #fffb1f;
+font-size: 11px;
+padding: 0;
+margin-top: 0px;
+margin-bottom: 0px;
+width: 50px;
+border: 1px dotted black ;
+
+  
+}
+
+
+
+.cart{
+
+  overflow-y: scroll;
+  overflow-x: auto;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  border: 1px solid black;
+  display: inline-flex;
+  justify-content: left;
+  height: 128px;
+  width: 330px;
+  background-color: rgb(212, 212, 212);
+  flex-direction: row;
+  text-align: center;
+  vertical-align: middle;
+  margin-bottom: 10px
+}
+
+.cart h2{
+  font-size: 9px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin: 0;
+  padding: 0;
+}
+.cart h1{
+
+
+ 
+  font-size: 11px;
+  padding: 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  
+
+  
+}
+.cart h3{
+
+
+ 
+  font-size: 11px;
+  padding: 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  
+
+  
+}
+
+.totalbox{
+  
+  width: 300px;
+  font-weight: bolder;
+  margin: 0px;
+  padding: 0;
+  padding-left: 10px;
+  display: inline-flex;
+  justify-content: left;
+  border: 2px dotted black ;
+  background-color: #fffb1f;
+  color: #16580d;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.carttotal{
+  font-weight: bolder;
+  margin: 0px;
+  padding: 0;
+  
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.cartnumber{
+  font-weight: bolder;
+  margin: 0px;
+  padding: 0;
+  color: #16580d;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+
+.cart img{
+position:relative; 
+
+width: 37px;
+
+margin-bottom: 0px;
+margin-left: 20px;
+margin-right: 20px;
+
+}
+
+.remove{
+  font-weight: bold;
+  font-size: 10px;
+margin: 0;
+padding: 0;
+width: 90px;
+background-color: rgb(255, 63, 63);
+}
+
+/* =============================================finish buttons========================================== */
+
+.cartadd{
+  
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  width: 200px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: inline-flex;
+  background-color: #ffffff;
+  height:25px ;
+}
+.cartadd:hover{
+
+  background-color: rgb(255, 251, 39);
+}
+
+.done{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  justify-content: center;
+  margin-top: 10px;
+  width: 200px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: inline-flex;
+  background-color: #ffffff;
+}
+.done:hover{
+  color: rgb(1, 82, 1);
+  
+  background-color: rgb(168, 255, 172);;
+}
+
+
+/* ==================================COLOR========================================= */
+
+.white{
+  color: rgb(255, 255, 255);
+  text-shadow: 0px 1px 3px  black;
+}
+.black{
+  color: rgb(0, 0, 0);
+}
+.pink{
+  color: rgb(233, 110, 151);
+}
+.red{
+  color: rgb(255, 0, 0);
+}
+.blue{
+  color: rgb(0, 68, 255);
+}
+.green{
+  color: rgb(11, 131, 0);
+}
+
+.selectedColor{
+  color: #000;
+}
+
+.loaderbox{
+  margin: 0;
+  padding: 0;
+  top: 200px;
+  left:245px;
+  right: 0;
+  bottom: 0;
+
+  text-align: center;
+
+  
+position: absolute; z-index: 10;
+display: inline-flex;
+
+
+
+}
+.loaderbox h1{
+  color: #000;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 30px;
+  left: 25px;
+  right: 0;
+  bottom: 0;
+
+  text-align: center;
+
+  
+position: absolute; z-index: 10;
+display: inline-flex;
+
+
+
+}
+
+
+
+.loadercanvis{
+position:relative;
+
+height: 100px;
+width: 500px;
+}
+
+
+
+
+
+@media (max-width: 506px) {
+
+  .menustuff {
+    display: flex; 
+    flex-direction: column;  /* Stack items vertically */
+    justify-content: center;  /* Align vertically */
+    align-items: center;  /* Align horizontally */
+    gap: 3px;  /* Creates space around items */
+    padding: 3px;  /* Creates some space around the container itself */
+    box-sizing: border-box;  /* This makes sure padding doesn't affect your layout size */
+  
+  }
+
+  .mainGUI {
+    margin-left: -18px;
+  }
+  
+  .manbox {
+    position: absolute; right: 500px;
+    transition: all 1000ms;
+  }
+  .play-button{
+
+    position: fixed; top: 40%; left: 28%; z-index: 8;
+    padding: 20px;
+
+    border: 0;
+    }
+
+    body{
+      margin-top: 70px;
+      margin-left: 110px;
+    }
+
+    :root {
+      zoom: reset;
+      cursor: url('/mouse/mousemain.png'), auto;
+      color: rgba(255, 255, 255, 0.87);
+      background-color: bisque;
+    
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-text-size-adjust: 100%;
+      padding: 0;
+      margin: 0;
+      margin-left: -25px;
+      overflow: hidden;
+      display: inline-flex;
+      flex-direction: row;
+      
+      background-size:contain;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      
+    }
+
+    .cum{
+      background-color: black;
+      position: absolute;z-index: 5;
+      opacity: 80%;
+      padding: 10%;
+      margin-left: 32%;
+      margin-top: -250%;
+      height: 2500px;
+      transform: scale(700%);
+      transform: scaleX(750%);
+    }
+
+    .roombox{
+      zoom: 100%;
+        background-color: rgb(0, 0, 0);
+  position: fixed;top: 0px; left: -1000px; z-index:-2;
+  display: inline-flex;
+  
+  height: 1350px;
+  width: 11000px;
+    }
+
+    .showback{
+      margin: 0;
+      transform: translateX(-600px);
+      transition: transform 1.7s;
+      text-align: center;
+      display: block;
+      position: relative; 
+      white-space: nowrap;
+    
+    min-height: 30px;
+      min-width: 200px;
+      text-align: center;
+    
+    }
+
+.back{
+  padding: 9px;
+}
+
+
+.show-image{
+  
+  display: inline-flex;
+  position: absolute;z-index: 5;bottom: 490px;left: 29px;
+  
+
+  
+}
+.show-image img{
+  position: fixed;
+height: 500px;
+width: 500px;
+  
+}
+
+
+}
+
+.shopify-buy__product__variant-img {
+  position: absolute;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+
+}
+
+.shopify-buy__product__variant-img.active {
+
+  z-index: 1;
+  opacity: 1;
+}
+
+
+.music{
+  cursor: url('/mouse/mouse2.png'), auto;
+  background-color:#34ce1f;
+  color: black;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  transform: translateX(-600px);
+  transition: transform 1.9s;
+}
+
+#chat-box {
+  pointer-events: none; /* so you can click 'through' the tooltip */
+  z-index: 100; /* so the tooltip is above other elements */
+  width: 200px; /* width of the tooltip */
+  word-wrap: break-word; /* wrap words if they are too long for the tooltip */
+}
+
+.shopify-buy__product-description{
+  color: #16580d;
+}
+

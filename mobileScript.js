@@ -663,7 +663,7 @@ window.addEventListener('mousemove', (event) =>{
 
                 if(PurrentIntersect.object === shirtBox)
                 {                 
-                    window.location.assign('https://glasshead.bigcartel.com');
+                    window.location.assign('./closet');
                     doyouwannabuy.pause()
                     setTimeout(function() {
                         disableCode()
