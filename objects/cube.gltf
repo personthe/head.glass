@@ -3,10 +3,6 @@
 		"generator":"Khronos glTF Blender I/O v4.3.47",
 		"version":"2.0"
 	},
-	"extensionsUsed":[
-		"KHR_materials_specular",
-		"KHR_materials_ior"
-	],
 	"scene":0,
 	"scenes":[
 		{
@@ -19,35 +15,13 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"head",
-			"scale":[
-				0.17568691074848175,
-				0.22422391176223755,
-				0.17568691074848175
-			],
-			"translation":[
-				0,
-				0.22880560159683228,
-				0.04142553359270096
-			]
+			"name":"Cube"
 		}
 	],
 	"materials":[
 		{
 			"doubleSided":true,
-			"extensions":{
-				"KHR_materials_specular":{
-					"specularColorFactor":[
-						0.0,
-						0.0,
-						0.0
-					]
-				},
-				"KHR_materials_ior":{
-					"ior":1.4500000476837158
-				}
-			},
-			"name":"Material.001",
+			"name":"side",
 			"pbrMetallicRoughness":{
 				"baseColorTexture":{
 					"index":0
@@ -58,7 +32,7 @@
 	],
 	"meshes":[
 		{
-			"name":"Cube.002",
+			"name":"Cube.001",
 			"primitives":[
 				{
 					"attributes":{
@@ -80,70 +54,70 @@
 	],
 	"images":[
 		{
-			"mimeType":"image/png",
-			"name":"lon",
-			"uri":"lon.png"
+			"mimeType":"image/jpeg",
+			"name":"pixel-style-game-dirt-grass-260nw-2147205411",
+			"uri":"pixel-style-game-dirt-grass-260nw-2147205411.jpg"
 		}
 	],
 	"accessors":[
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":193,
+			"count":24,
 			"max":[
-				2.475571632385254,
-				1.8201547861099243,
-				1.2426360845565796
+				1,
+				1,
+				1
 			],
 			"min":[
-				-2.475571632385254,
-				-1.0332133769989014,
-				-3.6904025077819824
+				-1,
+				-1,
+				-1
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":193,
+			"count":24,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":193,
+			"count":24,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":528,
+			"count":36,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":2316,
+			"byteLength":288,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":2316,
-			"byteOffset":2316,
+			"byteLength":288,
+			"byteOffset":288,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1544,
-			"byteOffset":4632,
+			"byteLength":192,
+			"byteOffset":576,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1056,
-			"byteOffset":6176,
+			"byteLength":72,
+			"byteOffset":768,
 			"target":34963
 		}
 	],
@@ -155,8 +129,8 @@
 	],
 	"buffers":[
 		{
-			"byteLength":7232,
-			"uri":"head.bin"
+			"byteLength":840,
+			"uri":"cube.bin"
 		}
 	]
 }
