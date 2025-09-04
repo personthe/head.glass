@@ -1101,7 +1101,7 @@ const mouse = new THREE.Vector2()
                 pig.pause()  
                 pig.currentTime = 0
                 pig.play()                      
-                window.open('http://glassheadx9q8b.ddns.net/');
+                window.location.assign('./nomine');
             } 
 
             // click cab //musiccab logic

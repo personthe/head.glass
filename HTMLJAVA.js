@@ -21,11 +21,12 @@ document.body.appendChild(minecraftServer);
 
 minecraftServer.addEventListener('touchend', (event) =>
 
-{        
+{    
+    
 event.preventDefault(); // prevent the default touch behavior
-
 sheep.play();
 copy.play();
+
 
 const textArea = document.createElement('textarea');
 textArea.value = 'mine.head.glass';
@@ -33,6 +34,7 @@ document.body.appendChild(textArea);
 textArea.select();
 document.execCommand('copy');
 document.body.removeChild(textArea);
+
 minecraftServer.innerHTML = '<strong>SERVER IP COPIED TO CLIPBOARD!<strong>';
 setTimeout(function() {
   minecraftServer.innerHTML = '<b>MINECRAFT SERVER IP: mine.head.glass<b>';
@@ -43,9 +45,9 @@ setTimeout(function() {
 })
 
 minecraftServer.addEventListener('click', function() {
-
+  window.location.assign('./nomine');
   const textArea = document.createElement('textarea');
-  textArea.value = 'mine.head.glass';
+  textArea.value = 'I WAS AT https://HEAD.GLASS and it was so fun!!!!';
   document.body.appendChild(textArea);
   textArea.select();
   document.execCommand('copy');
