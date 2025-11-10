@@ -584,7 +584,7 @@ window.addEventListener('mousemove', (event) =>{
             dis.play()      
 
                     setTimeout(function() {
-                        window.location.assign('https://stopify.co/1L2G6K');
+                        window.location.assign('https://stopify.co/YGKDWG');
                       }, 500); // 1000 milliseconds = 1 second							
             
         
@@ -1000,3 +1000,4 @@ animate()
 
 
 //!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++GUI+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
