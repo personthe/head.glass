@@ -915,7 +915,7 @@ const mouse = new THREE.Vector2()
             dis.play()      
 
                     setTimeout(function() {
-                        window.location.assign('https://stopify.co/YGKDWG');
+                        window.location.assign('https://stopify.co/JGJ49M');
                       }, 500); // 1000 milliseconds = 1 second							
             
         
@@ -1986,4 +1986,5 @@ function animate(){
 }
 
 animate()
+
 
